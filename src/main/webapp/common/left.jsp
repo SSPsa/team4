@@ -112,13 +112,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="member-del.html">
+                            <a href="/jsp/inspectionTask_executAndReceipt.jsp">
                                 <i class="iconfont">&#xe6a7;</i>
                                 巡检任务执行与回执
                             </a>
                         </li>
                         <li>
-                            <a href="member-del.html">
+                            <a href="/jsp/solve_Query.jsp">
                                 <i class="iconfont">&#xe6a7;</i>
                                 缺陷查询
                             </a>
@@ -146,7 +146,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="member-del.html">
+                            <a href="/jsp/solve_Query.jsp">
                                 <i class="iconfont">&#xe6a7;</i>
                                 消缺查询
                             </a>
@@ -162,13 +162,13 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="current">
-                            <a href="member-list.html">
+                            <a href="/jsp/inspectionTask_recordStatis.jsp">
                                 <i class="iconfont">&#xe6a7;</i>
                                 巡检记录统计
                             </a>
                         </li>
                         <li>
-                            <a href="member-del.html">
+                            <a href="/jsp/solveTask_recordStatis.jsp">
                                 <i class="iconfont">&#xe6a7;</i>
                                 消缺记录统计
                             </a>
