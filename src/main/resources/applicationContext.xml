@@ -27,7 +27,7 @@
     </bean>
     <!--会话工厂-->
     <bean name="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="typeAliasesPackage" value="com.accp.appinfodb.entity" />
+        <property name="typeAliasesPackage" value="com.accp.routinglnspection.entity" />
         <property name="mapperLocations" value="classpath:mybatis/mapping/xml/*.xml"/>
     </bean>
 

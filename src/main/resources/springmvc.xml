@@ -41,6 +41,7 @@
     <!--</mvc:interceptors>-->
 
 
+
     <!--配置自定义类型转换器-->
     <bean name="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
@@ -49,12 +50,38 @@
             </set>
         </property>
     </bean>
+    <!--静态资源访问放过-->
+    <mvc:resources mapping="/assets/css/**" location="assets/css/" />
+    <mvc:resources mapping="/assets/js/**" location="assets/js/" />
+    <mvc:resources mapping="/images/**" location="images/" />
+    <mvc:resources mapping="/common/**" location="common/" />
+    <mvc:resources mapping="/css/**" location="css/" />
+    <mvc:resources mapping="/js/**" location="js/" />
+    <mvc:resources mapping="/fonts/**" location="fonts/" />
+    <mvc:resources mapping="/lib/layui/**" location="lib/layui/" />
+    <!--<mvc:resources mapping="/common/**" location="/WEB-INF/jsp/jsp/common/" />-->
+    <mvc:annotation-driven  conversion-service="conversionService" >
+        <mvc:message-converters>
+            <!--配置全局输出的字符串 设置成utf-8  使用ajax时注意设置-->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="utf-8" />
+            </bean>
+            <!--输出使用FastJson转换对象 -->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
     <!--把注解的类扫描上来-->
     <context:component-scan base-package="com.accp.routinglnspection.controller,com.accp.routinglnspection.biz" />
     <!--视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="prefix" value="/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
     <!--文件上传-->
