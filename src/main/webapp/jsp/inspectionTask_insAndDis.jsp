@@ -6,7 +6,7 @@
 <!-- 右侧主体开始 -->
 <div class="page-content">
     <div class="content">
-        消缺任务管理>>消缺任务制定与分配
+        巡检任务管理>>巡检任务制定与分配
         <!-- 右侧内容框架，更改从这里开始 -->
         <form class="layui-form xbs" action="" >
             <div class="layui-form-pane" style="text-align: center;">
@@ -31,8 +31,7 @@
                             <option>已完成</option>
                         </select>
                     </div>
-                    <div class="layui-input-inline" style="width:80px">
-                        <%--占位--%>
+                    <div class="layui-input-inline" style="width: 330px;">
                     </div>
 
                 </div>
@@ -55,15 +54,19 @@
                     <div class="layui-input-inline">
                         <input class="layui-input"  id="LAY_demorange_e">
                     </div>
+
                     <div class="layui-input-inline" style="width:80px">
                         <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                    </div>
+                    <div class="layui-input-inline" style="width: 270px;">
                     </div>
                 </div>
             </div>
 
         </form>
         <xblock>
-            <a  class="layui-btn"  onclick="member_add('添加消缺任务','/jsp/user_add.jsp','600','500')"><i class="layui-icon">&#xe608;</i>添加消缺任务</a><span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
+            <a  class="layui-btn"  onclick="member_add('制定巡检任务','/jsp/inspectionTask_add.jsp','700','500')"><i class="layui-icon">&#xe608;</i>制定巡检任务</a><span class="x-right" style="line-height:40px">共有数据：88 条</span>
+        </xblock>
         <table class="layui-table">
             <thead>
             <tr>
@@ -83,10 +86,10 @@
                     终止杆号
                 </th>
                 <th>
-                   下发人
+                    下发人
                 </th>
                 <th>
-                   下发时间
+                    下发时间
                 </th>
                 <th>
                     任务状态
@@ -103,6 +106,8 @@
             </tr>
             </thead>
             <tbody>
+
+            <%--只有待分配的才有分配任务--%>
             <tr>
                 <td>
                     RW0245
@@ -139,19 +144,19 @@
 
 
                 <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
-                        <i class="layui-icon">&#xe601;</i>
+                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/inspectionTask_ins_view.jsp','10001','700','500')" title="查看">
+                        <i class="layui-icon">&#xe615;</i>
                     </a>
-                    <a style="text-decoration:none" onclick="member_password('修改用户','/jsp/user_modify.jsp','10001','600','500')" title="修改">
+                    <a style="text-decoration:none" onclick="member_password('分配任务','/jsp/inspectionTask_assign.jsp','10001','600','500')" title="分配任务">
                         <i class="layui-icon">&#xe631;</i>
                     </a>
-                    <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
+                    <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/inspectionTask_modify.jsp','10001','700','500')"
                        style="text-decoration:none">
-                        <i class="layui-icon">&#xe640;</i>
+                        <i class="layui-icon">&#xe642;</i>
                     </a>
-                    <a title="log日志" href="javascript:;" onclick="member_del(this,'1')"
+                    <a title="取消" href="javascript:;" onclick=""
                        style="text-decoration:none">
-                        <i class="layui-icon">&#xe622;</i>
+                        <i class="layui-icon">&#x1006;</i>
                     </a>
 
                 </td>
@@ -192,19 +197,19 @@
 
 
                 <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
-                        <i class="layui-icon">&#xe601;</i>
+                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/inspectionTask_ins_view.jsp','10001','700','500')" title="查看">
+                        <i class="layui-icon">&#xe615;</i>
                     </a>
-                    <a style="text-decoration:none" onclick="member_password('修改用户','/jsp/user_modify.jsp','10001','600','500')" title="修改">
+                    <a style="text-decoration:none"  href="#" title="分配任务">
                         <i class="layui-icon">&#xe631;</i>
                     </a>
-                    <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
+                    <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/inspectionTask_modify.jsp','10001','700','500')"
                        style="text-decoration:none">
-                        <i class="layui-icon">&#xe640;</i>
+                        <i class="layui-icon">&#xe642;</i>
                     </a>
-                    <a title="log日志" href="javascript:;" onclick="member_del(this,'1')"
+                    <a title="取消" href="javascript:;" onclick=""
                        style="text-decoration:none">
-                        <i class="layui-icon">&#xe622;</i>
+                        <i class="layui-icon">&#x1006;</i>
                     </a>
 
                 </td>
@@ -245,19 +250,19 @@
 
 
                 <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
-                        <i class="layui-icon">&#xe601;</i>
+                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/inspectionTask_ins_view.jsp','10001','700','500')" title="查看">
+                        <i class="layui-icon">&#xe615;</i>
                     </a>
-                    <a style="text-decoration:none" onclick="member_password('修改用户','/jsp/user_modify.jsp','10001','600','500')" title="修改">
+                    <a style="text-decoration:none" href="#" title="分配任务">
                         <i class="layui-icon">&#xe631;</i>
                     </a>
-                    <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
+                    <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/inspectionTask_modify.jsp','10001','700','500')"
                        style="text-decoration:none">
-                        <i class="layui-icon">&#xe640;</i>
+                        <i class="layui-icon">&#xe642;</i>
                     </a>
-                    <a title="log日志" href="javascript:;" onclick="member_del(this,'1')"
+                    <a title="取消" href="javascript:;" onclick=""
                        style="text-decoration:none">
-                        <i class="layui-icon">&#xe622;</i>
+                        <i class="layui-icon">&#x1006;</i>
                     </a>
 
                 </td>
@@ -290,7 +295,7 @@
                             </span>
                 </td>
                 <td>
-                2013/12/23
+                    2013/12/23
                 </td>
                 <td>
                     否
@@ -298,19 +303,19 @@
 
 
                 <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
-                        <i class="layui-icon">&#xe601;</i>
+                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/inspectionTask_ins_view.jsp','10001','700','500')" title="查看">
+                        <i class="layui-icon">&#xe615;</i>
                     </a>
-                    <a style="text-decoration:none" onclick="member_password('修改用户','/jsp/user_modify.jsp','10001','600','500')" title="修改">
+                    <a style="text-decoration:none" href="#" title="分配任务">
                         <i class="layui-icon">&#xe631;</i>
                     </a>
-                    <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
+                    <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/inspectionTask_modify.jsp','10001','700','500')"
                        style="text-decoration:none">
-                        <i class="layui-icon">&#xe640;</i>
+                        <i class="layui-icon">&#xe642;</i>
                     </a>
-                    <a title="log日志" href="javascript:;" onclick="member_del(this,'1')"
+                    <a title="取消" href="javascript:;" onclick=""
                        style="text-decoration:none">
-                        <i class="layui-icon">&#xe622;</i>
+                        <i class="layui-icon">&#x1006;</i>
                     </a>
 
                 </td>

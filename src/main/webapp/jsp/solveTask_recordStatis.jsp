@@ -29,9 +29,7 @@
                             <option>无</option>
                         </select>
                     </div>
-
-
-                    <div class="layui-input-inline">
+                    <div class="layui-input-inline" style="width: 370px">
                     </div>
                 </div>
                 <div class="layui-form-item" style="display: inline-block;">
@@ -50,13 +48,10 @@
 
 
 
-                    <div class="layui-input-inline">
+                    <div class="layui-input-inline" style="width:80px">
                         <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
                     </div>
-                    <%--占位2个div--%>
-                    <div class="layui-input-inline">
-                    </div>
-                    <div class="layui-input-inline">
+                    <div class="layui-input-inline" style="width: 570px">
                     </div>
                 </div>
             </div>

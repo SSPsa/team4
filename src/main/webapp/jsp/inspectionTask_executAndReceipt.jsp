@@ -31,8 +31,7 @@
                             <option>已完成</option>
                         </select>
                     </div>
-                    <div class="layui-input-inline" style="width:80px">
-                        <%--占位--%>
+                    <div class="layui-input-inline" style="width: 330px;">
                     </div>
 
                 </div>
@@ -55,9 +54,10 @@
                     <div class="layui-input-inline">
                         <input class="layui-input"  id="LAY_demorange_e">
                     </div>
-
-                    <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
-                    <div class="layui-input-inline">
+                    <div class="layui-input-inline" style="width:80px">
+                        <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                    </div>
+                    <div class="layui-input-inline" style="width: 270px;">
                     </div>
                 </div>
             </div>
@@ -140,7 +140,7 @@
 
 
                 <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
+                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/inspectionTask_execut_view.jsp','10001','700','500')" title="查看">
                         <i class="layui-icon">&#xe615;</i>
                     </a>
                     <a style="text-decoration:none" onclick="member_password('回执录入','','10001','700','500')" title="回执录入">
@@ -150,7 +150,7 @@
                        style="text-decoration:none">
                         <i class="layui-icon">&#xe642;</i>
                     </a>
-                    <a title="修改" href="javascript:;" onclick="member_password('执行','/jsp/inspectionTask_modify.jsp','10001','700','500')"
+                    <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/inspectionTask_modify.jsp','10001','700','500')"
                        style="text-decoration:none">
                         <i class="layui-icon">&#x1006;</i>
                     </a>
@@ -193,7 +193,7 @@
 
 
                 <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
+                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/inspectionTask_execut_view.jsp','10001','700','500')" title="查看">
                         <i class="layui-icon">&#xe615;</i>
                     </a>
                     <a style="text-decoration:none" onclick="member_password('回执录入','','10001','700','500')" title="回执录入">
@@ -246,17 +246,17 @@
 
 
                 <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
+                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/inspectionTask_execut_view.jsp','10001','700','500')" title="查看">
                         <i class="layui-icon">&#xe615;</i>
                     </a>
-                    <a style="text-decoration:none" onclick="member_password('执行录入','','10001','700','500')" title="执行录入">
+                    <a style="text-decoration:none" onclick="member_password('执行录入','/jsp/inspectionTask_execut_add.jsp','10001','700','500')" title="执行录入">
                         <i class="layui-icon">&#xe631;</i>
                     </a>
                     <a title="执行" href="javascript:;" onclick="member_password('执行','','10001','700','500')"
                        style="text-decoration:none">
                         <i class="layui-icon">&#xe642;</i>
                     </a>
-                    <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/inspectionTask_modify.jsp','10001','700','500')"
+                    <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/inspectionTask_execut_modify.jsp','10001','700','500')"
                        style="text-decoration:none">
                         <i class="layui-icon">&#x1006;</i>
                     </a>
@@ -299,7 +299,7 @@
 
 
                 <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
+                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/inspectionTask_execut_view.jsp','10001','700','500')" title="查看">
                         <i class="layui-icon">&#xe615;</i>
                     </a>
                     <a style="text-decoration:none" onclick="member_password('回执录入','','10001','700','500')" title="回执录入">
