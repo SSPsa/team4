@@ -7,20 +7,21 @@
 <div class="page-content">
     <div class="content">
         <!-- 右侧内容框架，更改从这里开始 -->
-        <form class="layui-form xbs" action="" >
+        <form class="layui-form xbs" action="/circuit/selCircuit" >
+            <input type="hidden" name="pageIndex" value="1">
             <div class="layui-form-pane" style="text-align: center;">
                 <div class="layui-form-item" style="display: inline-block;">
                     <label class="layui-form-label xbs768">线路编号：</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="xianlubianhao"  placeholder="请输入线路编号" autocomplete="off" class="layui-input">
+                        <input type="text" name="cNumber"  placeholder="请输入线路编号" autocomplete="off" class="layui-input" value="${cNumber}">
                     </div>
 
                     <label class="layui-form-label xbs768">线路状态</label>
                     <div class="layui-input-inline">
-                        <select>
-                            <option>--请选择--</option>
-                            <option>正常</option>
-                            <option>检修中</option>
+                        <select name="cState">
+                            <option VALUE="">--请选择--</option>
+                            <option <c:if test="${cState==1}">selected="selected"</c:if> VALUE="1" >正常</option>
+                            <option <c:if test="${cState==2}">selected="selected"</c:if> VALUE="2" >检修中</option>
                         </select>
                     </div>
                     <div class="layui-input-inline" style="width:80px">
@@ -28,7 +29,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+
         <xblock>
             <a class="layui-btn" href="/jsp/line-add.jsp"><i class="layui-icon">&#xe608;</i>添加线路</a><span class="x-right" style="line-height:40px"></span></xblock>
         <table class="layui-table">
@@ -60,29 +61,32 @@
                 </th>
             </tr>
             </thead>
+            <c:forEach items="${circuitPager.datas}" var="circuitPager">
             <tbody>
             <tr>
                 <td>
-                    XW00001
+                    ${circuitPager.cNumber}
                 </td>
                 <td>
-                    西渭线
+                    ${circuitPager.cName}
                 </td>
                 <td>
-                    wx0010
+                    ${circuitPager.riseTid}
                 </td>
                 <td>
-                    xw0256
+                    ${circuitPager.endTid}
                 </td>
                 <td>
-                   3333
+                    ${circuitPager.cardinalNumber}
                 </td>
                 <td>
-                    正常
+                    <c:if test="${circuitPager.cState==1}">正常</c:if>
+                    <c:if test="${circuitPager.cState==2}">维修中</c:if>
                 </td>
                 <td class="td-status">
                     <span class="layui-btn layui-btn-normal layui-btn-mini">
-                        已启用
+                         <c:if test="${circuitPager.yState==0}">已启动</c:if>
+                    <c:if test="${circuitPager.yState==1}">停用</c:if>
                     </span>
                 </td>
                 <td class="td-manage">
@@ -99,16 +103,20 @@
                 </td>
             </tr>
             </tbody>
+            </c:forEach>
         </table>
-        <input type="hidden" id="totalPageCount" value="${houseList.totalPage}"/>
+
+        <input type="hidden" id="totalPageCount" value="${circuitPager.totalPage}"/>
         <c:import url="rollpage.jsp">
-            <c:param name="totalCount" value="${houseList.totalRows}"/>
-            <c:param name="currentPageNo" value="${houseList.pageNo}"/>
-            <c:param name="totalPageCount" value="${houseList.totalPage}"/>
+            <c:param name="totalCount" value="${circuitPager.totalRows}"/>
+            <c:param name="currentPageNo" value="${circuitPager.pageNo}"/>
+            <c:param name="totalPageCount" value="${circuitPager.totalPage}"/>
         </c:import>
         <!-- 右侧内容框架，更改从这里结束 -->
+        </form>
     </div>
 </div>
 <!-- 右侧主体结束 -->
 </div>
+
 <%@include file="/common/footer.jsp"%>

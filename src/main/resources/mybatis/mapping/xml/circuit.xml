@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accp.routinglnspection.dao.CircuitDao">
+    <sql id="pageWhere" >
+        <where>
+            <if test="cNumber != null and cNumber !=''">
+                and cNumber like concat('%',#{cNumber},'%')
+            </if>
+            <if test="cState>0">
+                AND cState =#{cState}
+            </if>
+        </where>
+    </sql>
+
+    <select id="queryPager" resultType="Circuit">
+        SELECT * from circuit
+        <include refid="pageWhere"/>
+        limit #{pageNo} , #{pageSize}
+    </select>
+
+    <select id="queryCircuitRows" resultType="_int">
+        SELECT COUNT(*)
+        FROM circuit
+        <include refid="pageWhere"/>
+    </select>
+</mapper>

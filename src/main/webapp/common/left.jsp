@@ -70,7 +70,7 @@
                     </a>
                 </li>
                 <li class="list" >
-                    <a href="/jsp/line.jsp">
+                    <a href="/circuit/selCircuit">
                         <i class="iconfont">&#xe6a3;</i>
                        线路管理
                         <i class="iconfont nav_right">&#xe697;</i>
