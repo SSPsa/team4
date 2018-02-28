@@ -53,6 +53,7 @@
     <!--静态资源访问放过-->
     <mvc:resources mapping="/assets/css/**" location="assets/css/" />
     <mvc:resources mapping="/assets/js/**" location="assets/js/" />
+    <mvc:resources mapping="/assets/images/**" location="assets/images/" />
     <mvc:resources mapping="/images/**" location="images/" />
     <mvc:resources mapping="/common/**" location="common/" />
     <mvc:resources mapping="/css/**" location="css/" />
