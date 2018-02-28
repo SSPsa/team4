@@ -89,5 +89,11 @@
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="maxUploadSize" value="5000000" /> <!--单位是字节-->
     </bean>
-
+    <!--拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/user/**"/>
+            <bean class="com.accp.routinglnspection.interceptor.MyInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
