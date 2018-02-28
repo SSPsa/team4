@@ -10,8 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/user")
-public class UserController {
+public class logincontroller {
     @Resource
     private UserBiz userBiz;
     @RequestMapping("/log")
@@ -24,5 +23,4 @@ public class UserController {
             return "login";
         }
     }
-
 }
