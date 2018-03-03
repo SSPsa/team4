@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%@include file="/common/top.jsp"%>  <%--头部--%>
 <%@include file="/common/left.jsp"%>  <%--中间-左--%>
 <!-- 右侧主体开始 -->
@@ -86,7 +85,7 @@
                 <td class="td-status">
                     <span class="layui-btn layui-btn-normal layui-btn-mini">
                          <c:if test="${circuitPager.yState==0}">已启动</c:if>
-                    <c:if test="${circuitPager.yState==1}">停用</c:if>
+                         <c:if test="${circuitPager.yState==1}">停用</c:if>
                     </span>
                 </td>
                 <td class="td-manage">
@@ -96,7 +95,7 @@
                     <a style="text-decoration:none" href="/circuit/selId?id=${circuitPager.id}" title="修改">
                         <i class="layui-icon">&#xe631;</i>
                     </a>
-                    <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
+                    <a title="删除" href="javascript:;" onclick="member_del(this,${circuitPager.id})"
                        style="text-decoration:none">
                         <i class="layui-icon">&#xe640;</i>
                     </a>

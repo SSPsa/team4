@@ -15,6 +15,8 @@ import javax.jws.WebParam;
 public class CircuitController {
     @Resource
     private CircuitBiz circuitBiz;
+
+    //查询全部
     @RequestMapping("/circuit/selCircuit")
     public String selCircuit(Model model,String pageIndex,String queryCircuitRows,String cNumber,String cState){
         if (pageIndex == null) {
@@ -69,6 +71,17 @@ public class CircuitController {
         int updateCircuit = circuitBiz.updateCircuit(circuit);
         if (updateCircuit>0){
             return selCircuit(model,null,null,null,null);
+        }else {
+            return null;
+        }
+     }
+
+     //根据ID删除
+    @RequestMapping("/circuit/del")
+     public String del(int id){
+        int delCircuit = circuitBiz.delCircuit(id);
+        if (delCircuit>0){
+            return null;
         }else {
             return null;
         }
