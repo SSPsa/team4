@@ -100,16 +100,34 @@
     function member_password(title,url,id,w,h){
         x_admin_show(title,url,w,h);
     }
-    /*用户-删除*/
-    function member_del(obj,id){
+    /*线路管理-删除*/
+    function member_cirCuitDel(obj,id){
         layer.confirm('确认要删除吗？',function(index){
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!',{icon:1,time:1000});
+            $.ajax({
+                type:"GET",
+                url:"/circuit/del?id="+id,
+                dataType:"json",
+                success:function(data){
+                    if(data.delResult == "true"){//删除成功：移除删除行
+                        //发异步删除数据
+                        $(obj).parents("tr").remove();
+                        layer.msg('已删除!',{icon:1,time:1000});
+                    }else if(data.delResult == "false"){//删除失败
+                        //alert("对不起，删除用户【"+obj.attr("username")+"】失败");
+                        changeDLGContent("对不起，删除失败");
+                    }
+                },
+                error:function(data){
+                    //alert("对不起，删除失败");
+                    changeDLGContent("对不起，删除失败");
+                }
+            });
+
+
+
         });
     }
 </script>
-
 </body>
 </html>
 

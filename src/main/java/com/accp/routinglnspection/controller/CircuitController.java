@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.jws.WebParam;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @Controller
 public class CircuitController {
@@ -78,12 +81,17 @@ public class CircuitController {
 
      //根据ID删除
     @RequestMapping("/circuit/del")
-     public String del(int id){
-        int delCircuit = circuitBiz.delCircuit(id);
-        if (delCircuit>0){
-            return null;
-        }else {
-            return null;
+     public String del(int id,HttpServletResponse resp) throws IOException {
+        PrintWriter out = resp.getWriter();
+        int result = circuitBiz.delCircuit(id);
+        if (result>0){
+            out.print("{\"delResult\":\"true\"}");
         }
+        else {
+            out.print("{\"delResult\":\"false\"}");
+        }
+        out.flush();
+        out.close();
+        return null;
      }
 }

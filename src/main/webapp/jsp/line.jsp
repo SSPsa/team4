@@ -95,7 +95,7 @@
                     <a style="text-decoration:none" href="/circuit/selId?id=${circuitPager.id}" title="修改">
                         <i class="layui-icon">&#xe631;</i>
                     </a>
-                    <a title="删除" href="javascript:;" onclick="member_del(this,${circuitPager.id})"
+                    <a title="删除" href="javascript:;" onclick="member_cirCuitDel(this,${circuitPager.id})"
                        style="text-decoration:none">
                         <i class="layui-icon">&#xe640;</i>
                     </a>
