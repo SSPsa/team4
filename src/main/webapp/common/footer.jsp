@@ -108,6 +108,8 @@
             layer.msg('已删除!',{icon:1,time:1000});
         });
     }
+
+
 </script>
 <script>
     //百度统计可去掉
