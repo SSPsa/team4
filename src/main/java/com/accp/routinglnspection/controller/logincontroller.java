@@ -20,6 +20,7 @@ public class logincontroller {
             session.setAttribute("Login",login);
             return "index";
         }else {
+            m.addAttribute("error","密码或账号错误");
             return "login";
         }
     }
