@@ -21,7 +21,7 @@
     <div class="page-content">
         <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-            <form class="layui-form">
+            <form class="layui-form" >
                 <div class="layui-form-item">
                     <label class="layui-form-label">
                         <span class="x-red">*</span>角色编号:
@@ -54,7 +54,7 @@
                 <div class="layui-form-item">
                     <label id="L_repass" class="layui-form-label">
                     </label>
-                    <button  class="layui-btn" lay-filter="add" lay-submit="">
+                    <button  class="layui-btn" lay-filter="add" type="submit">
                         增加
                     </button>
                     <button  class="layui-btn" lay-filter="add" lay-submit="">

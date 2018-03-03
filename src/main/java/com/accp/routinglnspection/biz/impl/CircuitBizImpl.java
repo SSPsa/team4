@@ -23,4 +23,22 @@ public class CircuitBizImpl implements CircuitBiz {
         pager.setDatas(circuitDao.queryPager(begin, pageSize,cNumber,cState));
         return pager;
     }
+
+    public Circuit selId(int id) {
+        return circuitDao.selId(id);
+    }
+
+    public int addCircuit(Circuit circuit) {
+        return circuitDao.addCircuit(circuit);
+    }
+
+    public int updateCircuit(Circuit circuit) {
+        return circuitDao.updateCircuit(circuit);
+    }
+
+    public int delCircuit(int id) {
+        return circuitDao.delCircuit(id);
+    }
+
+
 }

@@ -9,4 +9,9 @@ public interface CircuitBiz {
                               int pageSize,
                               String cNumber,
                               int cState);
+
+    Circuit selId(int id);
+    int addCircuit(Circuit circuit);
+    int updateCircuit(Circuit circuit);
+    int delCircuit(int id);
 }

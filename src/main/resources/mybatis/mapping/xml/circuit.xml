@@ -25,4 +25,59 @@
         FROM circuit
         <include refid="pageWhere"/>
     </select>
+
+    <insert id="addCircuit">
+        INSERT  INTO circuit(cNumber,cName,cLength,loopLength,cardinalNumber,riseTid,endTid,commissioningData,grade,cState,cRemark,yState)
+        VALUES(#{cNumber},#{cName},#{cLength},#{loopLength},#{cardinalNumber},#{riseTid},#{endTid},#{commissioningData},
+        #{grade},#{cState},#{cRemark},#{yState});
+    </insert>
+
+    <select id="selId" resultType="Circuit">
+        SELECT * FROM circuit  WHERE  id=#{id}
+    </select>
+
+    <update id="updateCircuit">
+        UPDATE circuit
+        <set>
+            <if test="cNumber != null and cNumber != ''">
+                cNumber = #{cNumber},
+            </if>
+            <if test="cName != null and cName != ''">
+                cName = #{cName},
+            </if>
+            <if test="cLength >0">
+                cLength = #{cLength},
+            </if>
+            <if test="loopLength >0">
+                loopLength = #{loopLength},
+            </if>
+            <if test="commissioningData !=null">
+                commissioningData = #{commissioningData},
+            </if>
+            <if test="grade >0">
+                grade = #{grade},
+            </if>
+            <if test="riseTid != null and riseTid != ''">
+                riseTid = #{riseTid},
+            </if>
+            <if test="endTid != null and endTid != ''">
+                endTid = #{endTid},
+            </if>
+            <if test="cState>-1">
+                cState = #{cState},
+            </if>
+            <if test="yState>-1">
+                yState = #{yState},
+            </if>
+            <if test="cRemark != null and cRemark != ''">
+                cRemark = #{cRemark},
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="delCircuit">
+        DELETE FROM circuit WHERE id=#{id}
+    </delete>
+
 </mapper>

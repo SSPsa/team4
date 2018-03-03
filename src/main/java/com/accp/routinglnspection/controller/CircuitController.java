@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.jws.WebParam;
 
 @Controller
 public class CircuitController {
@@ -36,4 +37,40 @@ public class CircuitController {
             return null;
         }
     }
+   //新增
+    @RequestMapping("/circuit/addCircuit")
+    public String addCircuit(Model model,Circuit circuit){
+        circuit.setyState(0);
+        int addCircuit = circuitBiz.addCircuit(circuit);
+        if (addCircuit>0){
+            return selCircuit(model,null,null,null,null);
+        }else {
+            return null;
+        }
+    }
+
+    //根据ID查询
+    @RequestMapping("/circuit/selId")
+    public String selId(int id,Model model){
+        Circuit circuit = circuitBiz.selId(id);
+        if (circuit!=null && !circuit.equals("")){
+            model.addAttribute("circuit",circuit);
+            return "line-update";
+        }else {
+            return null;
+        }
+
+    }
+
+    //修改
+    @RequestMapping("/circuit/updateCircuit")
+     public String updateCircuit(Circuit circuit,int id,Model model,String yState){
+
+        int updateCircuit = circuitBiz.updateCircuit(circuit);
+        if (updateCircuit>0){
+            return selCircuit(model,null,null,null,null);
+        }else {
+            return null;
+        }
+     }
 }

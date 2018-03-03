@@ -13,7 +13,7 @@ public class Circuit {
     private String endTid;//'终止杆，杆塔表id',
     private Date commissioningData;//'投运日期',
     private Integer grade;//'电压等级',
-    private Integer cState;//'状态0为禁用1为启用',
+    private Integer cState;//'状态2为维修中1为启用',
     private Integer yState;//'状态1为正常2为停用',
     private String cRemark;// '备注',
 

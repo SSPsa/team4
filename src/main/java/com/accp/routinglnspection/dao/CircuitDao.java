@@ -20,4 +20,12 @@ public interface CircuitDao {
      */
     int queryCircuitRows(@Param("cNumber") String cNumber,
                          @Param("cState") int cState);
+
+    Circuit selId(@Param("id") int id);
+
+    int addCircuit(Circuit circuit);
+
+    int updateCircuit(Circuit circuit);
+
+    int delCircuit(@Param("id") int id);
 }

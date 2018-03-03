@@ -19,7 +19,7 @@
                     <label class="layui-form-label xbs768">线路状态</label>
                     <div class="layui-input-inline">
                         <select name="cState">
-                            <option VALUE="">--请选择--</option>
+                            <option <c:if test="${cState==0}">selected="selected"</c:if> VALUE="0" >请选择</option>
                             <option <c:if test="${cState==1}">selected="selected"</c:if> VALUE="1" >正常</option>
                             <option <c:if test="${cState==2}">selected="selected"</c:if> VALUE="2" >检修中</option>
                         </select>
@@ -93,7 +93,7 @@
                     <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
                         <i class="layui-icon">&#xe601;</i>
                     </a>
-                    <a style="text-decoration:none" href="/jsp/line-update.jsp" title="修改">
+                    <a style="text-decoration:none" href="/circuit/selId?id=${circuitPager.id}" title="修改">
                         <i class="layui-icon">&#xe631;</i>
                     </a>
                     <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
