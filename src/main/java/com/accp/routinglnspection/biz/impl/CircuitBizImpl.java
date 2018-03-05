@@ -7,6 +7,7 @@ import com.accp.routinglnspection.entity.Pager;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service("circuitBiz")
 public class CircuitBizImpl implements CircuitBiz {
@@ -27,6 +28,11 @@ public class CircuitBizImpl implements CircuitBiz {
     public Circuit selId(int id) {
         return circuitDao.selId(id);
     }
+
+    public List<Circuit> selRod() {
+        return circuitDao.selRod();
+    }
+
 
     public int addCircuit(Circuit circuit) {
         return circuitDao.addCircuit(circuit);

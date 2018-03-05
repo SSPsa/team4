@@ -30,7 +30,7 @@
             </div>
 
         <xblock>
-            <a class="layui-btn" href="/jsp/line-add.jsp"><i class="layui-icon">&#xe608;</i>添加线路</a><span class="x-right" style="line-height:40px"></span></xblock>
+            <a class="layui-btn" href="/circuit/selRod"><i class="layui-icon">&#xe608;</i>添加线路</a><span class="x-right" style="line-height:40px"></span></xblock>
         <table class="layui-table">
             <thead>
             <tr>
@@ -84,14 +84,21 @@
                 </td>
                 <td class="td-status">
                     <span class="layui-btn layui-btn-normal layui-btn-mini">
-                         <c:if test="${circuitPager.yState==0}">已启动</c:if>
-                         <c:if test="${circuitPager.yState==1}">停用</c:if>
+                        <c:if test="${circuitPager.yState==0}">已启动</c:if>
+                        <c:if test="${circuitPager.yState==1}">停用</c:if>
                     </span>
                 </td>
                 <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
+                    <c:if test="${circuitPager.yState==1}">
+                    <a style="text-decoration:none" name="yState" onclick="member_stopStop(this,${circuitPager.id},${circuitPager.yState})" href="javascript:;" title="启用">
                         <i class="layui-icon">&#xe601;</i>
                     </a>
+                    </c:if>
+                    <c:if test="${circuitPager.yState==0}">
+                        <a style="text-decoration:none" name="yState" onclick="member_stopState(this,${circuitPager.id},${circuitPager.yState})" href="javascript:;" title="停用">
+                            <i class="layui-icon">&#xe601;</i>
+                        </a>
+                    </c:if>
                     <a style="text-decoration:none" href="/circuit/selId?id=${circuitPager.id}" title="修改">
                         <i class="layui-icon">&#xe631;</i>
                     </a>

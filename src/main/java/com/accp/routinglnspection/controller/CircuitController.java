@@ -3,6 +3,7 @@ package com.accp.routinglnspection.controller;
 import com.accp.routinglnspection.biz.CircuitBiz;
 import com.accp.routinglnspection.entity.Circuit;
 import com.accp.routinglnspection.entity.Pager;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import javax.jws.WebParam;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @Controller
 public class CircuitController {
@@ -67,10 +69,20 @@ public class CircuitController {
 
     }
 
+    @RequestMapping("/circuit/selRod")
+    public String selRod(Model model){
+        List<Circuit> circuit1 = circuitBiz.selRod();
+        if (circuit1!=null || !circuit1.equals("")){
+            model.addAttribute("circuit1",circuit1);
+            return "line-add";
+        }else {
+            return null;
+        }
+    }
+
     //修改
     @RequestMapping("/circuit/updateCircuit")
      public String updateCircuit(Circuit circuit,int id,Model model,String yState){
-
         int updateCircuit = circuitBiz.updateCircuit(circuit);
         if (updateCircuit>0){
             return selCircuit(model,null,null,null,null);
@@ -78,6 +90,28 @@ public class CircuitController {
             return null;
         }
      }
+
+     //修改状态
+    @RequestMapping("/circuit/updateYState")
+    public String updateYState(int id,int yState,Circuit circuit,HttpServletResponse resp) throws IOException {
+        PrintWriter out = resp.getWriter();
+       if (yState==0){
+          circuit.setyState(1);
+       }
+        if (yState==1){
+            circuit.setyState(0);
+        }
+        circuit.setId(id);
+        int result = circuitBiz.updateCircuit(circuit);
+        if (result>0){
+            out.print("{\"delResult\":\"true\"}");
+        }else {
+            out.print("{\"delResult\":\"false\"}");
+        }
+        out.flush();
+        out.close();
+        return null;
+    }
 
      //根据ID删除
     @RequestMapping("/circuit/del")

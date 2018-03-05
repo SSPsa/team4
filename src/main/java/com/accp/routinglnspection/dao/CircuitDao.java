@@ -23,6 +23,9 @@ public interface CircuitDao {
 
     Circuit selId(@Param("id") int id);
 
+
+    List<Circuit> selRod();
+
     int addCircuit(Circuit circuit);
 
     int updateCircuit(Circuit circuit);

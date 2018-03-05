@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@include file="/common/top.jsp"%>  <%--头部--%>
@@ -61,15 +62,29 @@
                     <label for="riseTid" class="layui-form-label" style="width: 100px;">
                         起始杆号：
                     </label>
-                    <div class="layui-input-inline">
-                        <input type="text" id="riseTid" name="riseTid" autocomplete="off" class="layui-input" placeholder="请输起始杆号">
+                    <div class="layui-input-inline" id="riseTid">
+                        <select name="cState">
+                            <option >请选择</option>
+                            <c:forEach items="${circuit1}" var="circuit">
+                                <option>
+                                    ${circuit.riseTid}
+                                </option>
+                            </c:forEach>
+                        </select>
                     </div>
 
                     <label for="endTid" class="layui-form-label" style="width: 100px;">
                         终止杆号：
                     </label>
-                    <div class="layui-input-inline">
-                        <input type="text" id="endTid" name="endTid" autocomplete="off" class="layui-input" placeholder="请输入终止杆号">
+                    <div class="layui-input-inline" id="endTid">
+                        <select name="cState" >
+                            <option >请选择</option>
+                            <c:forEach items="${circuit1}" var="circuit">
+                                <option>
+                                        ${circuit.endTid}
+                                </option>
+                            </c:forEach>
+                        </select>
                     </div>
                 </div>
 

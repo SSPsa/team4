@@ -73,23 +73,56 @@
         x_admin_show(title,url,w,h);
     }
     /*用户-停用*/
-    function member_stop(obj,id){
+    function member_stopState(obj,id,yState){
         layer.confirm('确认要停用吗？',function(index){
-            //发异步把用户状态进行更改
-            $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_start(this,id)" href="javascript:;" title="启用"><i class="layui-icon">&#xe62f;</i></a>');
-            $(obj).parents("tr").find(".td-status").html('<span class="layui-btn layui-btn-disabled layui-btn-mini">已停用</span>');
-            $(obj).remove();
-            layer.msg('已停用!',{icon: 5,time:1000});
+            $.ajax({
+                type:"GET",
+                url:"/circuit/updateYState?id="+id+"&yState="+yState,
+                dataType:"json",
+                success:function(data){
+                    if(data.delResult == "true"){//删除成功：移除删除行
+                        //发异步删除数据
+                        $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stopState(this,id,yState)" href="javascript:;" title="已启用"><i class="layui-icon">&#xe601;</i></a>');
+                        $(obj).parents("tr").find(".td-status").html('<span class="layui-btn layui-btn-normal layui-btn-mini">停用</span>');
+                        $(obj).remove();
+                        layer.msg('已停用!',{icon: 6,time:1000});
+                    }else if(data.delResult == "false"){//删除失败
+                        //alert("对不起，删除用户【"+obj.attr("username")+"】失败");
+                        changeDLGContent("对不起，删除失败");
+                    }
+                },
+                error:function(data){
+                    //alert("对不起，删除失败");
+                    changeDLGContent("对不起，删除失败");
+                }
+            });
         });
     }
     /*用户-启用*/
-    function member_start(obj,id){
+    function member_stopStop(obj,id,yState){
         layer.confirm('确认要启用吗？',function(index){
             //发异步把用户状态进行更改
-            $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,id)" href="javascript:;" title="停用"><i class="layui-icon">&#xe601;</i></a>');
-            $(obj).parents("tr").find(".td-status").html('<span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>');
-            $(obj).remove();
-            layer.msg('已启用!',{icon: 6,time:1000});
+            $.ajax({
+                type:"GET",
+                url:"/circuit/updateYState?id="+id+"&yState="+yState,
+                dataType:"json",
+                success:function(data){
+                    if(data.delResult == "true"){//删除成功：移除删除行
+                        //发异步删除数据
+                        $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stopStop(this,id,yState)" href="javascript:;" title="停用"><i class="layui-icon">&#xe601;</i></a>');
+                        $(obj).parents("tr").find(".td-status").html('<span class="layui-btn layui-btn-normal layui-btn-mini">已启动</span>');
+                        $(obj).remove();
+                        layer.msg('已启用!',{icon: 6,time:1000});
+                    }else if(data.delResult == "false"){//删除失败
+                        //alert("对不起，删除用户【"+obj.attr("username")+"】失败");
+                        changeDLGContent("对不起，删除失败");
+                    }
+                },
+                error:function(data){
+                    //alert("对不起，删除失败");
+                    changeDLGContent("对不起，删除失败");
+                }
+            });
         });
     }
     // 用户-编辑

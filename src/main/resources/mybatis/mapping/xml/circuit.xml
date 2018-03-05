@@ -63,7 +63,7 @@
             <if test="endTid != null and endTid != ''">
                 endTid = #{endTid},
             </if>
-            <if test="cState>-1">
+            <if test="cState>0">
                 cState = #{cState},
             </if>
             <if test="yState>-1">
@@ -79,5 +79,9 @@
     <delete id="delCircuit">
         DELETE FROM circuit WHERE id=#{id}
     </delete>
+
+    <select id="selRod" resultType="Circuit">
+        SELECT riseTid,endTid FROM circuit
+    </select>
 
 </mapper>
