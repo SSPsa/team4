@@ -63,7 +63,7 @@
                     </ul>
                 </li>
                 <li class="list" >
-                    <a href="/jsp/tower.jsp">
+                    <a href="/tower/selTower">
                         <i class="iconfont">&#xe6a3;</i>
                         杆塔管理
                         <i class="iconfont nav_right">&#xe697;</i>

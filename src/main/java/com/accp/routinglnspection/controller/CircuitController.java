@@ -66,7 +66,6 @@ public class CircuitController {
         }else {
             return null;
         }
-
     }
 
     @RequestMapping("/circuit/selRod")
