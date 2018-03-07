@@ -62,13 +62,11 @@
                     <label for="riseTid" class="layui-form-label" style="width: 100px;">
                         起始杆号：
                     </label>
-                    <div class="layui-input-inline" id="riseTid">
-                        <select name="cState">
-                            <option >请选择</option>
+                    <div class="layui-input-inline" id="riseTid" name="riseTid">
+                        <select name="riseTid">
+                            <option>请选择</option>
                             <c:forEach items="${circuit1}" var="circuit">
-                                <option>
-                                    ${circuit.riseTid}
-                                </option>
+                                <option>${circuit.riseTid}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -76,13 +74,11 @@
                     <label for="endTid" class="layui-form-label" style="width: 100px;">
                         终止杆号：
                     </label>
-                    <div class="layui-input-inline" id="endTid">
-                        <select name="cState" >
+                    <div class="layui-input-inline" id="endTid" name="endTid">
+                        <select name="endTid" >
                             <option >请选择</option>
                             <c:forEach items="${circuit1}" var="circuit">
-                                <option>
-                                        ${circuit.endTid}
-                                </option>
+                            <option>${circuit.endTid}</option>
                             </c:forEach>
                         </select>
                     </div>

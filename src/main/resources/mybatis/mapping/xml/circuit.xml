@@ -27,8 +27,8 @@
     </select>
 
     <insert id="addCircuit">
-        INSERT  INTO circuit(cNumber,cName,cLength,loopLength,cardinalNumber,riseTid,endTid,commissioningData,grade,cState,cRemark,yState)
-        VALUES(#{cNumber},#{cName},#{cLength},#{loopLength},#{cardinalNumber},#{riseTid},#{endTid},#{commissioningData},
+        INSERT  INTO circuit(cNumber,cName,cLength,loopLength,riseTid,endTid,commissioningData,grade,cState,cRemark,yState)
+        VALUES(#{cNumber},#{cName},#{cLength},#{loopLength},#{riseTid},#{endTid},#{commissioningData},
         #{grade},#{cState},#{cRemark},#{yState});
     </insert>
 
