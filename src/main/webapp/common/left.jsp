@@ -134,7 +134,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="current">
-                            <a href="/jsp/solveTask_formAndDist.jsp">
+                            <a href="/flawMission/flawMissionPager">
                                 <i class="iconfont">&#xe6a7;</i>
                                 消缺任务制定与分配
                             </a>
