@@ -16,7 +16,7 @@ import java.util.Date;
 
 @Controller
 @RequestMapping("/role")
-public class ControllerRole {
+public class RoleController {
     @Resource(name = "roleBiz")
     private RoleBiz roleBiz;
 
