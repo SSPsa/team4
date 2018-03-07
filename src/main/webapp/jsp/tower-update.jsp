@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="layui-form-item" style="margin-top: 50px;margin-left: 140px;">
-                        <input type="submit"  class="layui-btn" value="确定">
+                        <input type="submit" onclick="x_admin_close()"  class="layui-btn" value="确定">
                         <a href="javascript:history.go(-1)" class="layui-btn">返回</a>
                     </div>
                     <!-- 右侧内容框架，更改从这里结束 -->
