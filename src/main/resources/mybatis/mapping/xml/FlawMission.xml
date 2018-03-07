@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accp.routinglnspection.dao.FlawMissionDao">
+    <!--分页的条件sql-->
+    <sql id="pageWhere">
+        <where>
+            `user`.id=`flawmission`.principalUid
+            <if test="fmNumber != null and fmNumber !=''">
+                and `flawmission`.fmNumber like concat('%',#{fmNumber},'%')
+            </if>
+            <if test="fmName != null and fmName !=''">
+                and `flawmission`.fmName like concat('%',#{fmName},'%')
+            </if>
+            <if test="principalUid > 0">
+                and `flawmission`.principalUid = #{principalUid}
+            </if>
+            <if test="fmState > 0">
+                and `flawmission`.fmState = #{fmState}
+            </if>
+            <if test="startTime != null">
+                and `flawmission`.releaseTime  &gt; #{startTime}
+            </if>
+            <if test="endTime != null">
+                and `flawmission`.releaseTime  &lt; #{endTime}
+            </if>
+        </where>
+    </sql>
+
+    <resultMap id="flawMissionMap" type="FlawMission">
+        <result column="id" property="id"/>
+        <result column="fmNumber" property="fmNumber"/>
+        <result column="fmName" property="fmName"/>
+        <result column="fId" property="fId"/>
+        <result column="principalUid" property="principalUid"/>
+        <result column="defectUid" property="defectUid"/>
+        <result column="receipts" property="receipts"/>
+        <result column="describe" property="describe"/>
+        <result column="fmRemark" property="fmRemark"/>
+        <result column="releaseTime" property="releaseTime"/>
+        <result column="accomplishTime" property="accomplishTime"/>
+        <result column="fmState" property="fmState"/>
+        <association property="user" javaType="User">
+            <result column="id" property="id"/>
+            <result column="uName" property="uName"/>
+        </association>
+    </resultMap>
+    <!--分页查询-->
+    <select id="queryFlawMisPager" resultMap="flawMissionMap">
+        SELECT `flawmission`.*,`user`.* FROM `flawmission`,`user`
+        <include refid="pageWhere"/>
+        limit #{pageNo} , #{pageSize}
+    </select>
+    <!--查询总行数-->
+    <select id="queryFlawMisRows" resultType="_int">
+        select count(*) from `flawmission`,`user`
+        <include refid="pageWhere"/>
+    </select>
+    <!--查询单个-->
+    <select id="queryFlawMissionOne" resultMap="flawMissionMap">
+         SELECT `flawmission`.*,`user`.* FROM `flawmission`,`user`
+          WHERE  `user`.id=`flawmission`.principalUid AND `flawmission`.id=#{fwId}
+    </select>
+    <!--新增-->
+    <insert id="addFlawMission">
+      INSERT INTO flawmission(id,fmNumber,fmName,fId,principalUid,defectUid,receipts,`describe`,fmRemark,releaseTime,accomplishTime,fmState)
+	VALUES(DEFAULT,#{fmNumber},#{fmName},#{fId},#{principalUid},#{defectUid},#{receipts},#{describe},#{fmRemark},#{releaseTime},#{accomplishTime},#{fmState})
+    </insert>
+    <!--修改-->
+    <update id="updateFlawMission">
+        UPDATE flawmission
+        <set>
+            <if test="fmNumber!=null and fmNumber!=''">
+                fmNumber=#{fmNumber},
+            </if>
+            <if test="fmName!=null and fmName!=''">
+                fmName=#{fmName},
+            </if>
+            <if test="fId>0">
+                fId=#{fId},
+            </if>
+            <if test="principalUid>0">
+                principalUid=#{principalUid},
+            </if>
+            <if test="defectUid>0">
+                defectUid=#{defectUid},
+            </if>
+            <if test="receipts>0">
+                receipts=#{receipts},
+            </if>
+            <if test="describe!=null and describe!=''">
+                `describe`=#{describe},
+            </if>
+            <if test="fmRemark!=null and fmRemark!=''">
+                fmRemark=#{fmRemark},
+            </if>
+            <if test="releaseTime!=null">
+                releaseTime=#{releaseTime},
+            </if>
+            <if test="accomplishTime!=null">
+                accomplishTime=#{accomplishTime},
+            </if>
+            <if test="fmState>0">
+                fmState=#{fmState}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+</mapper>

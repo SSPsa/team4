@@ -2,19 +2,44 @@ package com.accp.routinglnspection.entity;
 
 import java.util.Date;
 
+/**
+ * 缺陷任务
+ */
 public class FlawMission {
-  private Integer id;
-  private String fmNumber;//'任务编号',
-  private String fmName;// '任务名称',
-  private Integer fId;//'缺陷表id',
-  private Integer principalUid;//'负责人员工表id',
-  private Integer defectUid;//'消缺人',
-  private Integer receipts;//'工作单据1 任务单、2第一种单据、3第二种单据',
-  private String describe;//'任务完成描述',
-  private String fmRemark;//'备注',
-  private Date releaseTime;//'发布时间',
-  private Date accomplishTime;// '完成时间',
-  private int fmState;// '状态1待分配2已分配3执行中4已完成',
+    private Integer id;
+    private String fmNumber;//'任务编号',
+    private String fmName;// '任务名称',
+    private Integer fId;//'缺陷表id',
+    private Integer principalUid;//'负责人员工表id',
+    private Integer defectUid;//'消缺人',
+    private Integer receipts;//'工作单据1 任务单、2第一种单据、3第二种单据',
+    private String describe;//'任务完成描述',
+    private String fmRemark;//'备注',
+    private Date releaseTime;//'发布时间',
+    private Date accomplishTime;// '完成时间',
+    private int fmState;// '状态1待分配2已分配3执行中4已完成5驳回',
+    private int isPass; //审核是否通过：1通过 2不通过
+    private User user;
+
+    public int getIsPass() {
+        return isPass;
+    }
+
+    public void setIsPass(int isPass) {
+        this.isPass = isPass;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setId(User user) {
+        this.user =user;
+    }
 
     public Integer getId() {
         return id;

@@ -33,10 +33,10 @@
             <div class="m-2-1">
                 <form action="/log" method="post">
                     <div class="m-2-2">
-                        <input type="text" name="account" placeholder="请输入账号" />
+                        <input type="text" name="account" placeholder="请输入账号" value="admin"/>
                     </div>
                     <div class="m-2-2">
-                        <input type="password" name="password" placeholder="请输入密码"/>
+                        <input type="password" name="password" placeholder="请输入密码" value="123"/>
                     </div>
                     <div class="m-2-2">
                         <button type="submit" value="登录" /> 登录
