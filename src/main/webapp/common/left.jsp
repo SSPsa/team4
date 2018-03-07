@@ -34,7 +34,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="/jsp/roleManage.jsp">
+                            <a href="/role/queryRole">
                                 <i class="iconfont">&#xe6a7;</i>
                                 角色管理
                             </a>

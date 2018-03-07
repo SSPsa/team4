@@ -161,6 +161,19 @@
         });
     }
 
+    function member_del(obj,id){
+        $.ajax({
+            type:"get",
+            url:"/role/deleteRole?id="+id,
+            success:function(data){
+                if(data != null){
+                    $(obj).parents("tr").remove();
+                    layer.msg('已删除!',{icon:1,time:1000});
+                }
+            }
+        });
+    }
+
 
 </script>
 </body>

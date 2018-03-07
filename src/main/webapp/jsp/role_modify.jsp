@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -21,14 +22,16 @@
     <div class="page-content">
         <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-            <form class="layui-form">
+            <form class="layui-form" action="/role/update" method="post">
+                <input type="hidden" name="id" value="${RoleId.id}" />
                 <div class="layui-form-item">
                     <label class="layui-form-label">
                         <span class="x-red">*</span>角色编号:
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text"  name="roleId" required=""
-                               autocomplete="off" class="layui-input" value="138888">
+
+                        <input type="text" value="${RoleId.rNumber}"  name="rNumber" required=""
+                               autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -36,8 +39,8 @@
                         <span class="x-red">*</span>角色名称：
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="L_username" name="username" required="" lay-verify="nikename"
-                               autocomplete="off" class="layui-input" value="小明">
+                        <input type="text" value="${RoleId.rName}" id="L_username" name="rName" required="" lay-verify="nikename"
+                               autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -45,19 +48,19 @@
                         <span class="x-red">*</span>启用状态:
                     </label>
                     <div class="layui-input-inline">
-                        <input type="radio"  name="state" required=""
-                               autocomplete="on" class="layui-input" title="启用">
-                        <input type="radio"  name="state" required=""
-                               autocomplete="off" class="layui-input" title="不启用">
+                        <input type="radio"  value="r" name="rState" required=""
+                               <c:if test="${RoleId.rState == 2}">checked="checked"</c:if>  autocomplete="on" class="layui-input" title="启用">
+
+                        <input type="radio"  value="1" name="rState" required=""
+                               <c:if test="${RoleId.rState == 1}">checked="checked"</c:if>       autocomplete="off" class="layui-input" title="不启用">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label id="L_repass" class="layui-form-label">
                     </label>
-                    <button  class="layui-btn" lay-filter="add" lay-submit="">
-                        修改
-                    </button>
-                    <button  class="layui-btn" lay-filter="add" lay-submit="">
+                    <input  class="layui-btn" type="submit"  lay-filter="add" lay-submit="" value="提交">
+                    </input>
+                    <button  class="layui-btn" lay-filter="add" lay-submit="" onclick="javascript:history.go(-1)">
                         返回
                     </button>
 

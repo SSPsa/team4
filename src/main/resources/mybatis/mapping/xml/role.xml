@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accp.routinglnspection.dao.RoleDao">
+    <select id="queryRole" resultType="Role">
+        SELECT * FROM role
+        <where>
+            <if test="rName != null and rName!=''">
+              and  rName LIKE CONCAT ('%',#{rName},'%')
+            </if>
+            <if test="rState > -1">
+              and  rState = #{rState}
+            </if>
+        </where>
+        limit #{offset},#{pageSize}
+    </select>
+    
+    <select id="queryProjectinfosCount" resultType="_int">
+         select count(1) from role
+    </select>
+
+    <select id="queryRoleId" resultType="Role">
+        SELECT * FROM role WHERE  id = ${id}
+    </select>
+
+    <update id="updateRole">
+        UPDATE  role SET  rNumber = #{rNumber}, rName = #{rName},rState = #{rState} WHERE id = #{id}
+    </update>
+
+    <insert id="addrole">
+       INSERT INTO `role`(`rNumber`,`rName`,`rState`,`establishDate`) VALUES (#{rNumber},#{rName},#{rState},#{establishDate})
+    </insert>
+
+    <delete id="deleteRole">
+        DELETE
+        FROM  `role`
+        WHERE id = #{id};
+    </delete>
+
+</mapper>

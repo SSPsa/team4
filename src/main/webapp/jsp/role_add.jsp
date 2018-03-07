@@ -21,49 +21,52 @@
     <div class="page-content">
         <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-            <form class="layui-form" >
-                <div class="layui-form-item">
-                    <label class="layui-form-label">
-                        <span class="x-red">*</span>角色编号:
-                    </label>
-                    <div class="layui-input-inline">
-                        <input type="text"  name="roleId" required=""
-                               autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label for="L_username" class="layui-form-label">
-                        <span class="x-red">*</span>角色名称：
-                    </label>
-                    <div class="layui-input-inline">
-                        <input type="text" id="L_username" name="username" required="" lay-verify="nikename"
-                               autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">
-                        <span class="x-red">*</span>启用状态:
-                    </label>
-                    <div class="layui-input-inline">
-                        <input type="radio"  name="state" required=""
-                               autocomplete="off" class="layui-input" title="启用">
-                        <input type="radio"  name="state" required=""
-                               autocomplete="off" class="layui-input" title="不启用">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label id="L_repass" class="layui-form-label">
-                    </label>
-                    <button  class="layui-btn" lay-filter="add" type="submit">
-                        增加
-                    </button>
-                    <button  class="layui-btn" lay-filter="add" lay-submit="">
-                        返回
-                    </button>
 
-                </div>
-            </form>
-            <!-- 右侧内容框架，更改从这里结束 -->
+                <form class="layui-form" method="post" action="/role/addRole">
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            <span class="x-red">*</span>角色编号:
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text"  name="rNumber" required=""
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="L_username" class="layui-form-label">
+                            <span class="x-red">*</span>角色名称：
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="L_username" name="rName" required="" lay-verify="nikename"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            <span class="x-red">*</span>启用状态:
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="radio"  value="2" name="rState" required=""
+                                   autocomplete="off" class="layui-input" title="启用">
+                            <input type="radio"  value="1" name="rState" required=""
+
+                                   autocomplete="off" class="layui-input" title="不启用">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label id="L_repass" class="layui-form-label">
+                        </label>
+                        <button  class="layui-btn" lay-filter="add" type="submit">
+                            增加
+                        </button>
+                        <button  class="layui-btn" lay-filter="add" lay-submit="">
+                            返回
+                        </button>
+
+                    </div>
+                </form>
+                <!-- 右侧内容框架，更改从这里结束 -->
         </div>
     </div>
     <!-- 右侧主体结束 -->
