@@ -53,18 +53,28 @@
                 <td>
                     ${towerPager.tNumber}
                 </td>
-                <td class="td-status">
-                            <span class="layui-btn layui-btn-normal layui-btn-mini">
-                             <c:if test="${towerPager.tState==1}">停用</c:if>
-                                <c:if test="${towerPager.tState==2}">启用</c:if>
-                            </span>
+                <td class="td-status" id="statusNew_${list.id}">
+                    <c:if test="${towerPager.tState==1}">
+                            <span class="layui-btn layui-btn-danger layui-btn-mini">停用</span>
+                    </c:if>
+                    <c:if test="${towerPager.tState==2}">
+                    <span class="layui-btn layui-btn-normal layui-btn-mini">启用</span>
+                    </c:if>
                 </td>
                 <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
-                    <i class="layui-icon">&#xe601;</i>
-                    </a>
-                    <a style="text-decoration:none"  onclick="member_update('修改','/tower/towerSelId?id=${towerPager.id}','10001','600','400')"
-                       href="javascript:;" title="修改">
+                    <c:if test="${towerPager.tState==1}">
+                        <a style="text-decoration:none" name="tState" onclick="member_stoptStop(this,${towerPager.id},${towerPager.tState})" href="javascript:;" title="启用">
+                            <i class="layui-icon">&#xe601;</i>
+                        </a>
+                    </c:if>
+                    <c:if test="${towerPager.tState==2}">
+                        <a style="text-decoration:none" name="tState" onclick="member_stoptState(this,${towerPager.id},${towerPager.tState})" href="javascript:;" title="停用">
+                            <i class="layui-icon">&#xe601;</i>
+                        </a>
+                    </c:if>
+
+
+                    <a style="text-decoration:none" href="/tower/towerSelId?id=${towerPager.id}" title="修改">
                         <i class="layui-icon">&#xe631;</i>
                     </a>
                     <a title="删除" href="javascript:;" onclick="member_towerDel(this,${towerPager.id})"
