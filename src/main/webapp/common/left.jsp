@@ -41,7 +41,7 @@
                         </li>
 
                         <li>
-                            <a href="/jsp/userManage.jsp">
+                            <a href="/user/queryUser">
                                 <i class="iconfont">&#xe6a7;</i>
                                 用户管理
                             </a>

@@ -7,12 +7,17 @@ import com.accp.routinglnspection.entity.Role;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service("roleBiz")
 public class RoleBizImpl implements RoleBiz {
     @Resource
     private RoleDao roleDao;
 
+
+    public List<Role> cha() {
+        return roleDao.cha();
+    }
 
     public Pager<Role> queryRole(int offset, int pageSize, String rName, int rState) {
         Pager<Role> pager = new Pager<Role>();

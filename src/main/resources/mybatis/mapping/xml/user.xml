@@ -6,4 +6,69 @@
     <select id="Login" resultType="User">
         SELECT * FROM user WHERE account=#{account} AND password=#{password}
     </select>
+
+
+    <select id="Query" resultType="User">
+        SELECT u.*,r.id 'role.id',r.rName 'role.rName' FROM user u,role r WHERE u.rid=r.id
+    </select>
+
+    <select id="queryPager" resultType="User">
+        SELECT u.*,r.id 'role.id',r.rName 'role.rName' FROM user u,role r
+        <where>
+            <if test="uName != null and uName!=''">
+                and u.uName LIKE CONCAT ('%',#{uName},'%')
+            </if>
+            <if test="ustate>-1">
+                and  u.ustate = #{ustate}
+            </if>
+            AND u.rid=r.id
+        </where>
+        limit #{offset},#{pageSize}
+    </select>
+
+    <select id="queryhang" resultType="_int">
+        SELECT count(1) FROM user
+    </select>
+
+
+    <insert id="adduser">
+        INSERT into user(account,uName,password,rid,email,entryTime,termDate,ustate) VALUES(#{account},#{uName},#{password},#{role.id},#{email},#{entryTime},#{termDate},#{ustate})
+    </insert>
+
+
+    <delete id="DelUser">
+        DELETE FROM user WHERE id=#{id}
+    </delete>
+
+    <select id="QueryId" resultType="User">
+        SELECT * FROM user WHERE id=#{id}
+    </select>
+
+    <update id="updateuser">
+        UPDATE user
+        <set>
+            <if test="account !=null and account !=''">
+                account = #{account},
+            </if>
+            <if test="uName !=null and uName !=''">
+                uName = #{uName},
+            </if>
+            <if test="password !=null and password !=''">
+                password = #{password},
+            </if>
+            <if test="rid >0">
+                rid = #{rid},
+            </if>
+            <if test="entryTime !=null">
+                entryTime = #{entryTime},
+            </if>
+            <if test="termDate !=null">
+                termDate = #{termDate},
+            </if>
+            <if test="ustate >-1">
+                ustate = #{ustate},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
 </mapper>
