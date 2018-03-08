@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%@include file="/common/top.jsp"%>  <%--头部--%>
 <%@include file="/common/left.jsp"%>  <%--中间-左--%>
 <!-- 右侧主体开始 -->
@@ -78,8 +77,8 @@
                                    <c:if test="${circuit.yState==0}"> checked="checked"  </c:if>>
                         <span style="white-space:pre"></span>
                         <input type="radio" name="yState"  value="1" title="停用"
-                               <c:if test="${circuit.yState==1}"> checked="checked"   </c:if>>
-                    </div>
+                <c:if test="${circuit.yState==1}"> checked="checked"   </c:if>>
+                </div>
                 </div>
                 <input type="hidden" name="cState" value="${circuit.cState}">
                 <div class="layui-form-item layui-form-text" >

@@ -55,18 +55,27 @@ public class TowerController {
         }
     }
 
+      //修改
     @RequestMapping("/tower/updateTower")
-     public String updateTower(Tower tower,Model model,int id){
-         tower.setId(id);
-        int updateTower = towerBiz.updateTower(tower);
-        if (updateTower>0){
-            return selTower(model,null,null,null,null);
-        }else {
-            return null;
+     public String updateTower(Tower tower,Model model,int id,int tState,String tNumber,HttpServletResponse resp) throws IOException {
+        PrintWriter out = resp.getWriter();
+        tower.setId(id);
+        if (tState==1){
+            tower.settState(2);
         }
-
-     }
-
+        if (tState==2){
+            tower.settState(1);
+        }
+        int result = towerBiz.updateTower(tower);
+        if (result>0){
+            out.print("{\"delResult\":\"true\"}");
+        }else {
+            out.print("{\"delResult\":\"false\"}");
+        }
+        out.flush();
+        out.close();
+        return null;
+    }
     //新增杆塔
     @RequestMapping("/tower/addTower")
      public String addTower(Tower tower,Model model){
@@ -76,6 +85,7 @@ public class TowerController {
         }else {
             return null;
         }
+
 
      }
 

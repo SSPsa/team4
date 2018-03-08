@@ -82,20 +82,24 @@
                     <c:if test="${circuitPager.cState==1}">正常</c:if>
                     <c:if test="${circuitPager.cState==2}">维修中</c:if>
                 </td>
-                <td class="td-status">
-                    <span class="layui-btn layui-btn-normal layui-btn-mini">
-                        <c:if test="${circuitPager.yState==0}">已启动</c:if>
-                        <c:if test="${circuitPager.yState==1}">停用</c:if>
-                    </span>
-                </td>
+                <td class="td-status" id="statusnew_${circuitPager.id}">
+                    <c:if test="${circuitPager.yState==0}">
+                    <%--<span class="layui-btn layui-btn-normal layui-btn-mini">已启动</span>--%>
+                        <input class="layui-btn layui-btn-normal layui-btn-mini" name="Submit" type="button" id="Submit" value="已启动"/>
+
+                    </c:if>
+                    <c:if test="${circuitPager.yState==1}">
+                        <%--<span class="layui-btn layui-btn-danger layui-btn-mini">停用</span>--%>
+                        <input class="layui-btn layui-btn-danger layui-btn-mini" name="Submit" type="button" id="Submit" value="停用"/>
+                    </c:if>
                 <td class="td-manage">
                     <c:if test="${circuitPager.yState==1}">
-                    <a style="text-decoration:none" name="yState" onclick="member_stopStop(this,${circuitPager.id},${circuitPager.yState})" href="javascript:;" title="启用">
+                    <a style="text-decoration:none" name="yState" onclick="member_stopyStop(this,${circuitPager.id},${circuitPager.yState})" href="javascript:;" title="启用">
                         <i class="layui-icon">&#xe601;</i>
                     </a>
                     </c:if>
                     <c:if test="${circuitPager.yState==0}">
-                        <a style="text-decoration:none" name="yState" onclick="member_stopState(this,${circuitPager.id},${circuitPager.yState})" href="javascript:;" title="停用">
+                        <a style="text-decoration:none" name="yState" onclick="member_stopyState(this,${circuitPager.id},${circuitPager.yState})" href="javascript:;" title="停用">
                             <i class="layui-icon">&#xe601;</i>
                         </a>
                     </c:if>
