@@ -54,8 +54,20 @@ public class TowerController {
             return null;
         }
     }
+    //修改数据
+    @RequestMapping("/tower/update")
+      public String update(Model model,int id,Tower tower){
+        tower.setId(id);
+          int result = towerBiz.updateTower(tower);
+          if (result>0){
+              return selTower(model,null,null,null,null);
+          }else {
+              return null;
+          }
+      }
 
-      //修改
+
+      //修改状态
     @RequestMapping("/tower/updateTower")
      public String updateTower(Tower tower,Model model,int id,int tState,String tNumber,HttpServletResponse resp) throws IOException {
         PrintWriter out = resp.getWriter();
@@ -85,8 +97,6 @@ public class TowerController {
         }else {
             return null;
         }
-
-
      }
 
 

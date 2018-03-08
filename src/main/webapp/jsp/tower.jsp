@@ -21,7 +21,7 @@
                     <div class="layui-input-inline">
                         <select name="tState">
                             <option <c:if test="${tState==0}">selected="selected"</c:if> VALUE="0" >请选择</option>
-                            <option <c:if test="${tState==1}">selected="selected"</c:if> VALUE="1" >静用</option>
+                            <option <c:if test="${tState==1}">selected="selected"</c:if> VALUE="1" >停用</option>
                             <option <c:if test="${tState==2}">selected="selected"</c:if> VALUE="2" >启用</option>
                         </select>
                     </div>

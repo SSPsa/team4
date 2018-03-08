@@ -5,9 +5,9 @@
 <%@include file="/common/top.jsp"%>  <%--头部--%>
 <%@include file="/common/left.jsp"%>  <%--中间-左--%>
 <!-- 中部开始 -->
-<form class="layui-form xbs" action="/tower/updateTower?id=${towerSelId.id}" method="post" >
-<div class="wrapper">
 
+<div class="wrapper">
+    <form class="layui-form xbs" action="/tower/update?id=${towerSelId.id}" method="post" >
     <!-- 右侧主体开始 -->
     <div class="page-content" >
         <div class="content">
@@ -40,9 +40,10 @@
             </div>
         </div>
     </div>
+</form>
         <!-- 右侧主体结束 -->
     </div>
-</form>
+
 
     <!-- 中部结束 -->
 <%@include file="/common/footer.jsp"%>
