@@ -223,6 +223,18 @@
             }
         });
     }
+    function member_dea(obj,id){
+        $.ajax({
+            type:"get",
+            url:"/user/Del?id="+id,
+            success:function(data){
+                if(data != null){
+                    $(obj).parents("tr").remove();
+                    layer.msg('已删除!',{icon:1,time:1000});
+                }
+            }
+        });
+    }
 
 
 </script>

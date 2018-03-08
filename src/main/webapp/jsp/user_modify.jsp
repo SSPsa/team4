@@ -1,5 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -21,22 +23,33 @@
     <div class="page-content">
         <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-            <form class="layui-form">
+            <form class="layui-form" action="/user/update" method="post" >
+                <input type="hidden" name="id" value="${Userid.id}">
                 <div class="layui-form-item">
                     <label class="layui-form-label">
                         <span class="x-red">*</span>登录账号:
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="L_email" name="email" required="" lay-verify="email"
+                        <input type="text" id="layui-input"  value="${Userid.account}" name="account" required="" lay-verify="account"
                                autocomplete="off" class="layui-input">
                     </div>
                 </div>
+                <%--<div class="layui-form-item">--%>
+                <%--<label class="layui-form-label">--%>
+                <%--<span class="x-red">*</span>登录邮箱:--%>
+                <%--</label>--%>
+                <%--<div class="layui-input-inline">--%>
+                <%--<input type="text" id="L_email"  value="${Userid.email}" name="email" required="" lay-verify="email"--%>
+                <%--autocomplete="off" class="layui-input">--%>
+                <%--</div>--%>
+                <%--</div>--%>
+
                 <div class="layui-form-item">
                     <label for="L_username" class="layui-form-label">
                         <span class="x-red">*</span>用户名称:
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="L_username" name="username" required="" lay-verify="nikename"
+                        <input type="text" id="L_username" value="${Userid.uName}" name="uName" required="" lay-verify="nikename"
                                autocomplete="off" class="layui-input">
                     </div>
                 </div>
@@ -46,7 +59,7 @@
                         <span class="x-red">*</span>密码:
                     </label>
                     <div class="layui-input-inline">
-                        <input type="password" id="L_pass" name="pass" required="" lay-verify="pass"
+                        <input type="password" id="L_pass" value="${Userid.password}" name="password" required="" lay-verify="pass"
                                autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-form-mid layui-word-aux">
@@ -58,12 +71,16 @@
                         <span class="x-red">*</span>角色：
                     </label>
                     <div class="layui-input-inline">
-                        <select>
+                        <select name="rid">
                             <option>--请选择--</option>
-                            <option>系统管理员</option>
-                            <option>线路管理员</option>
-                            <option>巡检员</option>
-                            <option>消缺员</option>
+                            <c:if test="${not empty role}">
+                                <c:forEach items="${role}" var="role">
+                                    <option value="${role.id}"<c:if test="${role.id==Userid.rid}">selected="selected"</c:if>>${role.rName}</option>
+                                    <%--<option>线路管理员</option>--%>
+                                    <%--<option>巡检员</option>--%>
+                                    <%--<option>消缺员</option>--%>
+                                </c:forEach>
+                            </c:if>
                         </select>
                     </div>
                 </div>
@@ -72,7 +89,7 @@
                         <span class="x-red">*</span>入职日期：
                     </label>
                     <div class="layui-input-inline">
-                        <input class="layui-input"  id="LAY_demorange_s">
+                        <input class="layui-input"  value="<fmt:formatDate value="${Userid.entryTime}" pattern="yyyy-MM-dd"  />" name="entryTime" id="LAY_demorange_s">
                     </div>
                 </div>
 
@@ -81,7 +98,7 @@
                         <span class="x-red">*</span>离职日期：
                     </label>
                     <div class="layui-input-inline">
-                        <input class="layui-input"  id="LAY_demorange_e">
+                        <input class="layui-input" value="<fmt:formatDate value="${Userid.termDate}" pattern="yyyy-MM-dd"  />" id="LAY_demorange_e">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -89,10 +106,10 @@
                         <span class="x-red">*</span>使用状态：
                     </label>
                     <div class="layui-input-inline">
-                        <input type="radio"  name="state" required=""
-                               autocomplete="on" class="layui-input" title="正常">
-                        <input type="radio"  name="state" required=""
-                               autocomplete="off" class="layui-input" title="冻结">
+                        <input type="radio"  name="ustate" required="" value="1"
+                               <c:if test="${Userid.ustate==1}">checked="checked"</c:if> autocomplete="on" class="layui-input" title="正常">
+                        <input type="radio"  name="ustate" required="" value="0"
+                               <c:if test="${Userid.ustate==0}">checked="checked"</c:if>  autocomplete="off" class="layui-input" title="冻结">
                     </div>
                 </div>
 
@@ -100,10 +117,10 @@
                 <div class="layui-form-item">
                     <label  class="layui-form-label">
                     </label>
-                    <button  class="layui-btn" lay-filter="add" lay-submit="">
+                    <button   type="submit" class="layui-btn" lay-filter="add" lay-submit="" >
                         增加
                     </button>
-                    <button  class="layui-btn" lay-filter="add" lay-submit="">
+                    <button  class="layui-btn" lay-filter="add" lay-submit="" onclick="javascript:history.go(-1)">
                         返回
                     </button>
                 </div>

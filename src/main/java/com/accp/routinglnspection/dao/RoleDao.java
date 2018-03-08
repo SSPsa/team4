@@ -14,7 +14,9 @@ public interface RoleDao {
      * @param pageSize
      * @param status
      * @return
+     *
      */
+    List<Role> cha();
 
     List<Role> queryRole(@Param("offset") int offset,
                          @Param("pageSize") int pageSize,
