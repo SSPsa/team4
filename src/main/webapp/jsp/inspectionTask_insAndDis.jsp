@@ -303,10 +303,10 @@
 
 
                 <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/inspectionTask_ins_view.jsp','10001','700','500')" title="查看">
+                    <a  title="查看" style="text-decoration:none" onclick="member_password('查看','/jsp/inspectionTask_ins_view.jsp','10001','700','500')">
                         <i class="layui-icon">&#xe615;</i>
                     </a>
-                    <a style="text-decoration:none" href="#" title="分配任务">
+                    <a title="分配任务" style="text-decoration:none" href="#" >
                         <i class="layui-icon">&#xe631;</i>
                     </a>
                     <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/inspectionTask_modify.jsp','10001','700','500')"
