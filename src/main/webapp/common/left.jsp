@@ -106,7 +106,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="current">
-                            <a href="/jsp/inspectionTask_insAndDis.jsp">
+                            <a href="/PollingMission/showpollingMission">
                                 <i class="iconfont">&#xe6a7;</i>
                                 巡检任务制定与分配
                             </a>
