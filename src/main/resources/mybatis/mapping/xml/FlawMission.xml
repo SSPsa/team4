@@ -19,6 +19,9 @@
             <if test="fmState > 0">
                 and `flawmission`.fmState = #{fmState}
             </if>
+            <if test="receipts > 0">
+                and `flawmission`.receipts = #{receipts}
+            </if>
             <if test="startTime != null">
                 and `flawmission`.releaseTime  &gt; #{startTime}
             </if>

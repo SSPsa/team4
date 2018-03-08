@@ -12,6 +12,7 @@ public interface FlawMissionBiz {
                                          String fmNumber,
                                          String fmName,
                                          int fmState,
+                                         int receipts,
                                          int principalUid,
                                          Date startTime,
                                          Date endTime);
