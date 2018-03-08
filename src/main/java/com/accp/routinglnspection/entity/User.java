@@ -3,18 +3,36 @@ package com.accp.routinglnspection.entity;
 import java.util.Date;
 
 public class User {
-   private Integer id;
-   private String account;//账号',
-   private String uName;//'用户名称',
-   private String password;//'用户密码',
-   private String phone;//'电话',
-   private String gender;//'性别',
-   private Date age;//'出生日期',
-   private String email;//'邮箱',
-   private Date entryTime;//'入职时间',
-   private Date termDate;// '离职时间',
-   private Integer rid;//'外键角色表id',
-   private Integer ustate;//状态1为禁用2为启用',
+    private Integer id;
+    private String account;//账号',
+    private String uName;//'用户名称',
+    private String password;//'用户密码',
+    private String phone;//'电话',
+    private String gender;//'性别',
+    private Date age;//'出生日期',
+    private String email;//'邮箱',
+    private Date entryTime;//'入职时间',
+    private Date termDate;// '离职时间',
+    private Integer rid;//'外键角色表id',
+    private Integer ustate;//状态0为禁用1为启用',
+    private  Date lastTime; //最后登录时间
+    private Role role;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Date getLastTime() {
+        return lastTime;
+    }
+
+    public void setLastTime(Date lastTime) {
+        this.lastTime = lastTime;
+    }
 
     public Integer getId() {
         return id;

@@ -41,7 +41,7 @@
                         </li>
 
                         <li>
-                            <a href="/jsp/userManage.jsp">
+                            <a href="/user/queryUser">
                                 <i class="iconfont">&#xe6a7;</i>
                                 用户管理
                             </a>
@@ -106,7 +106,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="current">
-                            <a href="/jsp/inspectionTask_insAndDis.jsp">
+                            <a href="/PollingMission/showpollingMission">
                                 <i class="iconfont">&#xe6a7;</i>
                                 巡检任务制定与分配
                             </a>

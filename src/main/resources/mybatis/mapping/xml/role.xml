@@ -19,6 +19,9 @@
     <select id="queryProjectinfosCount" resultType="_int">
          select count(1) from role
     </select>
+    <select id="cha" resultType="Role">
+        SELECT * FROM role
+    </select>
 
     <select id="queryRoleId" resultType="Role">
         SELECT * FROM role WHERE  id = ${id}
