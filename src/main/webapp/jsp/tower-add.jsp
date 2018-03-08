@@ -21,23 +21,23 @@
     <div class="page-content" >
         <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-            <form class="layui-form" action="" method="post" >
+            <form class="layui-form" action="/tower/addTower" method="post" >
                 <div class="layui-form-item">
-                    <label for="bianhao" class="layui-form-label" style="width: 100px;">
+                    <label for="tNumber" class="layui-form-label" style="width: 100px;">
                        杆塔编号：
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="bianhao" name="" class="layui-input">
+                        <input type="text" id="tNumber" name="tNumber" class="layui-input">
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label" style="width: 100px;">启用状态：</label>
                         <div class="layui-input-block">
-                            <span style="white-space:pre"> </span><input type="radio" name="sex"  value="1" title="启用">
-                            <span style="white-space:pre">  </span><input type="radio" name="sex"  value="0" title="不启用">
+                            <span style="white-space:pre"> </span><input type="radio" name="tState"  value="2" title="启用">
+                            <span style="white-space:pre">  </span><input type="radio" name="tState"  value="1" title="静用">
                         </div>
                     </div>
                 <div class="layui-form-item" style="margin-top: 50px;margin-left: 140px;">
-                    <input type="submit" class="layui-btn" value="确定">
+                    <input onclick="x_admin_close()" type="submit" class="layui-btn" value="确定">
                     <a href="javascript:history.go(-1)" class="layui-btn">返回</a>
                 </div>
             <!-- 右侧内容框架，更改从这里结束 -->

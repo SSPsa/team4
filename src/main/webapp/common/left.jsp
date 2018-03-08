@@ -34,7 +34,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="/jsp/roleManage.jsp">
+                            <a href="/role/queryRole">
                                 <i class="iconfont">&#xe6a7;</i>
                                 角色管理
                             </a>
@@ -63,7 +63,7 @@
                     </ul>
                 </li>
                 <li class="list" >
-                    <a href="/jsp/tower.jsp">
+                    <a href="/tower/selTower">
                         <i class="iconfont">&#xe6a3;</i>
                         杆塔管理
                         <i class="iconfont nav_right">&#xe697;</i>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accp.routinglnspection.dao.TowerDao">
+    <sql id="pageWhere" >
+        <where>
+            <if test="tNumber != null and tNumber !=''">
+                and tNumber like concat('%',#{tNumber},'%')
+            </if>
+            <if test="tState>0">
+                AND tState =#{tState}
+            </if>
+        </where>
+    </sql>
+
+    <select id="queryPager" resultType="Tower">
+        SELECT * from tower
+        <include refid="pageWhere"/>
+        limit #{pageNo} , #{pageSize}
+    </select>
+
+    <select id="queryTowerRows" resultType="_int">
+        SELECT COUNT(*)
+        FROM tower
+        <include refid="pageWhere"/>
+    </select>
+
+    <insert id="addTower">
+        INSERT  INTO tower(tNumber,tState)
+        VALUES(#{tNumber},#{tState});
+    </insert>
+
+    <update id="updateTower">
+        UPDATE Tower
+        <set>
+            <if test="tNumber != null and tNumber != ''">
+                tNumber = #{tNumber},
+            </if>
+            <if test="tState>0">
+                tState = #{tState},
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="delTower">
+        DELETE FROM tower WHERE id=#{id}
+    </delete>
+
+    <select id="towerSelId" resultType="Tower">
+        SELECT * FROM tower WHERE id=#{id}
+    </select>
+
+</mapper>
