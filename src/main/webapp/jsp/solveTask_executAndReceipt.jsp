@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@include file="/common/top.jsp"%>  <%--头部--%>
@@ -8,27 +9,35 @@
     <div class="content">
         消缺任务管理>>消缺任务执行与回执
         <!-- 右侧内容框架，更改从这里开始 -->
-        <form class="layui-form xbs" action="" >
+        <form class="layui-form xbs" action="/flawMission/flawMissionExcePager" >
+            <%--<input type="hidden" name="formName" value="executAndReceipt">--%>
+            <input type="hidden" name="pageIndex" value="1">
             <div class="layui-form-pane" style="text-align: center;">
 
                 <div class="layui-form-item" style="display: inline-block;">
                     <label class="layui-form-label xbs768">任务编号：</label>
                     <div class="layui-input-inline xbs768">
-                        <input class="layui-input" placeholder="请输入任务编号...">
+                        <input class="layui-input" name="fmNumber" value="${fmNumber}" placeholder="请输入任务编号...">
                     </div>
 
                     <label class="layui-form-label xbs768">工作单据：</label>
                     <div class="layui-input-inline">
-                        <select>
-                            <option>--请选择--</option>
-                            <option>任务单</option>
-                            <option>第一单据</option>
-                            <option>第二单据</option>
+                        <select name="receipts">
+                            <option value="0">--请选择--</option>
+                            <option <c:if test="${receipts==1}">selected</c:if> value="1">任务单</option>
+                            <option <c:if test="${receipts==2}">selected</c:if> value="2">第一单据</option>
+                            <option <c:if test="${receipts==3}">selected</c:if> value="3">第二单据</option>
                         </select>
                     </div>
-                    <label class="layui-form-label xbs768">下发人：</label>
-                    <div class="layui-input-inline xbs768">
-                        <input class="layui-input" placeholder="请输入任务编号...">
+                    <label class="layui-form-label xbs768">任务状态</label>
+                    <div class="layui-input-inline">
+                        <select name="fmState">
+                            <option value="0">--请选择--</option>
+                            <option <c:if test="${fmState==2}">selected</c:if> value="2">已分配</option>
+                            <option <c:if test="${fmState==3}">selected</c:if> value="3">执行中</option>
+                            <option <c:if test="${fmState==4}">selected</c:if> value="4">已完成</option>
+                            <option  <c:if test="${fmState==5}">selected</c:if> value="5">驳回</option>
+                        </select>
                     </div>
                     <div class="layui-input-inline" style="width:80px">
                         <%--占位--%>
@@ -42,13 +51,13 @@
                         下发时间：
                     </label>
                     <div class="layui-input-inline">
-                        <input class="layui-input"  id="LAY_demorange_s">
+                        <input class="layui-input" name="startTime"  value="${startTime}" id="LAY_demorange_s">
                     </div>
                     <label  class="layui-form-label">
                         <span class="x-red">-</span>
                     </label>
                     <div class="layui-input-inline">
-                        <input class="layui-input"  id="LAY_demorange_e">
+                        <input class="layui-input" name="endTime" ${endTime} id="LAY_demorange_e">
                     </div>
                     <div class="layui-input-inline" style="width:80px">
                         <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -77,7 +86,7 @@
                     工作单据
                 </th>
                 <th>
-                    下发人
+                   负责人
                 </th>
                 <th>
                     下发时间
@@ -94,185 +103,113 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>
-                    RW0245
-                </td>
-                <td >
-                    西渭一线任务巡检
-                </td>
-                <td >
-                    任务单
-                </td>
-                <td >
-                    线路管理员测试用户01
-                </td>
-                <td>
-                    2013/12/12
-                </td>
-                <td class="td-status">
+            <%--驳回--%>
+            <c:forEach items="${flawMissionPager.datas}" var="flawMissionPager">
+                <tr>
+                    <td>
+                       ${flawMissionPager.fmNumber}
+                    </td>
+                    <td >
+                            ${flawMissionPager.fmName}
+                    </td>
+                    <td>
+                         <c:if test="${flawMissionPager.receipts==1}">任务单</c:if>
+                          <c:if test="${flawMissionPager.receipts==2}">第一种单据</c:if>
+                          <c:if test="${flawMissionPager.receipts==3}">第二种单据</c:if>
+                    </td>
+                    <td >
+                       ${flawMissionPager.user.uName}
+                    </td>
+                    <td>
+                        <fmt:formatDate value="${flawMissionPager.releaseTime}" pattern="yyyy-MM-dd"/>
+                    </td>
+                    <td class="td-status">
+                        <%--  驳回--%>
+                        <c:if test="${flawMissionPager.fmState==5}">
                             <span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #ec5807">
                              驳回
                             </span>
-                </td>
-                <td>
-                    2103/12/12
-                </td>
-                <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" title="查看">
-                        <i class="layui-icon">&#xe615;</i>
-                    </a>
-                    <a style="text-decoration:none" onclick="member_password('执行录入','','10001','700','500')" title="执行录入">
-                        <i class="layui-icon">&#xe631;</i>
-                    </a>
-                    <a title="执行" href="javascript:;" onclick="member_password('执行','/jsp/solveTask_modify.jsp','10001','700','500')"
-                       style="text-decoration:none">
-                        <i class="layui-icon">&#xe642;</i>
-                    </a>
-                    <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/solveTask_execute_modify.jsp','10001','700','500')"
-                       style="text-decoration:none">
-                        <i class="layui-icon">&#x1006;</i>
-                    </a>
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    RW0245
-                </td>
-                <td >
-                    西渭一线任务巡检
-                </td>
-                <td >
-                    任务单
-                </td>
-                <td >
-                    线路管理员测试用户01
-                </td>
-                <td>
-                    2013/12/12
-                </td>
-                <td class="td-status">
-                            <span class="layui-btn layui-btn-normal layui-btn-mini">
+                        </c:if>
+                        <%--已分配--%>
+                        <c:if test="${flawMissionPager.fmState==2}">
+                             <span class="layui-btn layui-btn-normal layui-btn-mini">
                              已分配
                             </span>
-                </td>
-                <td>
-                    <%--任务完成时间--%>
-                </td>
-                <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" title="查看">
-                        <i class="layui-icon">&#xe615;</i>
-                    </a>
-                    <a style="text-decoration:none" href="javascript:;" title="分配任务">
-                        <i class="layui-icon">&#xe631;</i>
-                    </a>
-                    <a title="修改"href="javascript:;" style="text-decoration:none">
-                        <i class="layui-icon">&#xe642;</i>
-                    </a>
-                    <a title="取消" href="javascript:;" onclick=""
-                       style="text-decoration:none">
-                        <i class="layui-icon">&#x1006;</i>
-                    </a>
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    RW0245
-                </td>
-                <td >
-                    西渭一线任务巡检
-                </td>
-                <td >
-                    任务单
-                </td>
-                <td >
-                    线路管理员测试用户01
-                </td>
-                <td>
-                    2013/12/12
-                </td>
-                <td class="td-status">
-                            <span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #ece40f">
+                        </c:if>
+                        <%--执行中--%>
+                        <c:if test="${flawMissionPager.fmState==3}">
+                              <span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #ece40f">
                               执行中
                             </span>
-                </td>
-                <td>
-                    <%--任务完成时间--%>
-                </td>
-                <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" title="查看">
-                        <i class="layui-icon">&#xe615;</i>
-                    </a>
-
-                    <a style="text-decoration:none" href="#" title="分配任务">
-                        <i class="layui-icon">&#xe631;</i>
-                    </a>
-                    <a title="修改" href="javascript:;" style="text-decoration:none">
-                        <i class="layui-icon">&#xe642;</i>
-                    </a>
-                    <a title="取消" href="javascript:;" style="text-decoration:none">
-                        <i class="layui-icon">&#x1006;</i>
-                    </a>
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    RW0245
-                </td>
-                <td >
-                    西渭一线任务巡检
-                </td>
-                <td >
-                    任务单
-                </td>
-                <td >
-                    线路管理员测试用户01
-                </td>
-                <td>
-                    2013/12/12
-                </td>
-                <td class="td-status">
-                            <span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #1bec5e">
+                            </c:if>
+                        <%--已完成--%>
+                        <c:if test="${flawMissionPager.fmState==4}">
+                             <span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #1bec5e">
                               已完成
                             </span>
-                </td>
-                <td>
-                    <%--任务完成时间--%>
-                    2014/12/12
-                </td>
-                <td class="td-manage">
-                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','600','500')" title="查看">
-                        <i class="layui-icon">&#xe615;</i>
-                    </a>
-                    <a style="text-decoration:none" href="#" title="分配任务">
-                        <i class="layui-icon">&#xe631;</i>
-                    </a>
+                            </c:if>
 
-                    <%--<a style="text-decoration:none" onclick="member_password('分配任务','/jsp/user_modify.jsp','10001','600','500')" title="分配任务">--%>
-                    <%--<i class="layui-icon">&#xe631;</i>--%>
-                    <%--</a>--%>
-                    <a title="审查" href="javascript:;" onclick="member_password('审查任务','/jsp/solveTask_examina.jsp','10001','600','500')"
-                       style="text-decoration:none">
-                        <i class="layui-icon">&#xe60a;</i>
-                    </a>
-                    <a title="取消" href="javascript:;" onclick=""
-                       style="text-decoration:none">
-                        <i class="layui-icon">&#x1006;</i>
-                    </a>
+                    </td>
+                    <td>
+                        <c:if test="${flawMissionPager.fmState==4}">
+                         <fmt:formatDate value="${flawMissionPager.accomplishTime}" pattern="yyyy-MM-dd"/>
+                        </c:if>
+                    </td>
+                    <td class="td-manage">
+                            <%--驳回--%>
+                        <c:if test="${flawMissionPager.fmState==5}">
+                            <a style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" title="查看">
+                                <i class="layui-icon">&#xe615;</i>
+                            </a>
 
-                </td>
-            </tr>
+                            <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/solveTask_execute_modify.jsp','10001','700','500')"
+                               style="text-decoration:none">
+                                <i class="layui-icon">&#x1006;</i>
+                            </a>
+                        </c:if>
+                            <%--已分配--%>
+                        <c:if test="${flawMissionPager.fmState==2}">
+                            <a title="查看" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" >
+                                <i class="layui-icon">&#xe615;</i>
+                            </a>
+                            <a title="执行" href="javascript:;" onclick="member_password('执行','/jsp/solveTask_modify.jsp','10001','700','500')"
+                               style="text-decoration:none">
+                                <i class="layui-icon">&#xe642;</i>
+                            </a>
+
+                        </c:if>
+                            <%--执行中--%>
+                        <c:if test="${flawMissionPager.fmState==3}">
+                            <a title="查看" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" >
+                                <i class="layui-icon">&#xe615;</i>
+                            </a>
+                            <a title="执行录入"  style="text-decoration:none" onclick="member_password('执行录入','','10001','700','500')">
+                                <i class="layui-icon">&#xe631;</i>
+                            </a>
+                            <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/solveTask_execute_modify.jsp','10001','700','500')"
+                               style="text-decoration:none">
+                                <i class="layui-icon">&#x1006;</i>
+                            </a>
+
+                        </c:if>
+                            <%--已完成--%>
+                        <c:if test="${flawMissionPager.fmState==4}">
+                            <a title="查看" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" >
+                                <i class="layui-icon">&#xe615;</i>
+                            </a>
+
+                        </c:if>
+                    </td>
+                </tr>
+            </c:forEach>
 
             </tbody>
         </table>
-        <input type="hidden" id="totalPageCount" value="${houseList.totalPage}"/>
+        <input type="hidden" id="totalPageCount" value="${flawMissionPager.totalPage}"/>
         <c:import url="rollpage.jsp">
-            <c:param name="totalCount" value="${houseList.totalRows}"/>
-            <c:param name="currentPageNo" value="${houseList.pageNo}"/>
-            <c:param name="totalPageCount" value="${houseList.totalPage}"/>
+            <c:param name="totalCount" value="${flawMissionPager.totalRows}"/>
+            <c:param name="currentPageNo" value="${flawMissionPager.pageNo}"/>
+            <c:param name="totalPageCount" value="${flawMissionPager.totalPage}"/>
         </c:import>
         <!-- 右侧内容框架，更改从这里结束 -->
     </div>

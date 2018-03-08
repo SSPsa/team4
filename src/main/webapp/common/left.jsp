@@ -134,13 +134,13 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="current">
-                            <a href="/flawMission/flawMissionPager">
+                            <a href="/flawMission/flawMissionForPager">
                                 <i class="iconfont">&#xe6a7;</i>
                                 消缺任务制定与分配
                             </a>
                         </li>
                         <li>
-                            <a href="/jsp/solveTask_executAndReceipt.jsp">
+                            <a href="/flawMission/flawMissionExcePager">
                                 <i class="iconfont">&#xe6a7;</i>
                                 消缺任务执行与回执
                             </a>
