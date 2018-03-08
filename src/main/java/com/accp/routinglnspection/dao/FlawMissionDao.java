@@ -13,6 +13,7 @@ public interface FlawMissionDao {
                                         @Param("fmNumber") String fmNumber,
                                         @Param("fmName") String fmName,
                                         @Param("fmState") int fmState,
+                                        @Param("receipts") int receipts,
                                         @Param("principalUid") int principalUid,
                                         @Param("startTime") Date startTime,
                                         @Param("endTime") Date endTime);
@@ -20,6 +21,7 @@ public interface FlawMissionDao {
     int queryFlawMisRows(@Param("fmNumber") String fmNumber,
                          @Param("fmName") String fmName,
                          @Param("fmState") int fmState,
+                         @Param("receipts") int receipts,
                          @Param("principalUid") int principalUid,
                          @Param("startTime") Date startTime,
                          @Param("endTime") Date endTime);

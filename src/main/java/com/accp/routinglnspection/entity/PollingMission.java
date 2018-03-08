@@ -13,6 +13,61 @@ public class PollingMission {
   private Date releaseTime;//'发布时间',
   private Date accomplishTime;//'完成时间',
   private Integer pmState;//状态1待分配2已分配3执行中4已完成',
+    private Circuit circuit;//线路表对象
+    private Integer state;//状态0禁用1启用
+
+    private int pageNo;//第几页
+    private int pageSize;//分布行数
+    private int begin;//计算数据库第几列开
+    private User release;//发布人对象
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public User getRelease() {
+        return release;
+    }
+
+    public void setRelease(User release) {
+        this.release = release;
+    }
+
+    public int getBegin() {
+        return begin;
+    }
+
+    public void setBegin(int begin) {
+        this.begin = begin;
+    }
+
+    public int getPageNo() {
+        return pageNo;
+    }
+
+    public void setPageNo(int pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Circuit getCircuit() {
+        return circuit;
+    }
+
+    public void setCircuit(Circuit circuit) {
+        this.circuit = circuit;
+    }
 
     public Integer getId() {
         return id;

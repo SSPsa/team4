@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -22,13 +23,13 @@
     <div class="page-content">
         <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-            <form class="layui-form">
+            <form class="layui-form" action="/user/useradd">
                 <div class="layui-form-item">
                     <label class="layui-form-label">
                         <span class="x-red">*</span>登录账号:
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="L_email" name="email" required=""
+                        <input type="text" id="L_email" name="account" required=""
                                autocomplete="off" class="layui-input">
                     </div>
                 </div>
@@ -37,7 +38,7 @@
                         <span class="x-red">*</span>用户名称:
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="L_username" name="username" required="" lay-verify="nikename"
+                        <input type="text" id="L_username" name="uName" required="" lay-verify="nikename"
                                autocomplete="off" class="layui-input">
                     </div>
                 </div>
@@ -47,7 +48,7 @@
                         <span class="x-red">*</span>密码:
                     </label>
                     <div class="layui-input-inline">
-                        <input type="password" id="L_pass" name="pass" required="" lay-verify="pass"
+                        <input type="password" id="L_pass" name="password" required="" lay-verify="pass"
                                autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-form-mid layui-word-aux">
@@ -59,13 +60,25 @@
                         <span class="x-red">*</span>角色：
                     </label>
                     <div class="layui-input-inline">
-                        <select>
+                        <select name="role.id">
                             <option>--请选择--</option>
-                            <option>系统管理员</option>
-                            <option>线路管理员</option>
-                            <option>巡检员</option>
-                            <option>消缺员</option>
+                            <c:forEach items="${role}" var="rol">
+                                <option value="${rol.id}">${rol.rName}</option>
+                                <%--<option>线路管理员</option>--%>
+                                <%--<option>巡检员</option>--%>
+                                <%--<option>消缺员</option>--%>
+                            </c:forEach>
                         </select>
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item">
+                    <label for="L_username" class="layui-form-label">
+                        <span class="x-red">*</span>注册邮箱：
+                    </label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input"  name="email" id="LAY_demorange_a">
                     </div>
                 </div>
 
@@ -74,7 +87,7 @@
                         <span class="x-red">*</span>入职日期：
                     </label>
                     <div class="layui-input-inline">
-                        <input class="layui-input"  id="LAY_demorange_s">
+                        <input class="layui-input"  name="entryTime" id="LAY_demorange_s">
                     </div>
                 </div>
 
@@ -83,7 +96,7 @@
                         <span class="x-red">*</span>离职日期：
                     </label>
                     <div class="layui-input-inline">
-                        <input class="layui-input"  id="LAY_demorange_e">
+                        <input class="layui-input"  name="termDate" id="LAY_demorange_e">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -91,9 +104,9 @@
                         <span class="x-red">*</span>使用状态：
                     </label>
                     <div class="layui-input-inline">
-                        <input type="radio"  name="state" required=""
+                        <input type="radio"  name="ustate" required="" value="1"
                                autocomplete="on" class="layui-input" title="正常">
-                        <input type="radio"  name="state" required=""
+                        <input type="radio"  name="ustate" required="" value="0"
                                autocomplete="off" class="layui-input" title="冻结">
                     </div>
                 </div>

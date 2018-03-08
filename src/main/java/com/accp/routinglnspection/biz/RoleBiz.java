@@ -4,6 +4,8 @@ import com.accp.routinglnspection.entity.Pager;
 import com.accp.routinglnspection.entity.Role;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface RoleBiz {
 
 
@@ -16,6 +18,8 @@ public interface RoleBiz {
      * @param rState
      * @return
      */
+
+    List<Role> cha();
 
     Pager<Role> queryRole(@Param("offset") int offset,
                           @Param("pageSize") int pageSize,

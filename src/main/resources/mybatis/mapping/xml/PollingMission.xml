@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accp.routinglnspection.dao.PollingMissionDao">
+    <resultMap id="queryPollingMissionMap" type="PollingMission">
+        <result property="id" column="id"/>
+        <result property="pmName" column="pmName"/>
+        <result property="pmNumber" column="pmNumber"/>
+        <result property="cId" column="cId"/>
+        <result property="releaseUid" column="releaseUid"/>
+        <result property="pollingUid" column="pollingUid"/>
+        <result property="pmRemark" column="pmRemark"/>
+        <result property="releaseTime" column="releaseTime"/>
+        <result property="accomplishTime" column="accomplishTime"/>
+        <result property="pmState" column="pmState"/>
+        <association property="circuit" javaType="Circuit">
+            <result property="riseTid" column="riseTid"/>
+            <result property="cName" column="cName"/>
+            <result property="endTid" column="endTid"/>
+        </association>
+        <association property="release" javaType="User">
+            <result property="uName" column="uName"/>
+            <result property="uNumber" column="uNumber"/>
+
+        </association>
+    </resultMap>
+    <select id="queryPollingMission" resultMap="queryPollingMissionMap">
+        SELECT * FROM `circuit` c,`pollingmission` p,`user` u
+        <include refid="sql"/>
+        limit #{begin} , #{pageSize}
+    </select>
+
+    <select id="queryPollingMissionInt" resultType="_int">
+       SELECT COUNT(*) from `circuit` c,`pollingmission` p,`user` u
+        <include refid="sql"/>
+    </select>
+    <sql id="sql">
+        <where>
+            c.`id`=p.`cId` AND p.`releaseUid`=u.`id`
+            <if test="pmName !=null and pmName!=''"> and p.pmName like concat('%',#{pmName},'%')</if>
+            <if test="id >0"> and p.id=#{id}</if>
+            <if test="pmNumber !=null and pmNumber!=''"> and p.pmNumber like concat('%',#{pmNumber},'%')</if>
+            <if test="cId>0"> and p.cId=#{cId}</if>
+            <if test="releaseUid>0"> and p.releaseUid=#{releaseUid}</if>
+            <if test="pollingUid>0"> and p.pollingUid=#{pollingUid}</if>
+            <if test="pmState>0"> and p.pmState=#{pmState}</if>
+            <if test="pmRemark !=null and pmRemark!=''"> and p.pmRemark=#{pmRemark}</if>
+            <if test="releaseTime !=null"> and p.releaseTime &gt;=#{releaseTime}</if>
+            <if test="accomplishTime !=null"> and p.accomplishTime &lt;= #{releaseTime}</if>
+            <if test="release !=null"> and u.uName like concat('%',#{release.uName},'%')</if>
+            <if test="circuit !=null"> and c.cNumber=#{circuit.cNumber}</if>
+        </where>
+    </sql>
+</mapper>
