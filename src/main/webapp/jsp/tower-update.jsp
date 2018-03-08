@@ -1,15 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
 <%@include file="/common/top.jsp"%>  <%--头部--%>
 <%@include file="/common/left.jsp"%>  <%--中间-左--%>
 <!-- 中部开始 -->
-
 <div class="wrapper">
-    <form class="layui-form xbs" action="/tower/update?id=${towerSelId.id}" method="post" >
+    <form class="layui-form xbs" action="/tower/update?id=${towerSelId.id}" method="post">
     <!-- 右侧主体开始 -->
-    <div class="page-content" >
+    <div class="page-content">
         <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
             <form class="layui-form"  method="post" >

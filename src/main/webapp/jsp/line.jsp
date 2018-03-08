@@ -46,9 +46,7 @@
                 <th>
                     终止杆号
                 </th>
-                <th>
-                    塔基数
-                </th>
+
                 <th>
                     运行状态
                 </th>
@@ -75,9 +73,9 @@
                 <td>
                     ${circuitPager.endTid}
                 </td>
-                <td>
-                    ${circuitPager.cardinalNumber}
-                </td>
+                <%--<td>--%>
+                    <%--${circuitPager.cardinalNumber}--%>
+                <%--</td>--%>
                 <td>
                     <c:if test="${circuitPager.cState==1}">正常</c:if>
                     <c:if test="${circuitPager.cState==2}">维修中</c:if>

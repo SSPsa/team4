@@ -14,7 +14,7 @@ public class Circuit {
     private Date commissioningData;//'投运日期',
     private Integer grade;//'电压等级',
     private Integer cState;//'状态2为维修中1为启用',
-    private Integer yState;
+    private Integer yState;//'状态0为中1为启用',
     private String cRemark;// '备注',
 
 
