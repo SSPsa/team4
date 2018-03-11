@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@include file="/common/top.jsp"%>  <%--头部--%>
@@ -9,50 +10,50 @@
     <div class="content">
         消缺任务管理>>消缺查询
         <!-- 右侧内容框架，更改从这里开始 -->
-        <form class="layui-form xbs" action="" >
+        <form class="layui-form xbs" action="/flawMission/flawMissionPager" >
             <div class="layui-form-pane layui-row" style="text-align: center;">
+                <input type="hidden" name="pageIndex" value="1">
                 <div class="layui-form-item" style="display: inline-block;">
                     <label class="layui-form-label xbs768" >任务编号：</label>
                     <div class="layui-input-inline" >
-                        <input type="text" name="username"  placeholder="请输入任务编号" autocomplete="off" class="layui-input">
+                        <input type="text" name="fmNumber" value="${fmNumber}"  placeholder="请输入任务编号" autocomplete="off" class="layui-input">
                     </div>
                     <label class="layui-form-label xbs768">任务状态：</label>
                     <div class="layui-input-inline">
-                        <select>
-                            <option>--请选择--</option>
-                            <option>待分配</option>
-                            <option>已分配</option>
-                            <option>执行中</option>
-                            <option>已完成</option>
+                        <select name="fmState">
+                            <option  value="0">--请选择--</option>
+                            <option <c:if test="${fmState==1}">selected</c:if> value="1">待分配</option>
+                            <option <c:if test="${fmState==2}">selected</c:if> value="2">已分配</option>
+                            <option <c:if test="${fmState==3}">selected</c:if> value="3">执行中</option>
+                            <option <c:if test="${fmState==4}">selected</c:if> value="4">已完成</option>
                         </select>
                     </div>
 
                     <label class="layui-form-label xbs768">缺陷类型：</label>
                     <div class="layui-input-inline">
-                        <select>
-                            <option>--请选择--</option>
-                            <option>叉梁断裂</option>
-                            <option>拦河线断裂</option>
-                            <option>绝缘子爆破</option>
-                            <option>杆塔倾斜</option>
-                            <option>吊杆变形</option>
-                            <option>其他</option>
+                        <select name="fId">
+                            <option value="0">--请选择--</option>
+                            <option <c:if test="${fId==1}">selected</c:if> value="1">叉梁断裂</option>
+                            <option <c:if test="${fId==2}">selected</c:if> value="2">拦河线断裂</option>
+                            <option <c:if test="${fId==3}">selected</c:if> value="3">绝缘子爆破</option>
+                            <option <c:if test="${fId==4}">selected</c:if> value="4">杆塔倾斜</option>
+                            <option <c:if test="${fId==5}">selected</c:if> value="5">绝缘子爆破</option>
+                            <option <c:if test="${fId==6}">selected</c:if> value="6">吊杆变形</option>
+                            <option <c:if test="${fId==7}">selected</c:if> value="7">其他</option>
                         </select>
                     </div>
                     <div class="layui-input-inline">
                     </div>
-
-
                 </div>
                 <div class="layui-form-item" style="display: inline-block;">
 
                     <label class="layui-form-label xbs768">缺陷级别：</label>
                     <div class="layui-input-inline">
-                        <select>
-                            <option>--请选择--</option>
-                            <option>一般</option>
-                            <option>严重</option>
-                            <option>紧急</option>
+                        <select name="grade">
+                            <option value="0">--请选择--</option>
+                            <option <c:if test="${grade==1}">selected</c:if> value="1">一般</option>
+                            <option <c:if test="${grade==2}">selected</c:if> value="2">严重</option>
+                            <option <c:if test="${grade==3}">selected</c:if> value="3">紧急</option>
                         </select>
                     </div>
 
@@ -60,16 +61,14 @@
                         下发时间：
                     </label>
                     <div class="layui-input-inline">
-                        <input class="layui-input"  id="LAY_demorange_s">
+                        <input class="layui-input" value="${startTime}" name="startTime" id="LAY_demorange_s">
                     </div>
                     <label  class="layui-form-label">
                         <span class="x-red">-</span>
                     </label>
                     <div class="layui-input-inline">
-                        <input class="layui-input"  id="LAY_demorange_e">
+                        <input class="layui-input"  value="${endTime}" name="endTime" id="LAY_demorange_e">
                     </div>
-
-
                         <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
 
                     <div class="layui-input-inline">
@@ -104,7 +103,6 @@
                     </th>
 
                     <th>
-
                         任务状态
                     </th>
                     <th>
@@ -123,160 +121,75 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>
-                        RW0245
-                    </td>
-                    <td>
-                        XW001
-                    </td>
-                    <td>
-                        XW0000001
-                    </td>
-                    <td>
-                        一般
-                    </td>
-                    <td >
-                        叉梁断裂
-                    </td>
-                    <td class="td-status">
+                <c:forEach items="${flawMissionPager.datas}" var="flawMissionPager">
+                    <tr>
+                        <td>
+                           ${flawMissionPager.fmNumber}
+                        </td>
+                        <td>
+                            ${flawMissionPager.circuit.cNumber}
+                        </td>
+                        <td>
+                            ${flawMissionPager.tower.tNumber}
+                        </td>
+                        <td>
+                            <c:if test="${flawMissionPager.flaw.grade==1}">一般</c:if>
+                            <c:if test="${flawMissionPager.flaw.grade==2}">严重</c:if>
+                            <c:if test="${flawMissionPager.flaw.grade==3}">紧急</c:if>
+                        </td>
+                        <td >
+                            ${flawMissionPager.flawType.ftName}
+                        </td>
+
+                        <td class="td-status">
+                            <c:if test="${flawMissionPager.fmState==1}">
                             <span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #ec5807">
                               待分配
                             </span>
-                    </td>
-                    <td>
-                        2013/12/12
-                    </td>
-                    <td >
-                        线路管理员测试用户01
-                    </td>
+                            </c:if>
 
-
-                    <td>
-                        78%
-                    </td>
-                    <td>
-                        描述1
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        RW0245
-                    </td>
-                    <td>
-                        XW001
-                    </td>
-                    <td>
-                        XW0000001
-                    </td>
-                    <td>
-                        一般
-                    </td>
-                    <td >
-                        叉梁断裂
-                    </td>
-                    <td class="td-status">
-                            <span class="layui-btn layui-btn-normal layui-btn-mini">
+                            <c:if test="${flawMissionPager.fmState==2}">
+                                <span class="layui-btn layui-btn-normal layui-btn-mini">
                              已分配
                             </span>
-                    </td>
-                    <td>
-                        2013/12/12
-                    </td>
-                    <td >
-                        线路管理员测试用户01
-                    </td>
 
+                            </c:if>
 
-                    <td>
-                        78%
-                    </td>
-                    <td>
-                        描述1
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        RW0245
-                    </td>
-                    <td>
-                        XW001
-                    </td>
-                    <td>
-                        XW0000001
-                    </td>
-                    <td>
-                        一般
-                    </td>
-                    <td >
-                        叉梁断裂
-                    </td>
-                    <td class="td-status">
-                            <span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #ece40f">
+                            <c:if test="${flawMissionPager.fmState==3}">
+                             <span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #ece40f">
                               执行中
                             </span>
-                    </td>
-                    <td>
-                        2013/12/12
-                    </td>
-                    <td >
-                        线路管理员测试用户01
-                    </td>
 
+                            </c:if>
 
-                    <td>
-                        78%
-                    </td>
-                    <td>
-                        描述1
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        RW0245
-                    </td>
-                    <td>
-                        XW001
-                    </td>
-                    <td>
-                        XW0000001
-                    </td>
-                    <td>
-                        一般
-                    </td>
-                    <td >
-                        叉梁断裂
-                    </td>
-                    <td class="td-status">
+                            <c:if test="${flawMissionPager.fmState==4}">
                             <span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #1bec5e">
                               已完成
                             </span>
-                    </td>
-                    <td>
-                        2013/12/12
-                    </td>
-                    <td >
-                        线路管理员测试用户01
-                    </td>
+                            </c:if>
 
-
-                    <td>
-                        78%
-                    </td>
-                    <td>
-                        描述1
-                    </td>
-                </tr>
-
-
-
+                        </td>
+                        <td>
+                            <fmt:formatDate value="${flawMissionPager.flaw.discoverTime}" pattern="yyyy-MM-dd"/>
+                        </td>
+                        <td >
+                           ${flawMissionPager.user.uName}
+                        </td>
+                        <td>
+                          ${flawMissionPager.flaw.completeness}%
+                        </td>
+                        <td>
+                           ${flawMissionPager.flaw.describe}
+                        </td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
-            <input type="hidden" id="totalPageCount" value="${houseList.totalPage}"/>
+            <input type="hidden" id="totalPageCount" value="${flawMissionPager.totalPage}"/>
             <c:import url="rollpage.jsp">
-                <c:param name="totalCount" value="${houseList.totalRows}"/>
-                <c:param name="currentPageNo" value="${houseList.pageNo}"/>
-                <c:param name="totalPageCount" value="${houseList.totalPage}"/>
+                <c:param name="totalCount" value="${flawMissionPager.totalRows}"/>
+                <c:param name="currentPageNo" value="${flawMissionPager.pageNo}"/>
+                <c:param name="totalPageCount" value="${flawMissionPager.totalPage}"/>
             </c:import>
         </form>
     </div>

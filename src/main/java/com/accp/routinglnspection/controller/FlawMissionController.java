@@ -30,7 +30,7 @@ public class FlawMissionController {
     if(principalUid==null||principalUid.equals("")){
         principalUid="0";
     }
-        Pager<FlawMission> flawMissionPager = flawMissionBiz.queryFlawMisPager(Integer.parseInt(pageIndex), 1, fmNumber, fmName, Integer.parseInt(fmState),0, Integer.parseInt(principalUid),startTime, endTime);
+        Pager<FlawMission> flawMissionPager = flawMissionBiz.queryFlawMisPager(Integer.parseInt(pageIndex), 2, fmNumber, fmName, Integer.parseInt(fmState),0, Integer.parseInt(principalUid),startTime, endTime);
 //       对分页的集合进行判断
     if(flawMissionPager!=null){
                m.addAttribute("flawMissionPager",flawMissionPager);
@@ -61,7 +61,7 @@ public class FlawMissionController {
             receipts="0";
         }
 
-        Pager<FlawMission> flawMissionPager = flawMissionBiz.queryFlawMisPager(Integer.parseInt(pageIndex), 1, fmNumber, null, Integer.parseInt(fmState),Integer.parseInt(receipts),0,startTime, endTime);
+        Pager<FlawMission> flawMissionPager = flawMissionBiz.queryFlawMisPager(Integer.parseInt(pageIndex), 2, fmNumber, null, Integer.parseInt(fmState),Integer.parseInt(receipts),0,startTime, endTime);
 
         if(flawMissionPager!=null){
             m.addAttribute("flawMissionPager",flawMissionPager);
@@ -116,4 +116,39 @@ public class FlawMissionController {
         flawMissionBiz.updateFlawMission(flawMission);
         return flawMissionForPager(m,null,null,null,null,null,null,null);
     }
+
+
+//    消缺查询的分页
+    @RequestMapping("/flawMission/flawMissionPager")
+    public String flawMissionPager(Model m,String pageIndex,String fmNumber,String fmState,String fId,String grade,Date startTime,Date endTime){
+        //初始化首页
+        if (pageIndex==null|| pageIndex.equals("")){
+            pageIndex="1";
+        }
+//    初始化任务状态
+        if (fmState==null||fmState.equals("")){
+            fmState="0";
+        }
+        if (fId==null||fId.equals("")){
+            fId="0";
+        }
+        if (grade==null||grade.equals("")){
+            grade="0";
+        }
+        Pager<FlawMission> flawMissionPager= flawMissionBiz.queryFlawMisPager2(Integer.parseInt(pageIndex), 2, fmNumber, Integer.parseInt(fmState), Integer.parseInt(fId), Integer.parseInt(grade), startTime, endTime);
+            if(flawMissionPager!=null){
+                m.addAttribute("flawMissionPager",flawMissionPager);
+                m.addAttribute("fmNumber",fmNumber);
+                m.addAttribute("fmState",fmState);
+                m.addAttribute("fId",fId);
+                m.addAttribute("grade",grade);
+                m.addAttribute("startTime",startTime);
+                m.addAttribute("endTime",endTime);
+                return "solve_Query";
+            }else{
+                return null;
+            }
+
+    }
+
 }

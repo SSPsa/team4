@@ -13,12 +13,12 @@
     <script type="text/javascript" src="/js/xadmin.js"></script>
 </head>
 <body>
-<xblock><i class="layui-icon">&#xe654;</i>选择缺陷</xblock>
+<xblock>选择缺陷</xblock>
 <table class="layui-table">
     <thead>
     <tr>
         <th>
-            <input type="checkbox" name="" value="">选择
+            选择
         </th>
         <th>
           线路编号
