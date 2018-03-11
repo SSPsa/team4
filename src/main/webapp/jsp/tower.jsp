@@ -72,8 +72,6 @@
                             <i class="layui-icon">&#xe601;</i>
                         </a>
                     </c:if>
-
-
                     <a style="text-decoration:none" href="/tower/towerSelId?id=${towerPager.id}" title="修改">
                         <i class="layui-icon">&#xe631;</i>
                     </a>

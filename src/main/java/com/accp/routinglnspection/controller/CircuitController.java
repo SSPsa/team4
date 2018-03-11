@@ -47,7 +47,7 @@ public class CircuitController {
    //新增
     @RequestMapping("/circuit/addCircuit")
     public String addCircuit(Model model,Circuit circuit){
-        circuit.setyState(0);
+        circuit.setyState(0);//新增的时候默认状态为0。
         int addCircuit = circuitBiz.addCircuit(circuit);
         if (addCircuit>0){
             return selCircuit(model,null,null,null,null);

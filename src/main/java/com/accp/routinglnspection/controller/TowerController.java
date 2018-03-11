@@ -1,10 +1,8 @@
 package com.accp.routinglnspection.controller;
 
 import com.accp.routinglnspection.biz.TowerBiz;
-import com.accp.routinglnspection.entity.Circuit;
 import com.accp.routinglnspection.entity.Pager;
 import com.accp.routinglnspection.entity.Tower;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -99,8 +97,7 @@ public class TowerController {
         }
      }
 
-
-    //根据ID删除
+    //根据ID删除数据
     @RequestMapping("/tower/delTower")
     public String delTower(int id,HttpServletResponse resp) throws IOException {
         PrintWriter out = resp.getWriter();
