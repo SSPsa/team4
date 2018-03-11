@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 public class PollingMissionController {
     @Resource
     private PollingMissionBiz pollingMissionBiz;
-    @RequestMapping("/showpollingMission")
+    @RequestMapping("/showpollingMission")//列表
     public String showpollingMission(Model model, PollingMission pollingMission,Integer pageIndex){
         if(pageIndex==null){
             pageIndex=1;
@@ -32,5 +32,18 @@ public class PollingMissionController {
         model.addAttribute("pollingMissionPager",pollingMissionPager);
         model.addAttribute("pollingMission",pollingMission);
         return "inspectionTask_insAndDis";
+    }
+    @RequestMapping("/showpollingMissionId")//查看
+    public String showpollingMissionId(PollingMission pollingMission,Model model){
+        pollingMission.setPageNo(1);
+        pollingMission.setPageSize(2);
+        pollingMission=pollingMissionBiz.queryPollingMission(pollingMission).getDatas().get(0);
+        model.addAttribute("pollingMissionView",pollingMission);
+        return "inspectionTask_ins_view";
+    }
+
+    @RequestMapping("/addShowpollingMission")
+    public String addShowpollingMission(Model model){
+       return "";
     }
 }

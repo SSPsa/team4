@@ -72,13 +72,6 @@
     function member_show(title,url,id,w,h){
         x_admin_show(title,url,w,h);
     }
-
-    /*用户-查看*/
-    function member_password(title,url,id,w,h){
-        x_admin_show(title,url,w,h);
-    }
-
-
     /*用户-停用*/
     function member_stopState(obj,id,yState){
         layer.confirm('确认要停用吗？',function(index){
