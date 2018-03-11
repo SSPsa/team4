@@ -146,7 +146,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/jsp/solve_Query.jsp">
+                            <a href="/flawMission/flawMissionPager">
                                 <i class="iconfont">&#xe6a7;</i>
                                 消缺查询
                             </a>

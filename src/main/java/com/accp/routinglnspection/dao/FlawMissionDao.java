@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface FlawMissionDao {
-    // 用户分页查询
+    // 制定与分配分页查询
     List<FlawMission> queryFlawMisPager(@Param("pageNo") int pageNo,
                                         @Param("pageSize") int pageSize,
                                         @Param("fmNumber") String fmNumber,
@@ -32,6 +32,25 @@ public interface FlawMissionDao {
     int addFlawMission(FlawMission flawMission);
     //修改一个
     int updateFlawMission(FlawMission flawMission);
+
+    //消缺分页查询
+    List<FlawMission> queryFlawMisPager2(@Param("pageNo") int pageNo,
+                                        @Param("pageSize") int pageSize,
+                                        @Param("fmNumber") String fmNumber,
+                                        @Param("fmState") int fmState,
+                                        @Param("fId") int fId,
+                                        @Param("grade") int grade,
+                                        @Param("startTime") Date startTime,
+                                         @Param("endTime") Date endTime);
+    //消缺分页查询总行数
+    int queryFlawMisRows2( @Param("fmNumber") String fmNumber,
+                           @Param("fmState") int fmState,
+                           @Param("fId") int fId,
+                           @Param("grade") int grade,
+                           @Param("startTime") Date startTime,
+                           @Param("endTime") Date endTime);
+
+
 
 
 

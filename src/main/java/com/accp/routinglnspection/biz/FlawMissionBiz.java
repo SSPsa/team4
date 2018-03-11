@@ -2,6 +2,7 @@ package com.accp.routinglnspection.biz;
 
 import com.accp.routinglnspection.entity.FlawMission;
 import com.accp.routinglnspection.entity.Pager;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 
@@ -23,6 +24,16 @@ public interface FlawMissionBiz {
     int addFlawMission(FlawMission flawMission);
     //修改一个
     int updateFlawMission(FlawMission flawMission);
+
+
+    Pager<FlawMission> queryFlawMisPager2(int pageNo,
+                                          int pageSize,
+                                          String fmNumber,
+                                          int fmState,
+                                          int fId,
+                                          int grade,
+                                          Date startTime,
+                                          Date endTime);
 
 
 

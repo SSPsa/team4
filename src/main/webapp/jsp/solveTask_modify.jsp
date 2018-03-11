@@ -118,7 +118,7 @@
                         <label class="layui-form-label">
                             缺陷列表
                         </label>
-                        <a  class="layui-btn"  href="defects_add.jsp"><i class="layui-icon">&#xe608;</i>添加缺陷</a>
+                        <a  class="layui-btn"  href="/jsp/defects_add.jsp"><i class="layui-icon">&#xe608;</i>添加缺陷</a>
 
                         <%--<a  class="layui-btn"  onclick="member_add('添加缺陷','/jsp/defects.jsp','600','500')"><i class="layui-icon">&#xe608;</i>添加缺陷</a>--%>
                     </xblock>

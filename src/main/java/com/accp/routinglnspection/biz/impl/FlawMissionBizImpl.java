@@ -36,4 +36,15 @@ public class FlawMissionBizImpl implements FlawMissionBiz {
     public int updateFlawMission(FlawMission flawMission) {
         return flawMissionDao.updateFlawMission(flawMission);
     }
+//消缺查询2
+    public Pager<FlawMission> queryFlawMisPager2(int pageNo, int pageSize, String fmNumber, int fmState, int fId, int grade, Date startTime, Date endTime) {
+        Pager<FlawMission> flawMissionPager2=new Pager<FlawMission>();
+        flawMissionPager2.setPageNo(pageNo);
+        flawMissionPager2.setPageSize(pageSize);
+        flawMissionPager2.setTotalRows(flawMissionDao.queryFlawMisRows2(fmNumber,fmState,fId,grade,startTime,endTime));
+        flawMissionPager2.setTotalPage( (flawMissionPager2.getTotalRows() + pageSize-1)/ pageSize);
+        int begin=(pageNo-1)*pageSize;
+        flawMissionPager2.setDatas(flawMissionDao.queryFlawMisPager2(begin,pageSize,fmNumber,fmState,fId,grade,startTime,endTime));
+        return flawMissionPager2;
+    }
 }

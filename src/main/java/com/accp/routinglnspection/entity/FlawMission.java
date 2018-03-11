@@ -19,7 +19,43 @@ public class FlawMission {
     private Date accomplishTime;// '完成时间',
     private int fmState;// '状态1待分配2已分配3执行中4已完成5驳回',
     private int isPass; //审核是否通过：1通过 2不通过
-    private User user;
+    private User user;   //用户对象属性
+    private Flaw flaw;  //缺陷对象属性
+    private Circuit circuit;  //线路对象属性
+    private Tower tower;   //杆塔对象属性
+    private FlawType flawType; //缺陷类型对象属性
+
+    public Flaw getFlaw() {
+        return flaw;
+    }
+
+    public void setFlaw(Flaw flaw) {
+        this.flaw = flaw;
+    }
+
+    public Circuit getCircuit() {
+        return circuit;
+    }
+
+    public void setCircuit(Circuit circuit) {
+        this.circuit = circuit;
+    }
+
+    public Tower getTower() {
+        return tower;
+    }
+
+    public void setTower(Tower tower) {
+        this.tower = tower;
+    }
+
+    public FlawType getFlawType() {
+        return flawType;
+    }
+
+    public void setFlawType(FlawType flawType) {
+        this.flawType = flawType;
+    }
 
     public int getIsPass() {
         return isPass;

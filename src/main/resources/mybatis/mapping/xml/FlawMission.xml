@@ -110,4 +110,91 @@
         </set>
         WHERE id=#{id}
     </update>
+
+    <!--消缺查询的条件-->
+    <sql id="pageWhere2">
+        <where>
+            `flawmission`.fId=`flaw`.id
+            AND `flaw`.cId=`circuit`.id
+            AND `flaw`.tId=`tower`.id
+            AND `flaw`.ftId=`flawtype`.id
+            AND `flaw`.discoverUid=`user`.id
+            <if test="fmNumber != null and fmNumber !=''">
+                and `flawmission`.fmNumber like concat('%',#{fmNumber},'%')
+            </if>
+            <if test="fmState > 0">
+                and `flawmission`.fmState = #{fmState}
+            </if>
+            <if test="fId > 0">
+                and `flawmission`.fId = #{fId}
+            </if>
+            <if test="grade > 0">
+                and `flaw`.grade = #{grade}
+            </if>
+            <if test="startTime != null">
+                and `flawmission`.releaseTime  &gt; #{startTime}
+            </if>
+            <if test="endTime != null">
+                and `flawmission`.releaseTime  &lt; #{endTime}
+            </if>
+        </where>
+    </sql>
+
+    <resultMap id="flawMissionMap2" type="FlawMission">
+        <result column="id" property="id"/>
+        <result column="fmNumber" property="fmNumber"/>
+        <result column="fmName" property="fmName"/>
+        <result column="fId" property="fId"/>
+        <result column="principalUid" property="principalUid"/>
+        <result column="defectUid" property="defectUid"/>
+        <result column="receipts" property="receipts"/>
+        <result column="describe" property="describe"/>
+        <result column="fmRemark" property="fmRemark"/>
+        <result column="releaseTime" property="releaseTime"/>
+        <result column="accomplishTime" property="accomplishTime"/>
+        <result column="fmState" property="fmState"/>
+        <association property="flaw" javaType="Flaw">
+            <result column="id" property="id"/>
+            <result column="cId" property="cId"/>
+            <result column="tId" property="tId"/>
+            <result column="ftId" property="ftId"/>
+            <result column="grade" property="grade"/>
+            <result column="describe" property="describe"/>
+            <result column="completeness" property="completeness"/>
+            <result column="discoverTime" property="discoverTime"/>
+            <result column="discoverUid" property="discoverUid"/>
+        </association>
+        <association property="circuit" javaType="Circuit">
+            <result column="id" property="id"/>
+            <result column="cNumber" property="cNumber"/>
+        </association>
+        <association property="tower" javaType="Tower">
+            <result column="id" property="id"/>
+            <result column="tNumber" property="tNumber"/>
+        </association>
+        <association property="flawType" javaType="FlawType">
+            <result column="id" property="id"/>
+            <result column="ftName" property="ftName"/>
+        </association>
+        <association property="user" javaType="User">
+            <result column="id" property="id"/>
+            <result column="uName" property="uName"/>
+        </association>
+
+    </resultMap>
+
+    <!--消缺查询-->
+    <select id="queryFlawMisPager2" resultMap="flawMissionMap2">
+      SELECT `flawmission`.fmNumber,`circuit`.cNumber,`tower`.tNumber,`flaw`.grade,`flawtype`.ftName,`flawmission`.fmState,`flaw`.discoverTime,`user`.uName,`flaw`.completeness,`flaw`.describe
+       FROM `flawmission`,`flaw`,`circuit`,`tower`,`flawtype`,`user`
+        <include refid="pageWhere2"/>
+        limit #{pageNo} , #{pageSize}
+    </select>
+    <!--消缺查询总行数-->
+    <select id="queryFlawMisRows2" resultType="_int">
+      SELECT count(*)
+       FROM `flawmission`,`flaw`,`circuit`,`tower`,`flawtype`,`user`
+        <include refid="pageWhere2"/>
+    </select>
+
 </mapper>
