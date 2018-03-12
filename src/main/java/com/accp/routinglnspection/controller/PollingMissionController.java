@@ -2,13 +2,16 @@ package com.accp.routinglnspection.controller;
 
 
 import com.accp.routinglnspection.biz.PollingMissionBiz;
+import com.accp.routinglnspection.entity.Circuit;
 import com.accp.routinglnspection.entity.Pager;
 import com.accp.routinglnspection.entity.PollingMission;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 @RequestMapping("/PollingMission")
@@ -44,6 +47,18 @@ public class PollingMissionController {
 
     @RequestMapping("/addShowpollingMission")
     public String addShowpollingMission(Model model){
-       return "";
+        List<Circuit> listCircuit=pollingMissionBiz.queryCircuit();
+        model.addAttribute("addlistCircuit",listCircuit);
+        return "inspectionTask_add";
+    }
+
+    @RequestMapping("/addShowpollingMissionid")
+    @ResponseBody
+    public Circuit addShowpollingMissionid(Model model){
+        Circuit circuit=null;
+        if(pollingMissionBiz.queryCircuit().size()>0){
+             circuit=pollingMissionBiz.queryCircuit().get(0);
+        }
+        return circuit;
     }
 }

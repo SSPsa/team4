@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-<<<<<<< Updated upstream
 
 @Service("flawBiz")
 public class FlawBizImpl implements FlawBiz {
@@ -15,13 +14,9 @@ public class FlawBizImpl implements FlawBiz {
     private FlawDao flawDao;
     public List<Flaw> queryFlaw() {
         return flawDao.queryFlaw();
-=======
-@Service
-public class FlawBizImpl implements FlawBiz{
-    @Resource(name = "flawDao")
-    private FlawDao flawDao;
+    }
     public List<Flaw> queryFlawList() {
         return flawDao.queryFlawList();
->>>>>>> Stashed changes
     }
+
 }

@@ -37,6 +37,10 @@
        SELECT COUNT(*)
         <include refid="sql"/>
     </select>
+
+    <select id="queryCircuit" resultType="Circuit">
+        SELECT * FROM `circuit`
+    </select>
     <sql id="sql">
         FROM `circuit` c,`pollingmission` p,`user` u,`user` u1
         <where>
