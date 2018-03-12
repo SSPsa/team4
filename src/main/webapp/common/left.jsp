@@ -90,7 +90,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/jsp/defects_level.jsp">
+                            <a href="/flaw/queryFlaw">
                                 <i class="iconfont">&#xe6a7;</i>
                                 缺陷等级确认
                             </a>

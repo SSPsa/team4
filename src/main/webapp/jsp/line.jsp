@@ -92,12 +92,12 @@
                     </c:if>
                 <td class="td-manage">
                     <c:if test="${circuitPager.yState==1}">
-                    <a style="text-decoration:none" name="yState" onclick="member_stopyStop(this,${circuitPager.id},${circuitPager.yState})" href="javascript:;" title="启用">
+                    <a style="text-decoration:none" name="yState" onclick="line_Start(this,${circuitPager.id},${circuitPager.yState})" href="javascript:;" title="启用">
                         <i class="layui-icon">&#xe601;</i>
                     </a>
                     </c:if>
                     <c:if test="${circuitPager.yState==0}">
-                        <a style="text-decoration:none" name="yState" onclick="member_stopyState(this,${circuitPager.id},${circuitPager.yState})" href="javascript:;" title="停用">
+                        <a style="text-decoration:none" name="yState" onclick="line_Stop(this,${circuitPager.id},${circuitPager.yState})" href="javascript:;" title="停用">
                             <i class="layui-icon">&#xe601;</i>
                         </a>
                     </c:if>

@@ -1,4 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@include file="/common/top.jsp"%>  <%--头部--%>
@@ -100,6 +102,7 @@
 
         <table class="layui-table">
             <thead>
+
             <tr>
                 <th>
                     任务编号
@@ -131,40 +134,45 @@
             </tr>
             </thead>
             <tbody>
+            <c:forEach items="${Fl}" var="Flow">
             <tr>
                 <td>
-                    LTX0245
+                    ${Flow.id}
                 </td>
                 <td>
-                    XW0010
+                    ${Flow.circuit.cNumber}
                 </td>
                 <td >
-                    XW0001
+                    ${Flow.tower.tNumber}
                 </td>
                 <td >
-                    拦河线断裂
+                    ${Flow.flawType.ftName}
                 </td>
                 <td>
-                    79%
+                    ${Flow.completeness}
                 </td>
                 <td>
-                    拦河线断裂严重
+                    ${Flow.describe}
                 </td>
                 <td>
-                    2013-12-12
+                    <fmt:formatDate value="${Flow.discoverTime}" pattern="yyyy-MM-dd"/>
+
                 </td>
                 <td>
-                    巡检员测试用户01
+                    ${Flow.user.uName}
                 </td>
                 <td style="width: 120px">
-                   <select>
-                       <option>--请选择--</option>
-                       <option>一般</option>
-                       <option>紧急</option>
-                       <option>严重</option>
+                   <select name="grade">
+
+                       <option value="0">--请选择--</option>
+                       <option value="1" ${Flow.grade == 1 ? "grade=\"grade\"":""}>一般</option>
+                       <option value="2" ${Flow.grade == 2 ? "grade=\"grade\"":""}>紧急</option>
+                       <option value="3" ${Flow.grade == 3 ? "grade=\"grade\"":""}>严重</option>
+
                    </select>
                 </td>
             </tr>
+            </c:forEach>
             </tbody>
         </table>
         <!-- 右侧内容框架，更改从这里结束 -->
