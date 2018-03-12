@@ -161,7 +161,6 @@
             });
         });
     }
-
     /*杆塔管理-删除*/
     function member_towerDel(obj,id){
         layer.confirm('确认要删除吗？',function(index){
@@ -186,7 +185,6 @@
             });
         });
     }
-
     /*杆塔管理-修改*/
     function member_towerUpdate(obj,id){
         layer.confirm('确认要修改吗？',function(index){
@@ -212,7 +210,6 @@
 
         });
     }
-
     function member_del(obj,id){
         $.ajax({
             type:"get",
@@ -238,7 +235,7 @@
         });
     }
     /*杆塔管理-停用*/
-       function tower_Stop(obj,id,tState){
+    function tower_Stop(obj,id,tState){
                layer.confirm('确认要停用吗？',function(index){
                       $.ajax({
                               type:"GET",
@@ -246,7 +243,6 @@
                                dataType:"json",
                               success:function(data){
                                    if(data.delResult == "true"){//删除成功：移除删除行
-                                           //发异步删除数据$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stopState(this,id,tState)" href="javascript:;" title="已启用"><i class="layui-icon">&#xe601;</i></a>');
                                            $(obj).parents("tr").find(".td-status").html('<span class="layui-btn layui-btn-normal layui-btn-mini" >停用</span>');
                                            $(obj).remove();
                                            layer.msg('已停用!',{icon: 6,time:1000});
@@ -341,7 +337,6 @@
             });
         });
     }
-
 </script>
 </body>
 </html>
