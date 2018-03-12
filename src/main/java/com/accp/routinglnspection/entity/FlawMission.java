@@ -1,6 +1,7 @@
 package com.accp.routinglnspection.entity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 缺陷任务
@@ -24,6 +25,7 @@ public class FlawMission {
     private Circuit circuit;  //线路对象属性
     private Tower tower;   //杆塔对象属性
     private FlawType flawType; //缺陷类型对象属性
+    private List<Flaw> flawList;  //一个任务有多个缺陷（一对多）
 
     public Flaw getFlaw() {
         return flaw;

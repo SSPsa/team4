@@ -71,4 +71,15 @@
         </set>
         where id=#{id}
     </update>
+
+
+    <!--查询待选消缺员-->
+    <select id="queryToBeSelectedDefect" resultType="User">
+            SELECT `user`.uName FROM `user` WHERE id NOT IN(SELECT defectUid FROM `flawmission`) AND rid=4
+    </select>
+
+    <!--查询已选消缺员-->
+    <select id="querySelectedDefect" resultType="User">
+          SELECT `user`.uName FROM `user` WHERE id IN(SELECT defectUid FROM `flawmission`) AND rid=4
+    </select>
 </mapper>

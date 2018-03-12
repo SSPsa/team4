@@ -28,6 +28,7 @@
             <if test="endTime != null">
                 and `flawmission`.releaseTime  &lt; #{endTime}
             </if>
+              and `flawmission`.fmState BETWEEN #{fmState1} and #{fmState2}
         </where>
     </sql>
 
