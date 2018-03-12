@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -44,11 +45,11 @@
                         <span class="x-red"></span>巡检路线:
                     </label>
                     <div class="layui-input-inline">
-                        <select>
-                            <option>--请选择--</option>
-                            <option>西渭一线</option>
-                            <option>西渭二线</option>
-                            <option>西渭三线</option>
+                        <select onchange="addlistCircuit(this)">
+                            <option value="0">--请选择--</option>
+                          <c:forEach items="${addlistCircuit}" var="listcircuit">
+                              <option value="${listcircuit.id}">${listcircuit.cNumber}</option>
+                          </c:forEach>
                         </select>
                     </div>
 
@@ -67,7 +68,7 @@
                     </label>
                     <div class="layui-input-inline">
                         <input type="text" required=""
-                               autocomplete="off" class="layui-input">
+                               autocomplete="off" class="layui-input" value="">
                     </div>
 
                     <label class="layui-form-label">
@@ -130,6 +131,27 @@
 <!-- 中部结束 -->
 
 <script>
+
+    function addlistCircuit(circuitid){
+        var id= circuitid.value;
+        $.ajax({
+            type:"get",
+            url:"/PollingMission/addShowpollingMissionid?id="+id,
+            success:function(data){
+                if(data != null){
+                    $("#categoryLevel3").html("");//通过标签选择器，得到select标签，适用于页面里只有一个select
+                    var options = null;
+                    for(var i = 0; i < data.length; i++){
+                        options += "<option value=\""+data[i].id+"\">"+data[i].categoryName+"</option>";
+                    }
+                    $("#categoryLevel3").html(options);
+                }
+            }
+        });
+    }
+
+
+
     layui.use(['laydate'], function(){
         laydate = layui.laydate;//日期插件
 

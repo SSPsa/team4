@@ -55,9 +55,9 @@
         <td>消缺员:</td>
         <td>
             <%--显示不出来--%>
-           <%--<c:if test="${flawMission.user.id==4}">--%>
-               <%--${flawMission.user.uName}--%>
-           <%--</c:if>--%>
+           <c:if test="${flawMission.fmState==2 and flawMission.defectUid==flawMission.user.id}">
+               ${flawMission.user.uName}
+           </c:if>
 
         </td>
         <td>备注:</td>
@@ -88,33 +88,39 @@
         <td>发现人</td>
         <td>发现时间</td>
     </tr>
-    <tr>
-        <td>XW001</td>
-        <td>XW00002</td>
-        <td>严重</td>
-        <td>拦河线断裂</td>
-        <td>拦截河道7股断2股</td>
-        <td>巡检员测试用户01</td>
-        <td>2013/12/12</td>
-    </tr>
-    <tr>
-        <td>XW001</td>
-        <td>XW00002</td>
-        <td>严重</td>
-        <td>拦河线断裂</td>
-        <td>拦截河道7股断2股</td>
-        <td>巡检员测试用户01</td>
-        <td>2013/12/12</td>
-    </tr>
-    <tr>
-        <td>XW001</td>
-        <td>XW00002</td>
-        <td>严重</td>
-        <td>拦河线断裂</td>
-        <td>拦截河道7股断2股</td>
-        <td>巡检员测试用户01</td>
-        <td>2013/12/12</td>
-    </tr>
+    <c:forEach items="${flaws}" var="flaws">
+        <tr>
+            <td>${flaws.circuit.cNumber}</td>
+            <td>${flaws.tower.tNumber}</td>
+            <td><c:if test="${flaws.grade==1}">一般</c:if>
+                <c:if test="${flaws.grade==2}">严重</c:if>
+                <c:if test="${flaws.grade==3}">紧急</c:if>
+            </td>
+            <td>${flaws.flawType.ftName}</td>
+            <td>${flaws.describe}</td>
+            <td>${flaws.user.uName}</td>
+            <td><fmt:formatDate value="${flaws.discoverTime}" pattern="yyyy-MM-dd"/></td>
+        </tr>
+    </c:forEach>
+
+    <%--<tr>--%>
+        <%--<td>XW001</td>--%>
+        <%--<td>XW00002</td>--%>
+        <%--<td>严重</td>--%>
+        <%--<td>拦河线断裂</td>--%>
+        <%--<td>拦截河道7股断2股</td>--%>
+        <%--<td>巡检员测试用户01</td>--%>
+        <%--<td>2013/12/12</td>--%>
+    <%--</tr>--%>
+    <%--<tr>--%>
+        <%--<td>XW001</td>--%>
+        <%--<td>XW00002</td>--%>
+        <%--<td>严重</td>--%>
+        <%--<td>拦河线断裂</td>--%>
+        <%--<td>拦截河道7股断2股</td>--%>
+        <%--<td>巡检员测试用户01</td>--%>
+        <%--<td>2013/12/12</td>--%>
+    <%--</tr>--%>
 </table>
 <fieldset class="layui-elem-field layui-field-title">
     <legend>工作间断延期记载</legend>

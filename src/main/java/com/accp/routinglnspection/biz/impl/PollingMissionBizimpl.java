@@ -40,4 +40,8 @@ public class PollingMissionBizimpl implements PollingMissionBiz {
     public int deletePollingMission(int id) {
         return 0;
     }
+
+    public List<Circuit> queryCircuit() {
+        return pollingMissionDao.queryCircuit();
+    }
 }

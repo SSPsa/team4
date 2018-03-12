@@ -16,7 +16,9 @@ public interface FlawMissionBiz {
                                          int receipts,
                                          int principalUid,
                                          Date startTime,
-                                         Date endTime);
+                                         Date endTime,
+                                         int fmState1,
+                                         int fmState2);
     //单个查询
     FlawMission queryFlawMissionOne(int fwId);
 

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -43,20 +44,23 @@
 <div class="layui-input-inline" style="margin-left:100px;">
         <span style="margin: 10px">待选消缺员</span>
     <select multiple="multiple"
-            id="select1" style="width:150px;height:160px;" class="layui-input" >
-        <option value="1">选项1</option>
-        <option value="2">选项2</option>
-        <option value="3">选项3</option>
-        <option value="4">选项4</option>
-        <option value="5">选项5</option>
-        <option value="6">选项6</option>
-        <option value="7">选项7</option>
-        <option value="9">选项9</option>
-        <option value="10">选项10</option>
-        <option value="11">选项11</option>
-        <option value="12">选项12</option>
-        <option value="13">选项13</option>
-        <option value="14">选项14</option>
+            id="select1" style="width:150px;height:160px;" class="layui-input" name="defectUid">
+        <c:forEach items="${toBeSelectedDefect}" var="toBeSelectedDefect">
+            <option value="${toBeSelectedDefect.id}">${toBeSelectedDefect.uName}</option>
+        </c:forEach>
+        <%--<option value="1">选项1</option>--%>
+        <%--<option value="2">选项2</option>--%>
+        <%--<option value="3">选项3</option>--%>
+        <%--<option value="4">选项4</option>--%>
+        <%--<option value="5">选项5</option>--%>
+        <%--<option value="6">选项6</option>--%>
+        <%--<option value="7">选项7</option>--%>
+        <%--<option value="9">选项9</option>--%>
+        <%--<option value="10">选项10</option>--%>
+        <%--<option value="11">选项11</option>--%>
+        <%--<option value="12">选项12</option>--%>
+        <%--<option value="13">选项13</option>--%>
+        <%--<option value="14">选项14</option>--%>
     </select>
 
 <div class="centent">
@@ -68,8 +72,11 @@
 <div class="layui-input-inline" style="margin-left:100px;">
 
     <span style="margin: 10px">已选消缺员</span>
-    <select multiple="multiple" id="select2" style="width: 150px;height:160px;" class="layui-input">
-        <option value="8">选项8</option>
+    <select multiple="multiple" id="select2" style="width: 150px;height:160px;" class="layui-input" name="defectUid">
+        <c:forEach items="${selectedDefect}" var="selectedDefect">
+            <option value="${selectedDefect.id}">${selectedDefect.uName}</option>
+        </c:forEach>
+
     </select>
 
     <div class="centent">

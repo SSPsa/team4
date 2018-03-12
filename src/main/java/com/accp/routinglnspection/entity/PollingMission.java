@@ -20,6 +20,15 @@ public class PollingMission {
     private int pageSize;//分布行数
     private int begin;//计算数据库第几列开
     private User release;//发布人对象
+    private User polling;//'巡查员对象
+
+    public User getPolling() {
+        return polling;
+    }
+
+    public void setPolling(User polling) {
+        this.polling = polling;
+    }
 
     public Integer getState() {
         return state;

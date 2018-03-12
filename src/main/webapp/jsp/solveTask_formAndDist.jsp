@@ -28,8 +28,8 @@
                             <option value="0">--请选择--</option>
                             <option  <c:if test="${fmState==1}">selected</c:if> value="1">待分配</option>
                             <option <c:if test="${fmState==2}">selected</c:if> value="2">已分配</option>
-                            <option <c:if test="${fmState==3}">selected</c:if> value="3">执行中</option>
-                            <option <c:if test="${fmState==4}">selected</c:if> value="4">已完成</option>
+                            <%--<option <c:if test="${fmState==3}">selected</c:if> value="3">执行中</option>--%>
+                            <%--<option <c:if test="${fmState==4}">selected</c:if> value="4">已完成</option>--%>
                         </select>
                     </div>
                     <div class="layui-input-inline" style="width:80px">
@@ -97,101 +97,86 @@
             </thead>
             <tbody>
             <c:forEach items="${flawMissionPager.datas}" var="flawMissionPager">
-                <tr>
-                    <td>
-                      ${flawMissionPager.fmNumber}
-                    </td>
-                    <td>
-                        ${flawMissionPager.fmName}
-                    </td>
-                    <td >
-                        <c:if test="${flawMissionPager.receipts==1}">任务单</c:if>
-                        <c:if test="${flawMissionPager.receipts==2}">第一种单据</c:if>
-                        <c:if test="${flawMissionPager.receipts==3}">第二种单据</c:if>
-                    </td>
-                    <td >
-                        ${flawMissionPager.user.uName}
-                    </td>
-                    <td>
-                       <fmt:formatDate value="${flawMissionPager.releaseTime}"  pattern="yyyy-MM-dd"/>
+                    <tr>
+                        <td>
+                                ${flawMissionPager.fmNumber}
+                        </td>
+                        <td>
+                                ${flawMissionPager.fmName}
+                        </td>
+                        <td >
+                            <c:if test="${flawMissionPager.receipts==1}">任务单</c:if>
+                            <c:if test="${flawMissionPager.receipts==2}">第一种单据</c:if>
+                            <c:if test="${flawMissionPager.receipts==3}">第二种单据</c:if>
+                        </td>
+                        <td >
+                                ${flawMissionPager.user.uName}
+                        </td>
+                        <td>
+                            <fmt:formatDate value="${flawMissionPager.releaseTime}"  pattern="yyyy-MM-dd"/>
 
-                    </td>
-                    <td class="td-status">
-                        <c:if test="${flawMissionPager.fmState==1}">
+                        </td>
+                        <td class="td-status">
+                            <c:if test="${flawMissionPager.fmState==1}">
                             <span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #ec5807">
                               待分配
                             </span>
-                        </c:if>
-                        <c:if test="${flawMissionPager.fmState==2}">
+                            </c:if>
+                            <c:if test="${flawMissionPager.fmState==2}">
                             <span class="layui-btn layui-btn-normal layui-btn-mini">
                              已分配
                             </span>
-                        </c:if>
-                        <c:if test="${flawMissionPager.fmState==3}">
-                           <span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #ece40f">
-                              执行中
-                            </span>
-                        </c:if>
-                        <c:if test="${flawMissionPager.fmState==4}">
-                             <span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #1bec5e">
-                              已完成
-                            </span>
-                        </c:if>
-
-                    </td>
-                    <td>
-                        <c:if test="${flawMissionPager.fmState==4}">
-                         <fmt:formatDate value="${flawMissionPager.accomplishTime}" pattern="yyyy-MM-dd"/>
-                        </c:if>
-                            <%--任务完成时间--%>
-                    </td>
-                    <td>
-                        否
-                    </td>
-                    <td class="td-manage">
-                        <%--待分配--%>
-                        <c:if test="${flawMissionPager.fmState==1}">
-                            <a class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
-                                <i class="layui-icon">&#xe615;</i>
-                            </a>
-                            <a class="assignFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('分配任务','/jsp/solveTask_assign.jsp','10001','600','500')" title="分配任务">
-                                <i class="layui-icon">&#xe631;</i>
-                            </a>
-                            <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;" onclick="member_password('修改','/jsp/solveTask_modify.jsp','10001','700','500')"
-                               style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-                            <a title="取消" href="javascript:;" onclick=""
-                               style="text-decoration:none">
-                                <i class="layui-icon">&#x1006;</i>
-                            </a>
-
-                        </c:if>
-                         <%--已分配--%>
-                        <c:if test="${flawMissionPager.fmState==2}">
-                            <a class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
-                                <i class="layui-icon">&#xe615;</i>
-                            </a>
                             </c:if>
-                        <%--执行中--%>
-                        <c:if test="${flawMissionPager.fmState==3}">
-                            <a  class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
-                                <i class="layui-icon">&#xe615;</i>
-                            </a
-                        </c:if>
-                        <%--已完成--%>
-                         <c:if test="${flawMissionPager.fmState==4}">
-                             <a  class="viewFlawMission"  fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
-                                 <i class="layui-icon">&#xe615;</i>
-                             </a>
-                             <a class="examinaFlawMission" title="审查" href="javascript:;" onclick="member_password('审查任务','/jsp/solveTask_examina.jsp','10001','700','500')"
-                                style="text-decoration:none">
-                                 <i class="layui-icon">&#xe60a;</i>
-                             </a>
+                            <%--<c:if test="${flawMissionPager.fmState==3}">--%>
+                           <%--<span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #ece40f">--%>
+                              <%--执行中--%>
+                            <%--</span>--%>
+                            <%--</c:if>--%>
+                            <%--<c:if test="${flawMissionPager.fmState==4}">--%>
+                             <%--<span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #1bec5e">--%>
+                              <%--已完成--%>
+                            <%--</span>--%>
+                            <%--</c:if>--%>
+
+                        </td>
+                        <td>
+                            <%--<c:if test="${flawMissionPager.fmState==4}">--%>
+                                <%--<fmt:formatDate value="${flawMissionPager.accomplishTime}" pattern="yyyy-MM-dd"/>--%>
+                            <%--</c:if>--%>
+                                <%--任务完成时间--%>
+                        </td>
+                        <td>
+                            否
+                        </td>
+                        <td class="td-manage">
+                                <%--待分配--%>
+                            <c:if test="${flawMissionPager.fmState==1}">
+                                <a class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
+                                    <i class="layui-icon">&#xe615;</i>
+                                </a>
+                                <a class="assignFlawMission"  style="text-decoration:none" onclick="member_password('分配任务','/flawMission/flawMissionAssign','10001','600','500')" title="分配任务">
+                                    <i class="layui-icon">&#xe631;</i>
+                                </a>
+                                <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;" onclick="member_password('修改','/jsp/solveTask_modify.jsp','10001','700','500')"
+                                   style="text-decoration:none">
+                                    <i class="layui-icon">&#xe642;</i>
+                                </a>
+                                <a title="取消" href="javascript:;" onclick=""
+                                   style="text-decoration:none">
+                                    <i class="layui-icon">&#x1006;</i>
+                                </a>
 
                             </c:if>
-                    </td>
-                </tr>
+                                <%--已分配--%>
+                            <c:if test="${flawMissionPager.fmState==2}">
+                                <a class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
+                                    <i class="layui-icon">&#xe615;</i>
+                                </a>
+                            </c:if>
+
+                        </td>
+                    </tr>
+
             </c:forEach>
             </tbody>
         </table>

@@ -33,7 +33,6 @@
                     <div class="layui-input-inline">
                         <select name="fmState">
                             <option value="0">--请选择--</option>
-                            <option <c:if test="${fmState==2}">selected</c:if> value="2">已分配</option>
                             <option <c:if test="${fmState==3}">selected</c:if> value="3">执行中</option>
                             <option <c:if test="${fmState==4}">selected</c:if> value="4">已完成</option>
                             <option  <c:if test="${fmState==5}">selected</c:if> value="5">驳回</option>
@@ -103,7 +102,6 @@
             </tr>
             </thead>
             <tbody>
-            <%--驳回--%>
             <c:forEach items="${flawMissionPager.datas}" var="flawMissionPager">
                 <tr>
                     <td>
@@ -130,12 +128,6 @@
                              驳回
                             </span>
                         </c:if>
-                        <%--已分配--%>
-                        <c:if test="${flawMissionPager.fmState==2}">
-                             <span class="layui-btn layui-btn-normal layui-btn-mini">
-                             已分配
-                            </span>
-                        </c:if>
                         <%--执行中--%>
                         <c:if test="${flawMissionPager.fmState==3}">
                               <span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #ece40f">
@@ -158,35 +150,24 @@
                     <td class="td-manage">
                             <%--驳回--%>
                         <c:if test="${flawMissionPager.fmState==5}">
-                            <a style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" title="查看">
+                            <a class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" title="查看">
                                 <i class="layui-icon">&#xe615;</i>
                             </a>
 
-                            <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/solveTask_execute_modify.jsp','10001','700','500')"
+                            <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;" onclick="member_password('修改','/jsp/solveTask_execute_modify.jsp','10001','700','500')"
                                style="text-decoration:none">
                                 <i class="layui-icon">&#x1006;</i>
                             </a>
                         </c:if>
-                            <%--已分配--%>
-                        <c:if test="${flawMissionPager.fmState==2}">
-                            <a title="查看" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" >
-                                <i class="layui-icon">&#xe615;</i>
-                            </a>
-                            <a title="执行" href="javascript:;" onclick="member_password('执行','/jsp/solveTask_modify.jsp','10001','700','500')"
-                               style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-
-                        </c:if>
                             <%--执行中--%>
                         <c:if test="${flawMissionPager.fmState==3}">
-                            <a title="查看" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" >
+                            <a class="viewFlawMission" fwId="${flawMissionPager.id}" title="查看" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" >
                                 <i class="layui-icon">&#xe615;</i>
                             </a>
-                            <a title="执行录入"  style="text-decoration:none" onclick="member_password('执行录入','','10001','700','500')">
+                            <a title="执行录入" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('执行录入','','10001','700','500')">
                                 <i class="layui-icon">&#xe631;</i>
                             </a>
-                            <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/solveTask_execute_modify.jsp','10001','700','500')"
+                            <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;" onclick="member_password('修改','/jsp/solveTask_execute_modify.jsp','10001','700','500')"
                                style="text-decoration:none">
                                 <i class="layui-icon">&#x1006;</i>
                             </a>
@@ -194,7 +175,7 @@
                         </c:if>
                             <%--已完成--%>
                         <c:if test="${flawMissionPager.fmState==4}">
-                            <a title="查看" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" >
+                            <a class="viewFlawMission" fwId="${flawMissionPager.id}" title="查看" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" >
                                 <i class="layui-icon">&#xe615;</i>
                             </a>
 

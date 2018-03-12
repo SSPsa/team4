@@ -3,38 +3,39 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.accp.routinglnspection.dao.FlawDao">
-        <resultMap id="flaw" type="Flaw">
-            <result property="id" column="id"/>
-            <result property="cId" column="cId"/>
-            <result property="tId" column="tId"/>
-            <result property="ftId" column="ftId"/>
-            <result property="grade" column="grade"/>
-            <result property="describe" column="describe"/>
-            <result property="completeness" column="completeness"/>
-            <result property="discoverTime" column="discoverTime"/>
-            <result property="discoverUid" column="discoverUid"/>
-
-            <association property="circuit" javaType="Circuit">
-                    <result property="cNumber" column="cNumber"/>
-            </association>
-
-            <association property="flawType" javaType="FlawType">
-                <result property="ftName" column="ftName"/>
-            </association>
-
-            <association property="tower" javaType="Tower">
-                <result property="tNumber" column="tNumber"/>
-            </association>
-
-            <association property="user" javaType="User">
-                <result property="id" column="id"/>
-                <result property="uName" column="uName"/>
-            </association>
-        </resultMap>
-    <select id="queryFlaw" resultMap="flaw">
-        SELECT flaw.*,circuit.cNumber,tower.tNumber,flawtype.ftName,user.id,user.uName
-        FROM flaw,circuit,tower,flawtype,USER
-        WHERE flaw.cid = circuit.id AND flaw.tid = tower.id AND flaw.ftid = flawtype.id AND flaw.discoverUid = user.id
+    <resultMap id="flawMap" type="Flaw">
+        <result column="id" property="id"/>
+        <result column="cId" property="cId"/>
+        <result column="tId" property="tId"/>
+        <result column="ftId" property="ftId"/>
+        <result column="grade" property="grade"/>
+        <result column="describe" property="describe"/>
+        <result column="completeness" property="completeness"/>
+        <result column="discoverTime" property="discoverTime"/>
+        <result column="discoverUid" property="discoverUid"/>
+        <association property="circuit" javaType="Circuit">
+            <result column="id" property="id"/>
+            <result column="cNumber" property="cNumber"/>
+        </association>
+        <association property="tower" javaType="Tower">
+            <result column="id" property="id"/>
+            <result column="tNumber" property="tNumber"/>
+        </association>
+        <association property="flawType" javaType="FlawType">
+            <result column="id" property="id"/>
+            <result column="ftName" property="ftName"/>
+        </association>
+        <association property="user" javaType="User">
+            <result column="id" property="id"/>
+            <result column="uName" property="uName"/>
+        </association>
+    </resultMap>
+    <select id="queryFlawList" resultMap="flawMap">
+        SELECT `circuit`.cNumber,`tower`.tNumber,`flaw`.grade,`flawtype`.ftName,`flaw`.describe,`user`.uName,`flaw`.discoverTime
+          FROM `flaw`,`circuit`,`tower`,`flawtype`,`user`
+          WHERE `flaw`.cId=`circuit`.id
+          AND `flaw`.tId=`tower`.id
+          AND `flaw`.ftId=`flawtype`.id
+          AND `flaw`.discoverUid=`user`.id
     </select>
-
 </mapper>

@@ -20,4 +20,9 @@ public interface UserDao {
     //查询总行数
     int queryhang(@Param("status")int status);
 
+//    查询待选消缺员
+    List<User> queryToBeSelectedDefect();
+//    查询已选消缺员
+    List<User> querySelectedDefect();
+
 }

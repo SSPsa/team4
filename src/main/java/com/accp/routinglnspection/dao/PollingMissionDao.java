@@ -1,5 +1,6 @@
 package com.accp.routinglnspection.dao;
 
+import com.accp.routinglnspection.entity.Circuit;
 import com.accp.routinglnspection.entity.PollingMission;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,4 +12,5 @@ public interface PollingMissionDao {
     int addPollingMission(PollingMission pollingMission);
     int updatePollingMission(PollingMission pollingMission);
     int deletePollingMission(@Param("id") int id);
+    List<Circuit> queryCircuit();
 }

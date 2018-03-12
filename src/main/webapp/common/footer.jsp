@@ -185,6 +185,7 @@
             });
         });
     }
+
     /*杆塔管理-修改*/
     function member_towerUpdate(obj,id){
         layer.confirm('确认要修改吗？',function(index){
@@ -210,6 +211,7 @@
 
         });
     }
+
     function member_del(obj,id){
         $.ajax({
             type:"get",
@@ -337,6 +339,8 @@
             });
         });
     }
+
+
 </script>
 </body>
 </html>
