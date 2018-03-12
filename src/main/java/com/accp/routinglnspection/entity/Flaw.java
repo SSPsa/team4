@@ -12,10 +12,6 @@ public class Flaw {
  private Integer completeness;//'完成度百分比',
  private Date discoverTime;//'发布时间',
  private Integer discoverUid;//'发现人外键用户表id',
-    private User user;
-    private Circuit circuit;
-    private FlawType flawType;
-    private Tower tower;
 
     public Integer getId() {
         return id;
@@ -87,37 +83,5 @@ public class Flaw {
 
     public void setDiscoverUid(Integer discoverUid) {
         this.discoverUid = discoverUid;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Circuit getCircuit() {
-        return circuit;
-    }
-
-    public void setCircuit(Circuit circuit) {
-        this.circuit = circuit;
-    }
-
-    public FlawType getFlawType() {
-        return flawType;
-    }
-
-    public void setFlawType(FlawType flawType) {
-        this.flawType = flawType;
-    }
-
-    public Tower getTower() {
-        return tower;
-    }
-
-    public void setTower(Tower tower) {
-        this.tower = tower;
     }
 }

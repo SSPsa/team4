@@ -18,4 +18,9 @@ public interface UserBiz {
                            int pageSize,
                            String uName,
                            int ustate );
+
+    //    查询待选消缺员
+    List<User> queryToBeSelectedDefect();
+    //    查询已选消缺员
+    List<User> querySelectedDefect();
 }

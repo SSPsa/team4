@@ -112,29 +112,43 @@
                     </div>
                 </div>
 
-                <div class="layui-form-item">
-
-                    <xblock>
-                        <label class="layui-form-label">
-                            缺陷列表
-                        </label>
-                        <a  class="layui-btn"  href="/jsp/defects_add.jsp"><i class="layui-icon">&#xe608;</i>添加缺陷</a>
-
-                        <%--<a  class="layui-btn"  onclick="member_add('添加缺陷','/jsp/defects.jsp','600','500')"><i class="layui-icon">&#xe608;</i>添加缺陷</a>--%>
-                    </xblock>
-                </div>
+                <xblock>
+                    请选择新增的缺陷
+                </xblock>
                 <table class="layui-table">
+                    <thead>
                     <tr>
-                        <td>线路编号</td>
-                        <td>杆塔编号</td>
-                        <td>缺陷等级</td>
-                        <td>缺陷类型</td>
-                        <td>缺陷描述</td>
-                        <td>发现人</td>
-                        <td>发现时间</td>
-                        <td>操作</td>
+                        <th>
+                            选择
+                        </th>
+                        <th>
+                            线路编号
+                        </th>
+                        <th>
+                            杆塔编号
+                        </th>
+                        <th>
+                            缺陷等级
+                        </th>
+                        <th>
+                            缺陷类型
+                        </th>
+                        <th>
+                            缺陷描述
+                        </th>
+                        <th>
+                            发现人
+                        </th>
+                        <th>
+                            发现时间
+                        </th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
+                        <td>
+                            <input type="checkbox" value="1" name="">
+                        </td>
                         <td>XW001</td>
                         <td>XW00002</td>
                         <td>严重</td>
@@ -142,11 +156,57 @@
                         <td>拦截河道7股断2股</td>
                         <td>巡检员测试用户01</td>
                         <td>2013/12/12</td>
-                        <td>移除</td>
                     </tr>
-
+                    <tr>
+                        <td>
+                            <input type="checkbox" value="1" name="">
+                        </td>
+                        <td>XW001</td>
+                        <td>XW00002</td>
+                        <td>严重</td>
+                        <td>拦河线断裂</td>
+                        <td>拦截河道7股断2股</td>
+                        <td>巡检员测试用户01</td>
+                        <td>2013/12/12</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" value="1" name="">
+                        </td>
+                        <td>XW001</td>
+                        <td>XW00002</td>
+                        <td>严重</td>
+                        <td>拦河线断裂</td>
+                        <td>拦截河道7股断2股</td>
+                        <td>巡检员测试用户01</td>
+                        <td>2013/12/12</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" value="1" name="">
+                        </td>
+                        <td>XW001</td>
+                        <td>XW00002</td>
+                        <td>严重</td>
+                        <td>拦河线断裂</td>
+                        <td>拦截河道7股断2股</td>
+                        <td>巡检员测试用户01</td>
+                        <td>2013/12/12</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" value="1" name="">
+                        </td>
+                        <td>XW001</td>
+                        <td>XW00002</td>
+                        <td>严重</td>
+                        <td>拦河线断裂</td>
+                        <td>拦截河道7股断2股</td>
+                        <td>巡检员测试用户01</td>
+                        <td>2013/12/12</td>
+                    </tr>
+                    </tbody>
                 </table>
-
 
                 <div class="layui-form-item">
                     <label  class="layui-form-label">

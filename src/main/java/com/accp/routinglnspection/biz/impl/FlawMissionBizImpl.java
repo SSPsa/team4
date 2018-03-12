@@ -14,14 +14,14 @@ public class FlawMissionBizImpl implements FlawMissionBiz {
    @Resource(name = "flawMissionDao")
     private FlawMissionDao flawMissionDao;
 //   分页查询
-    public Pager<FlawMission> queryFlawMisPager(int pageNo, int pageSize, String fmNumber, String fmName, int fmState, int receipts, int principalUid, Date startTime, Date endTime) {
+    public Pager<FlawMission> queryFlawMisPager(int pageNo, int pageSize, String fmNumber, String fmName, int fmState, int receipts, int principalUid, Date startTime, Date endTime,int fmState1,int fmState2 ) {
         Pager<FlawMission> flawMissionPager=new Pager<FlawMission>();
         flawMissionPager.setPageNo(pageNo);
         flawMissionPager.setPageSize(pageSize);
-        flawMissionPager.setTotalRows(flawMissionDao.queryFlawMisRows(fmNumber,fmName,fmState,receipts,principalUid,startTime,endTime));
+        flawMissionPager.setTotalRows(flawMissionDao.queryFlawMisRows(fmNumber,fmName,fmState,receipts,principalUid,startTime,endTime,fmState1,fmState2));
         flawMissionPager.setTotalPage( (flawMissionPager.getTotalRows() + pageSize-1)/ pageSize);
         int begin=(pageNo-1)*pageSize;
-        flawMissionPager.setDatas(flawMissionDao.queryFlawMisPager(begin,pageSize,fmNumber,fmName,fmState,receipts,principalUid,startTime,endTime));
+        flawMissionPager.setDatas(flawMissionDao.queryFlawMisPager(begin,pageSize,fmNumber,fmName,fmState,receipts,principalUid,startTime,endTime,fmState1,fmState2));
         return flawMissionPager;
     }
 //查询单个

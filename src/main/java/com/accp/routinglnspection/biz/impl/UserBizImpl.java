@@ -48,7 +48,14 @@ public class UserBizImpl implements UserBiz {
         return pager;
     }
 
-
+//    待选消缺员
+    public List<User> queryToBeSelectedDefect() {
+        return userDao.queryToBeSelectedDefect();
+    }
+//已选消缺员
+    public List<User> querySelectedDefect() {
+        return userDao.querySelectedDefect();
+    }
 
 
 }

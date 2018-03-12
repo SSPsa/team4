@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -23,32 +25,43 @@
 
     <tr>
         <td>任务编码:</td>
-        <td>RW0248</td>
+        <td>${flawMission.fmNumber}</td>
         <td>任务名称:</td>
-        <td>线路管理员测试用户01</td>
+        <td>${flawMission.fmName}</td>
     </tr>
     <td>任务状态:</td>
-    <td>已完成</td>
+    <td><c:if test="${flawMission.fmState==3}">执行中</c:if>
+        <c:if test="${flawMission.fmState==4}">已完成</c:if>
+        <c:if test="${flawMission.fmState==5}">驳回</c:if>
+    </td>
     <td>工作单据:</td>
-    <td>任务单</td>
+    <td>
+        <c:if test=" ${flawMission.receipts==1}">任务单</c:if>
+        <c:if test=" ${flawMission.receipts==2}">第一种单据</c:if>
+        <c:if test=" ${flawMission.receipts==3}">第二种单据</c:if>
+       </td>
 
     <tr>
         <td>任务下发人:</td>
         <td>线路管理员测试用户01</td>
         <td>任务下发时间:</td>
-        <td>2013-12-12</td>
+        <td>
+            <fmt:formatDate value="${flawMission.releaseTime}" pattern="yyyy-MM-dd"/>
+        </td>
     </tr>
     <tr>
         <td>任务负责人:</td>
-        <td>线路管理员测试用户01</td>
+        <td>${flawMission.user.uName}</td>
         <td>任务描述:</td>
-        <td>完成西临3号线路消缺任务。</td>
+        <td>${flawMission.describe}</td>
     </tr>
     <tr>
         <td>消缺员:</td>
         <td>消缺员测试用户01</td>
         <td>任务完成时间:</td>
-        <td>2013-12-22</td>
+        <td>
+            <fmt:formatDate value="${flawMission.accomplishTime}" pattern="yyyy-MM-dd"/>
+        </td>
 
     </tr>
     <tr style="row-span: 2">

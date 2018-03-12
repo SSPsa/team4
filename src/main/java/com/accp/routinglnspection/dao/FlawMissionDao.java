@@ -16,7 +16,10 @@ public interface FlawMissionDao {
                                         @Param("receipts") int receipts,
                                         @Param("principalUid") int principalUid,
                                         @Param("startTime") Date startTime,
-                                        @Param("endTime") Date endTime);
+                                        @Param("endTime") Date endTime,
+                                        @Param("fmState1") int fmState1,
+                                        @Param("fmState2") int fmState2
+    );
    //查询总行数
     int queryFlawMisRows(@Param("fmNumber") String fmNumber,
                          @Param("fmName") String fmName,
@@ -24,7 +27,9 @@ public interface FlawMissionDao {
                          @Param("receipts") int receipts,
                          @Param("principalUid") int principalUid,
                          @Param("startTime") Date startTime,
-                         @Param("endTime") Date endTime);
+                         @Param("endTime") Date endTime,
+                         @Param("fmState1") int fmState1,
+                         @Param("fmState2") int fmState2);
     //查询单个
     FlawMission queryFlawMissionOne(@Param("fwId") int fwId);
 
