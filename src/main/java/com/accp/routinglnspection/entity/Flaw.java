@@ -11,7 +11,43 @@ public class Flaw {
  private String describe;//'缺陷描述',
  private Integer completeness;//'完成度百分比',
  private Date discoverTime;//'发布时间',
- private Integer discoverUid;//'发现人外键用户表id',
+    private Integer discoverUid;//'发现人外键用户表id',
+    private Circuit circuit;
+    private Tower tower;
+    private FlawType flawType;
+    private User user;
+
+    public Circuit getCircuit() {
+        return circuit;
+    }
+
+    public void setCircuit(Circuit circuit) {
+        this.circuit = circuit;
+    }
+
+    public Tower getTower() {
+        return tower;
+    }
+
+    public void setTower(Tower tower) {
+        this.tower = tower;
+    }
+
+    public FlawType getFlawType() {
+        return flawType;
+    }
+
+    public void setFlawType(FlawType flawType) {
+        this.flawType = flawType;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getId() {
         return id;

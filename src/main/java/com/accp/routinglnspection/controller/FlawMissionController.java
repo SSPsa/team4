@@ -87,7 +87,6 @@ public class FlawMissionController {
     }
     }
 
-
     //缺陷任务制定与分配的查看
     @RequestMapping("/flawMission/flawMissionView")
     public String flawMissionView(Model m,String fwId){
@@ -180,6 +179,7 @@ public class FlawMissionController {
         }
     }
 
+    //执行与回执的查看
     @RequestMapping("/flawMission/flawMissionExecView")
     public String flawMissionExecView(Model m,String fwId){
         FlawMission flawMission = flawMissionBiz.queryFlawMissionOne(Integer.parseInt(fwId));
@@ -191,4 +191,18 @@ public class FlawMissionController {
         }
 
     }
+
+//    增加缺陷
+    @RequestMapping("/flawMission/flawMissionAddFlaw")
+    public String flawMissionAddFlaw(Model m,String fid){
+        List<FlawMission> FlawMission_flaw = flawMissionBiz.queryFlawMission_Flaw(Integer.parseInt(fid));
+        if(FlawMission_flaw!=null){
+            m.addAttribute("FlawMission_flaw",FlawMission_flaw);
+            m.addAttribute("fid",fid);
+            return "defe_add";
+        }
+        return null;
+    }
+
+
 }

@@ -15,6 +15,10 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
     <script src="/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/js/xadmin.js"></script>
+    <%--额外的弹出框--%>
+    <%--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">--%>
+    <%--<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"/>--%>
+    <%--<script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"/>--%>
     <style>
         textarea,select,option{
             opacity: 0.5;
@@ -113,100 +117,103 @@
                 </div>
 
                 <xblock>
-                    请选择新增的缺陷
+                    <a href="#"  class="addFlaw" fid="${flawMission.fId}" style="text-decoration:none" >
+                        请选择新增的缺陷
+                    </a>
                 </xblock>
-                <table class="layui-table">
-                    <thead>
-                    <tr>
-                        <th>
-                            选择
-                        </th>
-                        <th>
-                            线路编号
-                        </th>
-                        <th>
-                            杆塔编号
-                        </th>
-                        <th>
-                            缺陷等级
-                        </th>
-                        <th>
-                            缺陷类型
-                        </th>
-                        <th>
-                            缺陷描述
-                        </th>
-                        <th>
-                            发现人
-                        </th>
-                        <th>
-                            发现时间
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="1" name="">
-                        </td>
-                        <td>XW001</td>
-                        <td>XW00002</td>
-                        <td>严重</td>
-                        <td>拦河线断裂</td>
-                        <td>拦截河道7股断2股</td>
-                        <td>巡检员测试用户01</td>
-                        <td>2013/12/12</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="1" name="">
-                        </td>
-                        <td>XW001</td>
-                        <td>XW00002</td>
-                        <td>严重</td>
-                        <td>拦河线断裂</td>
-                        <td>拦截河道7股断2股</td>
-                        <td>巡检员测试用户01</td>
-                        <td>2013/12/12</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="1" name="">
-                        </td>
-                        <td>XW001</td>
-                        <td>XW00002</td>
-                        <td>严重</td>
-                        <td>拦河线断裂</td>
-                        <td>拦截河道7股断2股</td>
-                        <td>巡检员测试用户01</td>
-                        <td>2013/12/12</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="1" name="">
-                        </td>
-                        <td>XW001</td>
-                        <td>XW00002</td>
-                        <td>严重</td>
-                        <td>拦河线断裂</td>
-                        <td>拦截河道7股断2股</td>
-                        <td>巡检员测试用户01</td>
-                        <td>2013/12/12</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="1" name="">
-                        </td>
-                        <td>XW001</td>
-                        <td>XW00002</td>
-                        <td>严重</td>
-                        <td>拦河线断裂</td>
-                        <td>拦截河道7股断2股</td>
-                        <td>巡检员测试用户01</td>
-                        <td>2013/12/12</td>
-                    </tr>
-                    </tbody>
-                </table>
+
+                <%--<table class="layui-table" id="hidden-show" hidden>--%>
+                    <%--<thead>--%>
+                    <%--<tr>--%>
+                        <%--<th>--%>
+                            <%--选择--%>
+                        <%--</th>--%>
+                        <%--<th>--%>
+                            <%--线路编号--%>
+                        <%--</th>--%>
+                        <%--<th>--%>
+                            <%--杆塔编号--%>
+                        <%--</th>--%>
+                        <%--<th>--%>
+                            <%--缺陷等级--%>
+                        <%--</th>--%>
+                        <%--<th>--%>
+                            <%--缺陷类型--%>
+                        <%--</th>--%>
+                        <%--<th>--%>
+                            <%--缺陷描述--%>
+                        <%--</th>--%>
+                        <%--<th>--%>
+                            <%--发现人--%>
+                        <%--</th>--%>
+                        <%--<th>--%>
+                            <%--发现时间--%>
+                        <%--</th>--%>
+                    <%--</tr>--%>
+                    <%--</thead>--%>
+                    <%--<tbody>--%>
+                    <%--<tr>--%>
+                        <%--<td>--%>
+                            <%--<input type="checkbox" value="1" name="">--%>
+                        <%--</td>--%>
+                        <%--<td>XW001</td>--%>
+                        <%--<td>XW00002</td>--%>
+                        <%--<td>严重</td>--%>
+                        <%--<td>拦河线断裂</td>--%>
+                        <%--<td>拦截河道7股断2股</td>--%>
+                        <%--<td>巡检员测试用户01</td>--%>
+                        <%--<td>2013/12/12</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td>--%>
+                            <%--<input type="checkbox" value="1" name="">--%>
+                        <%--</td>--%>
+                        <%--<td>XW001</td>--%>
+                        <%--<td>XW00002</td>--%>
+                        <%--<td>严重</td>--%>
+                        <%--<td>拦河线断裂</td>--%>
+                        <%--<td>拦截河道7股断2股</td>--%>
+                        <%--<td>巡检员测试用户01</td>--%>
+                        <%--<td>2013/12/12</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td>--%>
+                            <%--<input type="checkbox" value="1" name="">--%>
+                        <%--</td>--%>
+                        <%--<td>XW001</td>--%>
+                        <%--<td>XW00002</td>--%>
+                        <%--<td>严重</td>--%>
+                        <%--<td>拦河线断裂</td>--%>
+                        <%--<td>拦截河道7股断2股</td>--%>
+                        <%--<td>巡检员测试用户01</td>--%>
+                        <%--<td>2013/12/12</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td>--%>
+                            <%--<input type="checkbox" value="1" name="">--%>
+                        <%--</td>--%>
+                        <%--<td>XW001</td>--%>
+                        <%--<td>XW00002</td>--%>
+                        <%--<td>严重</td>--%>
+                        <%--<td>拦河线断裂</td>--%>
+                        <%--<td>拦截河道7股断2股</td>--%>
+                        <%--<td>巡检员测试用户01</td>--%>
+                        <%--<td>2013/12/12</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td>--%>
+                            <%--<input type="checkbox" value="1" name="">--%>
+                        <%--</td>--%>
+                        <%--<td>XW001</td>--%>
+                        <%--<td>XW00002</td>--%>
+                        <%--<td>严重</td>--%>
+                        <%--<td>拦河线断裂</td>--%>
+                        <%--<td>拦截河道7股断2股</td>--%>
+                        <%--<td>巡检员测试用户01</td>--%>
+                        <%--<td>2013/12/12</td>--%>
+                    <%--</tr>--%>
+                    <%--</tbody>--%>
+                <%--</table>--%>
 
                 <div class="layui-form-item">
                     <label  class="layui-form-label">
@@ -249,4 +256,21 @@
             laydate(start);
         }
     });
+
+//    点击添加缺陷
+    $(function () {
+        $(".addFlaw").on("click", function () {
+            //将被绑定的元素（a）转换成jquery对象，可以使用jquery方法
+            var obj = $(this);
+            window.location.href = "/flawMission/flawMissionAddFlaw?fid=" + obj.attr("fid");
+        });
+    });
+
+//    $(document).ready(function(){
+//        $('[data-toggle="popover"]').popover();
+//    });
+//        $(document).ready(function(){
+//            $('#hidden-show').toggle;
+//        });
+
 </script>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class FlawMissionBizImpl implements FlawMissionBiz {
@@ -46,5 +47,9 @@ public class FlawMissionBizImpl implements FlawMissionBiz {
         int begin=(pageNo-1)*pageSize;
         flawMissionPager2.setDatas(flawMissionDao.queryFlawMisPager2(begin,pageSize,fmNumber,fmState,fId,grade,startTime,endTime));
         return flawMissionPager2;
+    }
+    //    一对多的缺陷信息显示
+    public List<FlawMission> queryFlawMission_Flaw(int fid) {
+        return flawMissionDao.queryFlawMission_Flaw(fid);
     }
 }

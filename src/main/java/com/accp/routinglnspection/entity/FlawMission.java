@@ -27,6 +27,14 @@ public class FlawMission {
     private FlawType flawType; //缺陷类型对象属性
     private List<Flaw> flawList;  //一个任务有多个缺陷（一对多）
 
+    public List<Flaw> getFlawList() {
+        return flawList;
+    }
+
+    public void setFlawList(List<Flaw> flawList) {
+        this.flawList = flawList;
+    }
+
     public Flaw getFlaw() {
         return flaw;
     }

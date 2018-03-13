@@ -56,6 +56,9 @@ public interface FlawMissionDao {
                            @Param("endTime") Date endTime);
 
 
+    List<FlawMission> queryFlawMission_Flaw(@Param("fid") int fid);
+
+
 
 
 

@@ -198,4 +198,23 @@
         <include refid="pageWhere2"/>
     </select>
 
+    <!--一对多的缺陷显示列-->
+    <resultMap id="FlawMission_FlawMap" type="FlawMission">
+        <result property="id" column="id"/>
+        <result column="fId" property="fId"/>
+        <collection property="flawList" column="fId" ofType="Flaw">
+            <result property="id" column="id"/>
+            <result column="grade" property="grade"/>
+            <result column="describe" property="describe"/>
+            <result column="completeness" property="completeness"/>
+            <result column="discoverTime" property="discoverTime"/>
+        </collection>
+    </resultMap>
+<!--一对多的缺陷信息表-->
+    <select id="queryFlawMission_Flaw" resultMap="FlawMission_FlawMap">
+        SELECT flawmission.id,flawmission.fid,flaw.id,flaw.grade,flaw.completeness,flaw.describe,flaw.discoverTime FROM flawmission
+          LEFT JOIN flaw ON flawmission.fid=flaw.id
+          where flawmission.fid=#{fid}
+    </select>
+
 </mapper>

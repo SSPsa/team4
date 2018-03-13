@@ -5,6 +5,7 @@ import com.accp.routinglnspection.entity.Pager;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
+import java.util.List;
 
 public interface FlawMissionBiz {
     //分页查询
@@ -27,7 +28,7 @@ public interface FlawMissionBiz {
     //修改一个
     int updateFlawMission(FlawMission flawMission);
 
-
+//缺陷查询
     Pager<FlawMission> queryFlawMisPager2(int pageNo,
                                           int pageSize,
                                           String fmNumber,
@@ -36,7 +37,8 @@ public interface FlawMissionBiz {
                                           int grade,
                                           Date startTime,
                                           Date endTime);
-
+//    一对多的缺陷信息显示
+    List<FlawMission> queryFlawMission_Flaw(int fid);
 
 
 }
