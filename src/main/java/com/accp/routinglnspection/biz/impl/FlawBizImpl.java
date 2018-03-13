@@ -17,7 +17,7 @@ public class FlawBizImpl implements FlawBiz {
         return flawDao.queryFlaw();
     }
 
-        public List<Flaw> queryFlawList () {
+     public List<Flaw> queryFlawList () {
             return flawDao.queryFlawList();
 
         }
