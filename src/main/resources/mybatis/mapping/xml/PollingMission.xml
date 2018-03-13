@@ -22,22 +22,29 @@
         <association property="release" javaType="User">
             <result property="uName" column="uName"/>
             <result property="uNumber" column="uNumber"/>
-
+        </association>
+        <association property="polling" javaType="User">
+            <result property="uName" column="u1name"/>
         </association>
     </resultMap>
     <select id="queryPollingMission" resultMap="queryPollingMissionMap">
-        SELECT * FROM `circuit` c,`pollingmission` p,`user` u
+        SELECT c.*,p.*,u.*,u1.`uName` u1name
         <include refid="sql"/>
         limit #{begin} , #{pageSize}
     </select>
 
     <select id="queryPollingMissionInt" resultType="_int">
-       SELECT COUNT(*) from `circuit` c,`pollingmission` p,`user` u
+       SELECT COUNT(*)
         <include refid="sql"/>
     </select>
+
+    <select id="queryCircuit" resultType="Circuit">
+        SELECT * FROM `circuit`
+    </select>
     <sql id="sql">
+        FROM `circuit` c,`pollingmission` p,`user` u,`user` u1
         <where>
-            c.`id`=p.`cId` AND p.`releaseUid`=u.`id`
+            c.`id`=p.`cId` AND p.`releaseUid`=u.`id` AND p.`pollingUid`=u1.`id`
             <if test="pmName !=null and pmName!=''"> and p.pmName like concat('%',#{pmName},'%')</if>
             <if test="id >0"> and p.id=#{id}</if>
             <if test="pmNumber !=null and pmNumber!=''"> and p.pmNumber like concat('%',#{pmNumber},'%')</if>

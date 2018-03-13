@@ -86,10 +86,7 @@
                         <input class="layui-btn layui-btn-normal layui-btn-mini" name="Submit" type="button" id="Submit" value="已启动"/>
 
                     </c:if>
-                    <c:if test="${circuitPager.yState==1}">
-                        <%--<span class="layui-btn layui-btn-danger layui-btn-mini">停用</span>--%>
-                        <input class="layui-btn layui-btn-danger layui-btn-mini" name="Submit" type="button" id="Submit" value="停用"/>
-                    </c:if>
+
                 <td class="td-manage">
                     <c:if test="${circuitPager.yState==1}">
                     <a style="text-decoration:none" name="yState" onclick="line_Start(this,${circuitPager.id},${circuitPager.yState})" href="javascript:;" title="启用">

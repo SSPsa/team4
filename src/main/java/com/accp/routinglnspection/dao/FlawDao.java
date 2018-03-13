@@ -12,7 +12,6 @@ public interface FlawDao {
      */
     List<Flaw> queryFlaw();
 
-
     List<Flaw> queryFlawList();
 
 }

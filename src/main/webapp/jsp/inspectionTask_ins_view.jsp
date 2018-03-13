@@ -1,5 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -23,30 +25,35 @@
 
     <tr>
         <td>任务编码:</td>
-        <td>RW0248</td>
+        <td>${pollingMissionView.pmNumber}</td>
         <td>任务名称:</td>
-        <td>西临1号线巡检</td>
+        <td>${pollingMissionView.pmName}</td>
     </tr>
     <td>巡检线路:</td>
-    <td>西临1号线</td>
+    <td>${pollingMissionView.circuit.cNumber}</td>
     <td>起始杆号:</td>
-    <td>XW001</td>
+    <td>${pollingMissionView.circuit.riseTid}</td>
 
     <tr>
         <td>终止杆号:</td>
-        <td>XW0025</td>
+        <td>${pollingMissionView.circuit.endTid}</td>
         <td>下发人:</td>
-        <td>线路管理员测试账户01</td>
+        <td>${pollingMissionView.release.uName}</td>
     </tr>
     <tr>
         <td>下发时间:</td>
-        <td>2013-12-11</td>
+        <td><fmt:formatDate value="${pollingMissionView.releaseTime}" pattern="yyyy-MM-dd"/></td>
         <td>任务状态:</td>
-        <td>已完成</td>
+        <td>
+            <c:if test="${pollingMissionView.pmState==1}">待分配</c:if>
+            <c:if test="${pollingMissionView.pmState==2}">已分配</c:if>
+            <c:if test="${pollingMissionView.pmState==3}">执行中</c:if>
+            <c:if test="${pollingMissionView.pmState==4}">已完成</c:if>
+        </td>
     </tr>
     <tr>
         <td>任务完成时间:</td>
-        <td>2013-12-23</td>
+        <td><fmt:formatDate value="${pollingMissionView.accomplishTime}" pattern="yyyy-MM-dd"/></td>
         <td>备注信息:</td>
         <td>无</td>
 
@@ -55,7 +62,7 @@
         <td style="row-span:2;">巡检员:</td>
         <td>
 
-            <textarea name="" class="layui-input" style="width: 200px;height: 100px" readonly>巡检员测试用户01、巡检员测试用户02、巡检员测试用户03</textarea>
+            <textarea name="" class="layui-input" style="width: 200px;height: 100px" readonly>${pollingMissionView.polling.uName}</textarea>
         </td>
     </tr>
 
