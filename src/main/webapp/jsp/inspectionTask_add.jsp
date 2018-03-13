@@ -45,8 +45,10 @@
                         <span class="x-red"></span>巡检路线:
                     </label>
                     <div class="layui-input-inline">
-                        <select onchange="addlistCircuit(this)">
+                        <select lay-filter="test">
+
                             <option value="0">--请选择--</option>
+                            <option value="1">--请选择--</option>
                           <c:forEach items="${addlistCircuit}" var="listcircuit">
                               <option value="${listcircuit.id}">${listcircuit.cNumber}</option>
                           </c:forEach>
@@ -129,21 +131,25 @@
     <!-- 右侧主体结束 -->
 </div>
 <!-- 中部结束 -->
-
 <script>
+    layui.use('form',function(){});<!--加载form模块-->
+    </script>
+<script>
+    var form = layui.form();
+    form.on('select(test)', function(data){
+        alert("1")
+        console.log(data);
+    });
 
-    function addlistCircuit(circuitid){
+    function addlistCircuits(circuitid){
+
         var id= circuitid.value;
+        alert(id);
         $.ajax({
             type:"get",
             url:"/PollingMission/addShowpollingMissionid?id="+id,
             success:function(data){
                 if(data != null){
-                    $("#categoryLevel3").html("");//通过标签选择器，得到select标签，适用于页面里只有一个select
-                    var options = null;
-                    for(var i = 0; i < data.length; i++){
-                        options += "<option value=\""+data[i].id+"\">"+data[i].categoryName+"</option>";
-                    }
                     $("#categoryLevel3").html(options);
                 }
             }
