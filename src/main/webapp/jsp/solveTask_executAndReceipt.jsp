@@ -161,14 +161,13 @@
                         </c:if>
                             <%--执行中--%>
                         <c:if test="${flawMissionPager.fmState==3}">
-                            <a class="viewFlawMission" fwId="${flawMissionPager.id}" title="查看" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" >
+                            <a class="viewFlawMission" fwId="${flawMissionPager.id}" title="查看" style="text-decoration:none">
                                 <i class="layui-icon">&#xe615;</i>
                             </a>
                             <a title="执行录入" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('执行录入','','10001','700','500')">
                                 <i class="layui-icon">&#xe631;</i>
                             </a>
-                            <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;" onclick="member_password('修改','/jsp/solveTask_execute_modify.jsp','10001','700','500')"
-                               style="text-decoration:none">
+                            <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;" style="text-decoration:none">
                                 <i class="layui-icon">&#x1006;</i>
                             </a>
 
@@ -244,3 +243,4 @@
     })();
 </script>
 <%@include file="/common/footer.jsp"%>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/solveTask_executAndReceipt.js"></script>

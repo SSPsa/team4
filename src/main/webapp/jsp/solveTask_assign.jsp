@@ -48,19 +48,6 @@
         <c:forEach items="${toBeSelectedDefect}" var="toBeSelectedDefect">
             <option value="${toBeSelectedDefect.id}">${toBeSelectedDefect.uName}</option>
         </c:forEach>
-        <%--<option value="1">选项1</option>--%>
-        <%--<option value="2">选项2</option>--%>
-        <%--<option value="3">选项3</option>--%>
-        <%--<option value="4">选项4</option>--%>
-        <%--<option value="5">选项5</option>--%>
-        <%--<option value="6">选项6</option>--%>
-        <%--<option value="7">选项7</option>--%>
-        <%--<option value="9">选项9</option>--%>
-        <%--<option value="10">选项10</option>--%>
-        <%--<option value="11">选项11</option>--%>
-        <%--<option value="12">选项12</option>--%>
-        <%--<option value="13">选项13</option>--%>
-        <%--<option value="14">选项14</option>--%>
     </select>
 
 <div class="centent">
@@ -93,7 +80,7 @@
     <button  class="layui-btn" lay-filter="add" lay-submit="">
         保存
     </button>
-    <button  class="layui-btn" lay-filter="add" lay-submit="">
+    <button  class="layui-btn" href="javascript:history.go(-1)" lay-filter="add" lay-submit="">
         返回
     </button>
 </div>

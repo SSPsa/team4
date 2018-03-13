@@ -192,6 +192,28 @@ public class FlawMissionController {
 
     }
 
+//消缺任务执行与回执的修改页面
+    @RequestMapping("/flawMission/toFlawMissionExecModify")
+    public String toFlawMissionExecModify(Model m,String fwId){
+        FlawMission flawMission1 = flawMissionBiz.queryFlawMissionOne(Integer.parseInt(fwId));
+        if(flawMission1!=null){
+            m.addAttribute("flawMission1",flawMission1);
+            return "solveTask_execute_modify";
+        }else{
+            return null;
+        }
+
+    }
+
+ //消缺任务执行与回执的修改成功
+    @RequestMapping("/flawMission/flawMissionExecModify")
+    public String flawMissionExecModify(Model m,FlawMission flawMission,String fwId){
+        flawMission.setId(Integer.parseInt(fwId));
+        flawMissionBiz.updateFlawMission(flawMission);
+        return flawMissionExcePager(m,null, null,null,null,null,null);
+    }
+
+
 //    增加缺陷
     @RequestMapping("/flawMission/flawMissionAddFlaw")
     public String flawMissionAddFlaw(Model m,String fid){

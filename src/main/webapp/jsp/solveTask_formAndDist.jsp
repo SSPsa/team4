@@ -151,13 +151,13 @@
                         <td class="td-manage">
                                 <%--待分配--%>
                             <c:if test="${flawMissionPager.fmState==1}">
-                                <a class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
+                                <a class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none" title="查看">
                                     <i class="layui-icon">&#xe615;</i>
                                 </a>
                                 <a class="assignFlawMission"  style="text-decoration:none" onclick="member_password('分配任务','/flawMission/flawMissionAssign','10001','600','500')" title="分配任务">
                                     <i class="layui-icon">&#xe631;</i>
                                 </a>
-                                <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;" onclick="member_password('修改','/jsp/solveTask_modify.jsp','10001','700','500')"
+                                <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;"
                                    style="text-decoration:none">
                                     <i class="layui-icon">&#xe642;</i>
                                 </a>
@@ -169,7 +169,7 @@
                             </c:if>
                                 <%--已分配--%>
                             <c:if test="${flawMissionPager.fmState==2}">
-                                <a class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_form_view.jsp','10001','700','500')" title="查看">
+                                <a class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none"  title="查看">
                                     <i class="layui-icon">&#xe615;</i>
                                 </a>
                             </c:if>

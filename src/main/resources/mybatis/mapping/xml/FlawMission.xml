@@ -106,7 +106,10 @@
                 accomplishTime=#{accomplishTime},
             </if>
             <if test="fmState>0">
-                fmState=#{fmState}
+                fmState=#{fmState},
+            </if>
+            <if test="isPass>-1">
+                isPass=#{isPass}
             </if>
         </set>
         WHERE id=#{id}
