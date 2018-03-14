@@ -61,7 +61,7 @@
                     <span class="layui-btn layui-btn-normal layui-btn-mini">启用</span>
                     </c:if>
                 </td>
-                <td class="td-manage">
+                <td class="td-manage" id="id">
                     <c:if test="${towerPager.tState==1}">
                         <a style="text-decoration:none" name="tState" onclick="tower_Start(this,${towerPager.id},${towerPager.tState})" href="javascript:;" title="启用">
                             <i class="layui-icon">&#xe601;</i>
