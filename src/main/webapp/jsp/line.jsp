@@ -87,7 +87,7 @@
                     </c:if>
                         <c:if test="${circuitPager.yState==1}">
                             <%--<span class="layui-btn layui-btn-normal layui-btn-mini">已启动</span>--%>
-                        <input class="layui-btn layui-btn-normal layui-btn-mini" name="Submit" type="button" id="Submit" value="已停用"/>
+                        <input class="layui-btn layui-btn-danger layui-btn-mini" name="Submit" type="button" id="Submit" value="已停用"/>
                         </c:if>
 
                 <td class="td-manage">
