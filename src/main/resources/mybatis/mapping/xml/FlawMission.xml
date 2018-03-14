@@ -115,6 +115,10 @@
         WHERE id=#{id}
     </update>
 
+    <delete id="deleteFlawMission">
+        delete from flawmission where id=#{fwId}
+    </delete>
+
     <!--消缺查询的条件-->
     <sql id="pageWhere2">
         <where>

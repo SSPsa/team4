@@ -37,6 +37,8 @@ public interface FlawMissionDao {
     int addFlawMission(FlawMission flawMission);
     //修改一个
     int updateFlawMission(FlawMission flawMission);
+    //删除一个
+    int deleteFlawMission(@Param("fwId") int fwId);
 
     //消缺分页查询
     List<FlawMission> queryFlawMisPager2(@Param("pageNo") int pageNo,

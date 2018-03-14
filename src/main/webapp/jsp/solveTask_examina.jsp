@@ -77,63 +77,63 @@
         </td>
     </tr>
 </table>
-<fieldset class="layui-elem-field layui-field-title site-title">
-    <legend>缺陷信息列表</legend>
-</fieldset>
-<table class="layui-table">
-    <tr>
-        <td>线路编号</td>
-        <td>杆塔编号</td>
-        <td>缺陷等级</td>
-        <td>缺陷类型</td>
-        <td>缺陷描述</td>
-        <td>发现人</td>
-        <td>发现时间</td>
-    </tr>
-    <tr>
-        <td>XW001</td>
-        <td>XW00002</td>
-        <td>严重</td>
-        <td>拦河线断裂</td>
-        <td>拦截河道7股断2股</td>
-        <td>巡检员测试用户01</td>
-        <td>2013/12/12</td>
-    </tr>
-    <tr>
-        <td>XW001</td>
-        <td>XW00002</td>
-        <td>严重</td>
-        <td>拦河线断裂</td>
-        <td>拦截河道7股断2股</td>
-        <td>巡检员测试用户01</td>
-        <td>2013/12/12</td>
-    </tr>
-    <tr>
-        <td>XW001</td>
-        <td>XW00002</td>
-        <td>严重</td>
-        <td>拦河线断裂</td>
-        <td>拦截河道7股断2股</td>
-        <td>巡检员测试用户01</td>
-        <td>2013/12/12</td>
-    </tr>
-</table>
-<fieldset class="layui-elem-field layui-field-title">
-    <legend>工作间断延期记载</legend>
+<%--<fieldset class="layui-elem-field layui-field-title site-title">--%>
+    <%--<legend>缺陷信息列表</legend>--%>
+<%--</fieldset>--%>
+<%--<table class="layui-table">--%>
+    <%--<tr>--%>
+        <%--<td>线路编号</td>--%>
+        <%--<td>杆塔编号</td>--%>
+        <%--<td>缺陷等级</td>--%>
+        <%--<td>缺陷类型</td>--%>
+        <%--<td>缺陷描述</td>--%>
+        <%--<td>发现人</td>--%>
+        <%--<td>发现时间</td>--%>
+    <%--</tr>--%>
+    <%--<tr>--%>
+        <%--<td>XW001</td>--%>
+        <%--<td>XW00002</td>--%>
+        <%--<td>严重</td>--%>
+        <%--<td>拦河线断裂</td>--%>
+        <%--<td>拦截河道7股断2股</td>--%>
+        <%--<td>巡检员测试用户01</td>--%>
+        <%--<td>2013/12/12</td>--%>
+    <%--</tr>--%>
+    <%--<tr>--%>
+        <%--<td>XW001</td>--%>
+        <%--<td>XW00002</td>--%>
+        <%--<td>严重</td>--%>
+        <%--<td>拦河线断裂</td>--%>
+        <%--<td>拦截河道7股断2股</td>--%>
+        <%--<td>巡检员测试用户01</td>--%>
+        <%--<td>2013/12/12</td>--%>
+    <%--</tr>--%>
+    <%--<tr>--%>
+        <%--<td>XW001</td>--%>
+        <%--<td>XW00002</td>--%>
+        <%--<td>严重</td>--%>
+        <%--<td>拦河线断裂</td>--%>
+        <%--<td>拦截河道7股断2股</td>--%>
+        <%--<td>巡检员测试用户01</td>--%>
+        <%--<td>2013/12/12</td>--%>
+    <%--</tr>--%>
+<%--</table>--%>
+<%--<fieldset class="layui-elem-field layui-field-title">--%>
+    <%--<legend>工作间断延期记载</legend>--%>
 
-</fieldset>
-<legend>报告事项：2013-10-28日灾难性暴雨天气，无法进行，申请延期2天巡检截至日期.</legend>
-    <legend>负责人：线路管理员测试用户01</legend>
-    <legend>延期许可时间：截止日期截止由2013-12-20调至2013-12-22</legend>
-<fieldset class="layui-elem-field layui-field-title">
+<%--</fieldset>--%>
+<%--<legend>报告事项：2013-10-28日灾难性暴雨天气，无法进行，申请延期2天巡检截至日期.</legend>--%>
+    <%--<legend>负责人：线路管理员测试用户01</legend>--%>
+    <%--<legend>延期许可时间：截止日期截止由2013-12-20调至2013-12-22</legend>--%>
+<%--<fieldset class="layui-elem-field layui-field-title">--%>
 
-    <legend>工作终结报告</legend>
+    <%--<legend>工作终结报告</legend>--%>
 
-</fieldset>
-<legend>报告方式：文档报告</legend>
-    <legend>接收人：线路管理员测试用户01</legend>
-<legend>证明人：线路管路员测试用户012</legend>
-    <legend>报告时间：2013-12-14</legend>
+<%--</fieldset>--%>
+<%--<legend>报告方式：文档报告</legend>--%>
+    <%--<legend>接收人：线路管理员测试用户01</legend>--%>
+<%--<legend>证明人：线路管路员测试用户012</legend>--%>
+    <%--<legend>报告时间：2013-12-14</legend>--%>
     <div class="layui-form-item">
         <label id="L_repass" class="layui-form-label">
         </label>

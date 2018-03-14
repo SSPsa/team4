@@ -78,7 +78,7 @@
             </div>
             <xblock>
 
-                <a class="layui-btn" href="">
+                <a class="layui-btn" id="Excel" href="">
                     <i class="layui-icon">&#xe608;</i>导出EXCEL</a>
                 <span class="x-right" style="line-height:40px"></span>
             </xblock>
@@ -196,4 +196,6 @@
 </div>
 <!-- 右侧主体结束 -->
 </div>
+<script type="text/javascript" src="/js/outputExcel.js"/>
+
 <%@include file="/common/footer.jsp"%>

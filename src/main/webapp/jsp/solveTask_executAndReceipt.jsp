@@ -69,9 +69,6 @@
             </div>
 
         </form>
-        <%--<xblock>--%>
-            <%--<a  class="layui-btn"  onclick="member_add('制定消缺任务','/jsp/solveTask_add.jsp','700','500')"><i class="layui-icon">&#xe608;</i>制定消缺任务</a>--%>
-        <%--</xblock>--%>
         <table class="layui-table">
             <thead>
             <tr>
@@ -150,11 +147,11 @@
                     <td class="td-manage">
                             <%--驳回--%>
                         <c:if test="${flawMissionPager.fmState==5}">
-                            <a class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" title="查看">
+                            <a class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none"  title="查看">
                                 <i class="layui-icon">&#xe615;</i>
                             </a>
 
-                            <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;" onclick="member_password('修改','/jsp/solveTask_execute_modify.jsp','10001','700','500')"
+                            <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;"
                                style="text-decoration:none">
                                 <i class="layui-icon">&#x1006;</i>
                             </a>
@@ -164,7 +161,7 @@
                             <a class="viewFlawMission" fwId="${flawMissionPager.id}" title="查看" style="text-decoration:none">
                                 <i class="layui-icon">&#xe615;</i>
                             </a>
-                            <a title="执行录入" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('执行录入','','10001','700','500')">
+                            <a class="" title="执行录入"  fwId="${flawMissionPager.id}" style="text-decoration:none">
                                 <i class="layui-icon">&#xe631;</i>
                             </a>
                             <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;" style="text-decoration:none">

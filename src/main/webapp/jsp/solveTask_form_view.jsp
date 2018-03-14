@@ -66,63 +66,63 @@
         <td>${flawMission.describe}</td>
     </tr>
 </table>
-<fieldset class="layui-elem-field layui-field-title site-title">
-    <legend>缺陷信息列表</legend>
-</fieldset>
-<table class="layui-table">
-    <tr>
-        <td>线路编号</td>
-        <td>杆塔编号</td>
-        <td>缺陷等级</td>
-        <td>缺陷类型</td>
-        <td>缺陷描述</td>
-        <td>发现人</td>
-        <td>发现时间</td>
-    </tr>
-    <c:forEach items="${flaws}" var="flaws">
-        <tr>
-            <td>${flaws.circuit.cNumber}</td>
-            <td>${flaws.tower.tNumber}</td>
-            <td><c:if test="${flaws.grade==1}">一般</c:if>
-                <c:if test="${flaws.grade==2}">严重</c:if>
-                <c:if test="${flaws.grade==3}">紧急</c:if>
-            </td>
-            <td>${flaws.flawType.ftName}</td>
-            <td>${flaws.describe}</td>
-            <td>${flaws.user.uName}</td>
-            <td><fmt:formatDate value="${flaws.discoverTime}" pattern="yyyy-MM-dd"/></td>
-        </tr>
-    </c:forEach>
-
+<%--<fieldset class="layui-elem-field layui-field-title site-title">--%>
+    <%--<legend>缺陷信息列表</legend>--%>
+<%--</fieldset>--%>
+<%--<table class="layui-table">--%>
     <%--<tr>--%>
-    <%--<td>XW001</td>--%>
-    <%--<td>XW00002</td>--%>
-    <%--<td>严重</td>--%>
-    <%--<td>拦河线断裂</td>--%>
-    <%--<td>拦截河道7股断2股</td>--%>
-    <%--<td>巡检员测试用户01</td>--%>
-    <%--<td>2013/12/12</td>--%>
+        <%--<td>线路编号</td>--%>
+        <%--<td>杆塔编号</td>--%>
+        <%--<td>缺陷等级</td>--%>
+        <%--<td>缺陷类型</td>--%>
+        <%--<td>缺陷描述</td>--%>
+        <%--<td>发现人</td>--%>
+        <%--<td>发现时间</td>--%>
     <%--</tr>--%>
-    <%--<tr>--%>
-    <%--<td>XW001</td>--%>
-    <%--<td>XW00002</td>--%>
-    <%--<td>严重</td>--%>
-    <%--<td>拦河线断裂</td>--%>
-    <%--<td>拦截河道7股断2股</td>--%>
-    <%--<td>巡检员测试用户01</td>--%>
-    <%--<td>2013/12/12</td>--%>
-    <%--</tr>--%>
-</table>
-<fieldset class="layui-elem-field layui-field-title">
-    <legend>工作间断延期记载</legend>
+    <%--<c:forEach items="${flaws}" var="flaws">--%>
+        <%--<tr>--%>
+            <%--<td>${flaws.circuit.cNumber}</td>--%>
+            <%--<td>${flaws.tower.tNumber}</td>--%>
+            <%--<td><c:if test="${flaws.grade==1}">一般</c:if>--%>
+                <%--<c:if test="${flaws.grade==2}">严重</c:if>--%>
+                <%--<c:if test="${flaws.grade==3}">紧急</c:if>--%>
+            <%--</td>--%>
+            <%--<td>${flaws.flawType.ftName}</td>--%>
+            <%--<td>${flaws.describe}</td>--%>
+            <%--<td>${flaws.user.uName}</td>--%>
+            <%--<td><fmt:formatDate value="${flaws.discoverTime}" pattern="yyyy-MM-dd"/></td>--%>
+        <%--</tr>--%>
+    <%--</c:forEach>--%>
 
-</fieldset>
-<legend>无</legend>
-<fieldset class="layui-elem-field layui-field-title">
+    <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<td>XW001</td>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<td>XW00002</td>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<td>严重</td>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<td>拦河线断裂</td>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<td>拦截河道7股断2股</td>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<td>巡检员测试用户01</td>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<td>2013/12/12</td>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<td>XW001</td>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<td>XW00002</td>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<td>严重</td>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<td>拦河线断裂</td>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<td>拦截河道7股断2股</td>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<td>巡检员测试用户01</td>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<td>2013/12/12</td>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+<%--</table>--%>
+<%--<fieldset class="layui-elem-field layui-field-title">--%>
+    <%--<legend>工作间断延期记载</legend>--%>
 
-    <legend>工作终结报告</legend>
-</fieldset>
-<legend>无</legend>
+<%--</fieldset>--%>
+<%--<legend>无</legend>--%>
+<%--<fieldset class="layui-elem-field layui-field-title">--%>
+
+    <%--<legend>工作终结报告</legend>--%>
+<%--</fieldset>--%>
+<%--<legend>无</legend>--%>
         <div class="layui-form-item">
             <a href="javascript:history.go(-1)" class="layui-btn">返回</a>
         </div>
