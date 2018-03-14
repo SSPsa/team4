@@ -161,7 +161,7 @@
                             <a class="viewFlawMission" fwId="${flawMissionPager.id}" title="查看" style="text-decoration:none">
                                 <i class="layui-icon">&#xe615;</i>
                             </a>
-                            <a class="" title="执行录入"  fwId="${flawMissionPager.id}" style="text-decoration:none">
+                            <a class="entryFlawMission" title="执行录入"  fwId="${flawMissionPager.id}" style="text-decoration:none">
                                 <i class="layui-icon">&#xe631;</i>
                             </a>
                             <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;" style="text-decoration:none">
@@ -230,14 +230,6 @@
 
     });
 
-    //百度统计可去掉
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
 </script>
 <%@include file="/common/footer.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/solveTask_executAndReceipt.js"></script>
