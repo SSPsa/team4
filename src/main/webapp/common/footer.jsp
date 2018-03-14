@@ -287,6 +287,18 @@
             });
         });
     }
+    function member_delType(obj,id){
+        $.ajax({
+            type:"get",
+            url:"/flawtype/Del?id="+id,
+            success:function(data){
+                if(data != null){
+                    $(obj).parents("tr").remove();
+                    layer.msg('已删除!',{icon:1,time:1000});
+                }
+            }
+        });
+    }
     /*线路管理-启用*/
     function line_Start(obj,id,yState){
         layer.confirm('确认要启用吗？',function(index){

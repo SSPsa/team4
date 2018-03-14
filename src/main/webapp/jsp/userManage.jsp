@@ -110,7 +110,7 @@
                            href="/user/updateId?id=${use.id}" title="修改用户">
                             <i class="layui-icon">&#xe631;</i>
                         </a>
-                        <a  class="Del" title="删除" href="#"  onclick="member_dea(this,${use.id})"
+                        <a  class="Del" title="删除" href="#"  onclick="member_dea2(this,${use.id})"
                             style="text-decoration:none">
                             <i class="layui-icon">&#xe640;</i>
                         </a>
@@ -140,6 +140,18 @@
 <!-- 右侧主体结束 -->
 </div>
 <script>
+    function member_dea2(obj,id){
+        $.ajax({
+            type:"get",
+            url:"/user/Del?id="+id,
+            success:function(data){
+                if(data != null){
+                    $(obj).parents("tr").remove();
+                    layer.msg('已删除!',{icon:1,time:1000});
+                }
+            }
+        });
+    }
     function batchUser() {
         var val = "";
         var groupCheckbox = $(".toDelUser");

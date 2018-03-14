@@ -84,7 +84,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="current">
-                            <a href="/jsp/defects_type.jsp">
+                            <a href="/flawtype/queryFlaw">
                                 <i class="iconfont">&#xe6a7;</i>
                                 缺陷类型设置
                             </a>
