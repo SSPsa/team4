@@ -62,7 +62,8 @@
 
         </form>
         <xblock>
-            <a  class="layui-btn"  onclick="member_add('制定消缺任务','/jsp/solveTask_add.jsp','700','500')"><i class="layui-icon">&#xe608;</i>制定消缺任务</a></xblock>
+            <%--onclick="member_add('制定消缺任务','/jsp/solveTask_add.jsp','700','500')">--%>
+            <a  class="layui-btn"  href="/jsp/solveTask_add.jsp" ><i class="layui-icon">&#xe608;</i>制定消缺任务</a></xblock>
         <table class="layui-table">
             <thead>
             <tr>
@@ -127,16 +128,6 @@
                              已分配
                             </span>
                             </c:if>
-                            <%--<c:if test="${flawMissionPager.fmState==3}">--%>
-                           <%--<span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #ece40f">--%>
-                              <%--执行中--%>
-                            <%--</span>--%>
-                            <%--</c:if>--%>
-                            <%--<c:if test="${flawMissionPager.fmState==4}">--%>
-                             <%--<span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #1bec5e">--%>
-                              <%--已完成--%>
-                            <%--</span>--%>
-                            <%--</c:if>--%>
 
                         </td>
                         <td>
@@ -161,7 +152,7 @@
                                    style="text-decoration:none">
                                     <i class="layui-icon">&#xe642;</i>
                                 </a>
-                                <a title="取消" href="javascript:;" onclick=""
+                                <a title="取消" href="javascript:;" onclick="flawMission_Del(this,${flawMissionPager.id})"
                                    style="text-decoration:none">
                                     <i class="layui-icon">&#x1006;</i>
                                 </a>
@@ -226,6 +217,30 @@
             laydate(end);
         }
     });
+
+    function flawMission_Del(obj,id){
+        layer.confirm('确认要删除吗？',function(index){
+            $.ajax({
+                type:"GET",
+                url:"/flawMission/flawMissionDelete?fwId="+id,
+                dataType:"json",
+                success:function(data){
+                    if(data.delResult == "true"){//删除成功：移除删除行
+                        //发异步删除数据
+                        $(obj).parents("tr").remove();
+                        layer.msg('已删除!',{icon:1,time:1000});
+                    }else if(data.delResult == "false"){//删除失败
+                        //alert("对不起，删除用户【"+obj.attr("username")+"】失败");
+                        changeDLGContent("对不起，删除失败");
+                    }
+                },
+                error:function(data){
+                    //alert("对不起，删除失败");
+                    changeDLGContent("对不起，删除失败");
+                }
+            });
+        });
+    }
 </script>
 <%@include file="/common/footer.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/solveTask_formAndDis.js"></script>

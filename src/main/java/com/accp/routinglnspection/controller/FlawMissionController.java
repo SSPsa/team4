@@ -12,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -127,6 +130,22 @@ public class FlawMissionController {
         flawMission.setId(Integer.parseInt(id));
         flawMissionBiz.updateFlawMission(flawMission);
         return flawMissionForPager(m,null,null,null,null,null,null,null);
+    }
+
+//    缺陷任务制定与分配的取消任务
+    @RequestMapping("/flawMission/flawMissionDelete")
+    public String flawMissionDelete(int fwId, HttpServletResponse resp) throws IOException {
+        PrintWriter out = resp.getWriter();
+        int result = flawMissionBiz.deleteFlawMission(fwId);
+        if (result>0){
+            out.print("{\"delResult\":\"true\"}");
+        }
+        else {
+            out.print("{\"delResult\":\"false\"}");
+        }
+        out.flush();
+        out.close();
+        return null;
     }
 
 //    消缺查询的分页

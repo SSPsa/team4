@@ -27,6 +27,7 @@ public interface FlawMissionBiz {
     int addFlawMission(FlawMission flawMission);
     //修改一个
     int updateFlawMission(FlawMission flawMission);
+    int deleteFlawMission(int fwId);
 
 //缺陷查询
     Pager<FlawMission> queryFlawMisPager2(int pageNo,

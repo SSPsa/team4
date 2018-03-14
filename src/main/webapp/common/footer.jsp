@@ -247,6 +247,14 @@
                                        window.location.href = "/tower/selTower";
                                        }else if(data.delResult == "false"){
                                                changeDLGContent("对不起，删除失败");
+                                   if(data.delResult == "true"){//删除成功：移除删除行
+                                           $(obj).parents("tr").find(".td-status").html('<span class="layui-btn layui-btn-normal layui-btn-mini" >停用</span>');
+                                           $(obj).remove();
+                                           layer.msg('已停用!',{icon: 6,time:1000});
+                                           window.history.go(0);
+                                       }else if(data.delResult == "false"){//删除失败
+                                          //alert("对不起，删除用户【"+obj.attr("username")+"】失败");
+                                               changeDLGContent("对不起，删除失败..");
                                    }
                                },
                         error:function(data){
@@ -325,6 +333,9 @@
             });
         });
     }
+
+
+
 
 
 </script>
