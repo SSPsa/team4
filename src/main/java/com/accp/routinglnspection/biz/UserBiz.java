@@ -4,6 +4,7 @@ import com.accp.routinglnspection.entity.Pager;
 import com.accp.routinglnspection.entity.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserBiz {
@@ -23,4 +24,6 @@ public interface UserBiz {
     List<User> queryToBeSelectedDefect();
     //    查询已选消缺员
     List<User> querySelectedDefect();
+    //批量删除用的查询
+    List<User> selectChildNum(Integer id) throws SQLException;  //查询子分
 }

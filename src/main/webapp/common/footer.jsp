@@ -185,7 +185,6 @@
             });
         });
     }
-
     /*杆塔管理-修改*/
     function member_towerUpdate(obj,id){
         layer.confirm('确认要修改吗？',function(index){
@@ -211,7 +210,6 @@
 
         });
     }
-
     function member_del(obj,id){
         $.ajax({
             type:"get",
@@ -327,6 +325,7 @@
                         $(obj).remove();
                         layer.msg('已停用!',{icon: 6,time:1000});
                         window.history.go(0);
+
                     }else if(data.delResult == "false"){//删除失败
                         //alert("对不起，删除用户【"+obj.attr("username")+"】失败");
                         changeDLGContent("对不起，修改失败");
