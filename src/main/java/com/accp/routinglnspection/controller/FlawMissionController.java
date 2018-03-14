@@ -232,7 +232,17 @@ public class FlawMissionController {
         return flawMissionExcePager(m,null, null,null,null,null,null);
     }
 
-
+//消缺任务执行与回执的回执录入
+    @RequestMapping()
+    public String flawMissionExecEntry(Model m,String fwId){
+        FlawMission flawMission = flawMissionBiz.queryFlawMissionOne(Integer.parseInt(fwId));
+        if(flawMission!=null){
+            m.addAttribute("flawMission",flawMission);
+            return "solveTask_examina";
+        }else{
+            return null;
+        }
+    }
 //    增加缺陷
     @RequestMapping("/flawMission/flawMissionAddFlaw")
     public String flawMissionAddFlaw(Model m,String fid){
