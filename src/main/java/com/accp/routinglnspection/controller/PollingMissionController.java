@@ -56,6 +56,15 @@ public class PollingMissionController {
         model.addAttribute("addlistUser",listUser);
         return "inspectionTask_add";
     }
+
+    @RequestMapping("/assignShowpollingMission")
+    public String assignShowpollingMission(Model model){
+        List<User> listUser=pollingMissionBiz.queryUser();
+        model.addAttribute("assignlistUser",listUser);
+        return "inspectionTask_assign";
+    }
+
+
     @RequestMapping("/addpollingMission")
     public String addpollingMission(Model model, PollingMission pollingMission, HttpSession session){
         User login =(User)session.getAttribute("Login");
