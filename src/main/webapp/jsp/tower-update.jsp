@@ -25,7 +25,7 @@
                             <input type="radio" name="tState"  value="2" title="启用"
                             <c:if test="${towerSelId.tState==2}"> checked="checked"</c:if>>
                             <span style="white-space:pre"></span>
-                            <input type="radio" name="tState"  value="1" title="静用"
+                            <input type="radio" name="tState"  value="1" title="停用"
                             <c:if test="${towerSelId.tState==1}"> checked="checked"</c:if>>
                         </div>
                     </div>

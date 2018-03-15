@@ -30,11 +30,11 @@ public class FlawMissionController {
     //缺陷任务制定与分配的分页包括按条件筛选
     @RequestMapping("/flawMission/flawMissionForPager")
     public String flawMissionForPager(Model m,String pageIndex, String fmNumber, String fmName, String fmState, String principalUid, Date startTime, Date endTime) {
-//初始化首页
+    //初始化首页
         if (pageIndex == null || pageIndex.equals("")) {
             pageIndex = "1";
         }
-//    初始化任务状态
+    //初始化任务状态
         if (fmState == null || fmState.equals("")) {
             fmState = "0";
         }

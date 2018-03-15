@@ -2,21 +2,10 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>后台登录-X-admin1.1</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/css/font.css">
-    <link rel="stylesheet" href="/css/xadmin.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
-    <script src="/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/js/xadmin.js"></script>
-</head>
-<body>
+<%@include file="/common/top.jsp"%>  <%--头部--%>
+<%@include file="/common/left.jsp"%>  <%--中间-左--%>
+
+
 <!-- 中部开始 -->
 <div class="wrapper">
     <!-- 右侧主体开始 -->
@@ -177,5 +166,4 @@
         s.parentNode.insertBefore(hm, s);
     })();
 </script>
-</body>
-</html>
+<%@include file="/common/footer.jsp"%>
