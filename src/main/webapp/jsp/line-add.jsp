@@ -97,9 +97,10 @@
                     <div class="layui-input-block" style="margin-left: 130px;width: 510px">
                         <textarea name="cRemark" placeholder="请输入内容" class="layui-textarea"></textarea>
                     </div>
-                <div class="layui-form-item">
+                <div class="layui-form-item" style="margin-left: 9em">
                     <input type="submit" class="layui-btn" value="添加">
-                    <a href="" class="layui-btn">返回</a>
+                    <a href="javascript:history.go(-1)" class="layui-btn">返回</a>
+                </div>
                 </div>
             </form>
             <!-- 右侧内容框架，更改从这里结束 -->

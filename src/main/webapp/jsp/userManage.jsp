@@ -179,6 +179,7 @@
             }
         });
     };
+
     $("input[name='all']").click(function(){
         //判断当前点击的复选框处于什么状态$(this).is(":checked") 返回的是布尔类型
         if($(this).is(":checked")){
