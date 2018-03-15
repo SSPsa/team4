@@ -40,11 +40,20 @@
 
     <select id="queryCircuit" resultType="Circuit">
         SELECT * FROM `circuit`
-    </select>
-    <sql id="sql">
-        FROM `circuit` c,`pollingmission` p,`user` u,`user` u1
         <where>
-            c.`id`=p.`cId` AND p.`releaseUid`=u.`id` AND p.`pollingUid`=u1.`id`
+    <if test="id>0">and id=${id}</if>
+</where>
+</select>
+
+
+    <select id="queryUser" resultType="User">
+        SELECT * FROM USER WHERE rid=3 AND ustate=1
+    </select>
+
+
+    <sql id="sql">
+        FROM `pollingmission` p LEFT  JOIN  `circuit` c ON c.`id`=p.`cId` LEFT  JOIN  `user` u ON p.`releaseUid`=u.`id` LEFT  JOIN  `user` u1 ON p.`pollingUid`=u1.`id`
+        <where>
             <if test="pmName !=null and pmName!=''"> and p.pmName like concat('%',#{pmName},'%')</if>
             <if test="id >0"> and p.id=#{id}</if>
             <if test="pmNumber !=null and pmNumber!=''"> and p.pmNumber like concat('%',#{pmNumber},'%')</if>
@@ -59,4 +68,32 @@
             <if test="circuit !=null"> and c.cNumber=#{circuit.cNumber}</if>
         </where>
     </sql>
+
+
+    <insert id="addPollingMission">
+       insert  into `pollingmission`(`pmName`,`pmNumber`,`cId`,`releaseUid`,`pollingUid`,`pmRemark`,`releaseTime`,`accomplishTime`,`pmState`,`state`)
+       values (#{pmName},#{pmNumber},#{cId},#{releaseUid},#{pollingUid},#{pmRemark},#{releaseTime},#{accomplishTime},#{pmState},#{state})
+    </insert>
+
+    <update id="updatePollingMission">
+      UPDATE pollingmission
+      <set>
+          <if test="pmName !=null and pmName!=''">pmName=#{pmName},</if>
+          <if test="pmNumber !=null and pmNumber!=''"> pmNumber=#{pmNumber},</if>
+          <if test="cId>0">cId=#{cId},</if>
+          <if test="releaseUid>0">releaseUid=#{releaseUid},</if>
+          <if test="pollingUid>0">pollingUid=#{pollingUid},</if>
+          <if test="pmState>0">pmState=#{pmState},</if>
+          <if test="pmRemark !=null and pmRemark!=''">pmRemark=#{pmRemark},</if>
+          <if test="releaseTime !=null">releaseTime=#{releaseTime},</if>
+          <if test="accomplishTime !=null">accomplishTime=#{accomplishTime},</if>
+          <if test="state>-1"> state=#{state},</if>
+      </set>
+        where id={id}
+    </update>
+
+
+    <delete id="deletePollingMission">
+      DELETE FROM `pollingmission` WHERE id=#{id}
+    </delete>
 </mapper>

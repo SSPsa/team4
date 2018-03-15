@@ -5,6 +5,7 @@ import com.accp.routinglnspection.dao.PollingMissionDao;
 import com.accp.routinglnspection.entity.Circuit;
 import com.accp.routinglnspection.entity.Pager;
 import com.accp.routinglnspection.entity.PollingMission;
+import com.accp.routinglnspection.entity.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -24,24 +25,23 @@ public class PollingMissionBizimpl implements PollingMissionBiz {
         pager.setDatas(pollingMissionDao.queryPollingMission(pollingMission));
         return pager;
     }
-
-    public int queryPollingMissionInt(PollingMission pollingMission) {
-        return 0;
-    }
-
     public int addPollingMission(PollingMission pollingMission) {
-        return 0;
+        return pollingMissionDao.addPollingMission(pollingMission);
     }
 
     public int updatePollingMission(PollingMission pollingMission) {
-        return 0;
+        return pollingMissionDao.updatePollingMission(pollingMission);
     }
 
     public int deletePollingMission(int id) {
-        return 0;
+        return pollingMissionDao.deletePollingMission(id);
     }
 
-    public List<Circuit> queryCircuit() {
-        return pollingMissionDao.queryCircuit();
+    public List<Circuit> queryCircuit(int id) {
+        return pollingMissionDao.queryCircuit(id);
+    }
+
+    public List<User> queryUser() {
+        return pollingMissionDao.queryUser();
     }
 }

@@ -5,12 +5,15 @@ import com.accp.routinglnspection.biz.PollingMissionBiz;
 import com.accp.routinglnspection.entity.Circuit;
 import com.accp.routinglnspection.entity.Pager;
 import com.accp.routinglnspection.entity.PollingMission;
+import com.accp.routinglnspection.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -47,17 +50,36 @@ public class PollingMissionController {
 
     @RequestMapping("/addShowpollingMission")
     public String addShowpollingMission(Model model){
-        List<Circuit> listCircuit=pollingMissionBiz.queryCircuit();
+        List<Circuit> listCircuit=pollingMissionBiz.queryCircuit(0);
+        List<User> listUser=pollingMissionBiz.queryUser();
         model.addAttribute("addlistCircuit",listCircuit);
+        model.addAttribute("addlistUser",listUser);
         return "inspectionTask_add";
     }
-
+    @RequestMapping("/addpollingMission")
+    public String addpollingMission(Model model, PollingMission pollingMission, HttpSession session){
+        User login =(User)session.getAttribute("Login");
+        pollingMission.setReleaseUid(login.getId());
+        pollingMission.setReleaseTime(new Date());
+        if(pollingMission.getPollingUid()==0){
+            pollingMission.setPmState(1);
+        }else{
+            pollingMission.setPmState(2);
+        }
+        pollingMission.setState(1);
+        int num=pollingMissionBiz.addPollingMission(pollingMission);
+        if(num>0){
+           return showpollingMission(model,new PollingMission(),null);
+        }else{
+           return addShowpollingMission(model);
+        }
+    }
     @RequestMapping("/addShowpollingMissionid")
     @ResponseBody
-    public Circuit addShowpollingMissionid(Model model){
+    public Circuit addShowpollingMissionid(Model model,Integer id){
         Circuit circuit=null;
-        if(pollingMissionBiz.queryCircuit().size()>0){
-             circuit=pollingMissionBiz.queryCircuit().get(0);
+        if(pollingMissionBiz.queryCircuit(id).size()>0){
+             circuit=pollingMissionBiz.queryCircuit(id).get(0);
         }
         return circuit;
     }
