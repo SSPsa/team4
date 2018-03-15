@@ -163,7 +163,6 @@
             }
         });
     }
-
     function member_delType(obj,id){
         $.ajax({
             type:"get",
