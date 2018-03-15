@@ -4,8 +4,6 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="/common/top.jsp"%>  <%--头部--%>
 <%@include file="/common/left.jsp"%>  <%--中间-左--%>
-
-
 <!-- 中部开始 -->
 <div class="wrapper">
     <!-- 右侧主体开始 -->
@@ -81,7 +79,6 @@
                         <input class="layui-input"  value="<fmt:formatDate value="${Userid.entryTime}" pattern="yyyy-MM-dd"  />" name="entryTime" id="LAY_demorange_s">
                     </div>
                 </div>
-
                 <div class="layui-form-item">
                     <label for="L_username" class="layui-form-label">
                         <span class="x-red">*</span>离职日期：
@@ -101,8 +98,6 @@
                                <c:if test="${Userid.ustate==0}">checked="checked"</c:if>  autocomplete="off" class="layui-input" title="冻结">
                     </div>
                 </div>
-
-
                 <div class="layui-form-item">
                     <label  class="layui-form-label">
                     </label>
