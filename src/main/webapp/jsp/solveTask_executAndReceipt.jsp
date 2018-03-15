@@ -69,9 +69,6 @@
             </div>
 
         </form>
-        <%--<xblock>--%>
-            <%--<a  class="layui-btn"  onclick="member_add('制定消缺任务','/jsp/solveTask_add.jsp','700','500')"><i class="layui-icon">&#xe608;</i>制定消缺任务</a>--%>
-        <%--</xblock>--%>
         <table class="layui-table">
             <thead>
             <tr>
@@ -150,25 +147,24 @@
                     <td class="td-manage">
                             <%--驳回--%>
                         <c:if test="${flawMissionPager.fmState==5}">
-                            <a class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" title="查看">
+                            <a class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none"  title="查看">
                                 <i class="layui-icon">&#xe615;</i>
                             </a>
 
-                            <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;" onclick="member_password('修改','/jsp/solveTask_execute_modify.jsp','10001','700','500')"
+                            <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;"
                                style="text-decoration:none">
                                 <i class="layui-icon">&#x1006;</i>
                             </a>
                         </c:if>
                             <%--执行中--%>
                         <c:if test="${flawMissionPager.fmState==3}">
-                            <a class="viewFlawMission" fwId="${flawMissionPager.id}" title="查看" style="text-decoration:none" onclick="member_password('查看','/jsp/solveTask_execute_view.jsp','10001','700','500')" >
+                            <a class="viewFlawMission" fwId="${flawMissionPager.id}" title="查看" style="text-decoration:none">
                                 <i class="layui-icon">&#xe615;</i>
                             </a>
-                            <a title="执行录入" fwId="${flawMissionPager.id}" style="text-decoration:none" onclick="member_password('执行录入','','10001','700','500')">
+                            <a class="entryFlawMission" title="执行录入"  fwId="${flawMissionPager.id}" style="text-decoration:none">
                                 <i class="layui-icon">&#xe631;</i>
                             </a>
-                            <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;" onclick="member_password('修改','/jsp/solveTask_execute_modify.jsp','10001','700','500')"
-                               style="text-decoration:none">
+                            <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;" style="text-decoration:none">
                                 <i class="layui-icon">&#x1006;</i>
                             </a>
 
@@ -234,13 +230,6 @@
 
     });
 
-    //百度统计可去掉
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
 </script>
 <%@include file="/common/footer.jsp"%>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/solveTask_executAndReceipt.js"></script>

@@ -3,6 +3,7 @@ package com.accp.routinglnspection.dao;
 import com.accp.routinglnspection.entity.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDao {
@@ -24,5 +25,9 @@ public interface UserDao {
     List<User> queryToBeSelectedDefect();
 //    查询已选消缺员
     List<User> querySelectedDefect();
+
+  //批量删除用的查询
+    List<User> selectChildNum(@Param("id") Integer id) throws SQLException;  //查询子分类
+
 
 }

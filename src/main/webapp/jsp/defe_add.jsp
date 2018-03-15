@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -37,7 +38,7 @@
     </tr>
     </thead>
     <tbody>
-
+<%--两重循环才可以显示flawlist--%>
     <c:forEach items="${FlawMission_flaw}" var="FlawMission_flaws">
         <c:forEach items="${FlawMission_flaws.flawList}" var="FlawMission_flaw">
         <tr>
@@ -50,8 +51,11 @@
                 <c:if test="${FlawMission_flaw.grade==3}">紧急</c:if>
             </td>
             <td>${FlawMission_flaw.describe}</td>
-            <td>${FlawMission_flaw.completeness}</td>
-            <td>${FlawMission_flaw.discoverTime}</td>
+            <td>${FlawMission_flaw.completeness}%</td>
+            <td>
+                <fmt:formatDate value="${FlawMission_flaw.discoverTime}" pattern="yyyy-MM-dd"/>
+
+            </td>
         </tr>
         </c:forEach>
     </c:forEach>

@@ -7,6 +7,7 @@ import com.accp.routinglnspection.entity.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.sql.SQLException;
 import java.util.List;
 
 @Service("userBiz")
@@ -55,6 +56,10 @@ public class UserBizImpl implements UserBiz {
 //已选消缺员
     public List<User> querySelectedDefect() {
         return userDao.querySelectedDefect();
+    }
+ //批量删除用的查询
+    public List<User> selectChildNum(Integer id) throws SQLException {
+        return userDao.selectChildNum(id);
     }
 
 

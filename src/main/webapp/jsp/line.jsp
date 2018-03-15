@@ -84,8 +84,11 @@
                     <c:if test="${circuitPager.yState==0}">
                     <%--<span class="layui-btn layui-btn-normal layui-btn-mini">已启动</span>--%>
                         <input class="layui-btn layui-btn-normal layui-btn-mini" name="Submit" type="button" id="Submit" value="已启动"/>
-
                     </c:if>
+                        <c:if test="${circuitPager.yState==1}">
+                            <%--<span class="layui-btn layui-btn-normal layui-btn-mini">已启动</span>--%>
+                        <input class="layui-btn layui-btn-danger layui-btn-mini" name="Submit" type="button" id="Submit" value="已停用"/>
+                        </c:if>
 
                 <td class="td-manage">
                     <c:if test="${circuitPager.yState==1}">
@@ -123,5 +126,77 @@
 </div>
 <!-- 右侧主体结束 -->
 </div>
+<script>
+    /*线路管理-删除*/
+    function member_cirCuitDel(obj,id){
+        layer.confirm('确认要删除吗？',function(index){
+            $.ajax({
+                type:"GET",
+                url:"/circuit/del?id="+id,
+                dataType:"json",
+                success:function(data){
+                    if(data.delResult == "true"){//删除成功：移除删除行
+                        //发异步删除数据
+                        $(obj).parents("tr").remove();
+                        layer.msg('已删除!',{icon:1,time:1000});
+                    }else if(data.delResult == "false"){//删除失败
+                        //alert("对不起，删除用户【"+obj.attr("username")+"】失败");
+                        changeDLGContent("对不起，删除失败");
+                    }
+                },
+                error:function(data){
+                    //alert("对不起，删除失败");
+                    changeDLGContent("对不起，删除失败");
+                }
+            });
+        });
+    }
+    /*线路管理-启用*/
+    function line_Start(obj,id,yState){
+        layer.confirm('确认要启用吗？',function(index){
+            $.ajax({
+                type:"GET",
+                url:"/circuit/updateYState?id="+id+"&yState="+yState,
+                dataType:"json",
+                success:function(data){
+                    if(data.delResult == "true"){//删除成功：移除删除行
+                        layer.msg('已启用!',{icon: 6,time:1000});
+                        window.location.href = "/circuit/selCircuit";
+                    }else if(data.delResult == "false"){//删除失败
+                        //alert("对不起，删除用户【"+obj.attr("username")+"】失败");
+                        changeDLGContent("对不起，删除失败");
+                    }
+                },
+                error:function(data){
+                    //alert("对不起，删除失败");
+                    changeDLGContent("对不起，删除失败");
+                }
+            });
+        });
+    }
+    /*线路管理-停用*/
+    function line_Stop(obj,id,yState){
+        layer.confirm('确认要停用吗？',function(index){
+            $.ajax({
+                type:"GET",
+                url:"/circuit/updateYState?id="+id+"&yState="+yState,
+                dataType:"json",
+                success:function(data){
+                    if(data.delResult == "true"){//删除成功：移除删除行
+                        layer.msg('已停用!',{icon: 6,time:1000});
+                        window.location.href = "/circuit/selCircuit";
+                    }else if(data.delResult == "false"){//删除失败
+                        //alert("对不起，删除用户【"+obj.attr("username")+"】失败");
+                        changeDLGContent("对不起，修改失败");
+                    }
+                },
+                error:function(data){
+                    //alert("对不起，删除失败");
+                    changeDLGContent("对不起，修改失败");
+                }
+            });
+        });
+    }
+</script>
 
 <%@include file="/common/footer.jsp"%>

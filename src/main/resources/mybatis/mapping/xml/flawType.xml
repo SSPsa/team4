@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD MapperryFla 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accp.routinglnspection.dao.FlawTypeDao">
+
+    <select id="queryPager" resultType="FlawType">
+         SELECT * from flawtype
+
+        limit #{pageNo}, #{pageSize}
+    </select>
+
+    <select id="queryFlawTypeRows" resultType="_int">
+  SELECT count(*) FROM flawtype
+    </select>
+
+    <insert id="addflaw">
+        INSERT into flawtype(ftName,ftState) VALUES(#{ftName},#{ftState})
+    </insert>
+    <select id="cha" resultType="FlawType">
+        SELECT * FROM flawtype
+    </select>
+
+    <delete id="DelType">
+        DELETE FROM flawtype WHERE id=#{id}
+    </delete>
+
+    <select id="QueryId" resultType="FlawType">
+        SELECT * FROM flawtype WHERE id=#{id}
+    </select>
+
+    <update id="updateFlaw">
+        UPDATE flawtype
+        <set>
+            <if test="ftName !=null and ftName !=''">
+                ftName = #{ftName},
+            </if>
+            <if test="ftState >0">
+                ftState = #{ftState},
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+</mapper>

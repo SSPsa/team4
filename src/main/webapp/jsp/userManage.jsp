@@ -40,13 +40,14 @@
             </div>
 
         </form>
-        <xblock><button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>
+        <xblock>
+            <a class="layui-btn layui-btn-danger" href="javascript:void(0);" onclick="batchUser()"><i class="layui-icon">&#xe640;</i>批量删除</a>
             <a href="/user/add"  class="layui-btn"  onclick="member_add('添加用户','/jsp/user_add.jsp','600','500')"><i class="layui-icon">&#xe608;</i>添加用户</a><span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
         <table class="layui-table">
             <thead>
             <tr>
                 <th>
-                    <input type="checkbox" name="" value="">
+                    <input type="checkbox" name="all" id="all" onclick="checkAll()">
                 </th>
                 <th>
                     用户账号
@@ -73,54 +74,9 @@
             </thead>
             <tbody>
             <c:forEach items="${pag.datas}" var="use" >
-                <%--<tr>--%>
-                <%--<td>--%>
-                <%--<input type="checkbox" value="1" name="">--%>
-                <%--</td>--%>
-                <%--<td>--%>
-                <%--<u style="cursor:pointer" onclick="member_show('张三','member-show.html','10001','360','400')">--%>
-
-                <%--</u>--%>
-                <%--</td>--%>
-                <%--<td >--%>
-                <%--系统管理员--%>
-                <%--</td>--%>
-                <%--<td >--%>
-                <%--系统管理员--%>
-                <%--</td>--%>
-                <%--<td >--%>
-                <%--admin@mail.com--%>
-                <%--</td>--%>
-                <%--<td>--%>
-                <%--2017-01-01 11:11:42--%>
-                <%--</td>--%>
-                <%--<td class="td-status">--%>
-                <%--<span class="layui-btn layui-btn-normal layui-btn-mini">--%>
-                <%--正常--%>
-                <%--</span>--%>
-                <%--</td>--%>
-                <%--<td class="td-manage">--%>
-                <%--<a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="正常">--%>
-                <%--<i class="layui-icon">&#xe601;</i>--%>
-                <%--</a>--%>
-                <%--<a style="text-decoration:none" onclick="member_password('修改用户','/jsp/user_modify.jsp','10001','600','500')" title="修改">--%>
-                <%--<i class="layui-icon">&#xe631;</i>--%>
-                <%--</a>--%>
-                <%--<a title="删除" href="javascript:;" onclick="member_del(this,'1')"--%>
-                <%--style="text-decoration:none">--%>
-                <%--<i class="layui-icon">&#xe640;</i>--%>
-                <%--</a>--%>
-                <%--<a title="log日志" href="javascript:;" onclick="member_del(this,'1')"--%>
-                <%--style="text-decoration:none">--%>
-                <%--<i class="layui-icon">&#xe622;</i>--%>
-                <%--</a>--%>
-
-                <%--</td>--%>
-                <%--</tr>--%>
-
                 <tr>
                     <td>
-                        <input type="checkbox" value="1" name="">
+                        <input type="checkbox" id="toDelUser" value="${use.id}" name="toDelUser" class="toDelUser">
                     </td>
                     <td>
                         <u style="cursor:pointer" onclick="member_show('张三','member-show.html','10001','360','400')">
@@ -154,7 +110,7 @@
                            href="/user/updateId?id=${use.id}" title="修改用户">
                             <i class="layui-icon">&#xe631;</i>
                         </a>
-                        <a  class="Del" title="删除" href="#"  onclick="member_dea(this,${use.id})"
+                        <a  class="Del" title="删除" href="#"  onclick="member_dea2(this,${use.id})"
                             style="text-decoration:none">
                             <i class="layui-icon">&#xe640;</i>
                         </a>
@@ -183,4 +139,53 @@
 </div>
 <!-- 右侧主体结束 -->
 </div>
+<script>
+    function member_dea2(obj,id){
+        $.ajax({
+            type:"get",
+            url:"/user/Del?id="+id,
+            success:function(data){
+                if(data != null){
+                    $(obj).parents("tr").remove();
+                    layer.msg('已删除!',{icon:1,time:1000});
+                }
+            }
+        });
+    }
+    function batchUser() {
+        var val = "";
+        var groupCheckbox = $(".toDelUser");
+        for (i = 0; i < groupCheckbox.length; i++) {
+            if (groupCheckbox[i].checked) {
+                val += groupCheckbox[i].value + ",";
+            }
+        }
+        if(val==""){
+            alert("请选择要删除的分类名称！");
+            return false;
+        }
+        $.ajax({
+            url : 'batchDelUser',// 跳转到ClassifyServlet
+            data : {
+                "name" : val
+            },
+            type : 'post',
+            dataType : 'json',
+            success : function(data) {
+                window.location.href = "queryUser";
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+    };
+    $("input[name='all']").click(function(){
+        //判断当前点击的复选框处于什么状态$(this).is(":checked") 返回的是布尔类型
+        if($(this).is(":checked")){
+            $("input[name='toDelUser']").prop("checked",true);
+        }else{
+            $("input[name='toDelUser']").prop("checked",false);
+        }
+    });
+</script>
 <%@include file="/common/footer.jsp"%>

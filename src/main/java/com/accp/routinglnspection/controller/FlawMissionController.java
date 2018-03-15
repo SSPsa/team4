@@ -12,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -27,11 +30,11 @@ public class FlawMissionController {
     //缺陷任务制定与分配的分页包括按条件筛选
     @RequestMapping("/flawMission/flawMissionForPager")
     public String flawMissionForPager(Model m,String pageIndex, String fmNumber, String fmName, String fmState, String principalUid, Date startTime, Date endTime) {
-//初始化首页
+    //初始化首页
         if (pageIndex == null || pageIndex.equals("")) {
             pageIndex = "1";
         }
-//    初始化任务状态
+    //初始化任务状态
         if (fmState == null || fmState.equals("")) {
             fmState = "0";
         }
@@ -129,6 +132,22 @@ public class FlawMissionController {
         return flawMissionForPager(m,null,null,null,null,null,null,null);
     }
 
+//    缺陷任务制定与分配的取消任务
+    @RequestMapping("/flawMission/flawMissionDelete")
+    public String flawMissionDelete(int fwId, HttpServletResponse resp) throws IOException {
+        PrintWriter out = resp.getWriter();
+        int result = flawMissionBiz.deleteFlawMission(fwId);
+        if (result>0){
+            out.print("{\"delResult\":\"true\"}");
+        }
+        else {
+            out.print("{\"delResult\":\"false\"}");
+        }
+        out.flush();
+        out.close();
+        return null;
+    }
+
 //    消缺查询的分页
     @RequestMapping("/flawMission/flawMissionPager")
     public String flawMissionPager(Model m,String pageIndex,String fmNumber,String fmState,String fId,String grade,Date startTime,Date endTime){
@@ -192,6 +211,38 @@ public class FlawMissionController {
 
     }
 
+//消缺任务执行与回执的修改页面
+    @RequestMapping("/flawMission/toFlawMissionExecModify")
+    public String toFlawMissionExecModify(Model m,String fwId){
+        FlawMission flawMission1 = flawMissionBiz.queryFlawMissionOne(Integer.parseInt(fwId));
+        if(flawMission1!=null){
+            m.addAttribute("flawMission1",flawMission1);
+            return "solveTask_execute_modify";
+        }else{
+            return null;
+        }
+
+    }
+
+ //消缺任务执行与回执的修改成功
+    @RequestMapping("/flawMission/flawMissionExecModify")
+    public String flawMissionExecModify(Model m,FlawMission flawMission,String fwId){
+        flawMission.setId(Integer.parseInt(fwId));
+        flawMissionBiz.updateFlawMission(flawMission);
+        return flawMissionExcePager(m,null, null,null,null,null,null);
+    }
+
+//消缺任务执行与回执的回执录入
+    @RequestMapping("/flawMission/flawMissionExecEntry")
+    public String flawMissionExecEntry(Model m,String fwId){
+        FlawMission flawMission = flawMissionBiz.queryFlawMissionOne(Integer.parseInt(fwId));
+        if(flawMission!=null){
+            m.addAttribute("flawMission",flawMission);
+            return "solveTask_examina";
+        }else{
+            return null;
+        }
+    }
 //    增加缺陷
     @RequestMapping("/flawMission/flawMissionAddFlaw")
     public String flawMissionAddFlaw(Model m,String fid){
@@ -203,6 +254,4 @@ public class FlawMissionController {
         }
         return null;
     }
-
-
 }

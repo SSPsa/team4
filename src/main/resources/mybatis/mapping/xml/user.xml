@@ -82,4 +82,9 @@
     <select id="querySelectedDefect" resultType="User">
           SELECT `user`.uName FROM `user` WHERE id IN(SELECT defectUid FROM `flawmission`) AND rid=4
     </select>
+
+    <select id="selectChildNum" resultType="User">
+        select * from user where id=#{id}
+    </select>
+
 </mapper>

@@ -106,11 +106,18 @@
                 accomplishTime=#{accomplishTime},
             </if>
             <if test="fmState>0">
-                fmState=#{fmState}
+                fmState=#{fmState},
+            </if>
+            <if test="isPass>-1">
+                isPass=#{isPass}
             </if>
         </set>
         WHERE id=#{id}
     </update>
+
+    <delete id="deleteFlawMission">
+        delete from flawmission where id=#{fwId}
+    </delete>
 
     <!--消缺查询的条件-->
     <sql id="pageWhere2">
