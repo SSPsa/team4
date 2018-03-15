@@ -233,7 +233,7 @@ public class FlawMissionController {
     }
 
 //消缺任务执行与回执的回执录入
-    @RequestMapping()
+    @RequestMapping("/flawMission/flawMissionExecEntry")
     public String flawMissionExecEntry(Model m,String fwId){
         FlawMission flawMission = flawMissionBiz.queryFlawMissionOne(Integer.parseInt(fwId));
         if(flawMission!=null){
@@ -254,6 +254,4 @@ public class FlawMissionController {
         }
         return null;
     }
-
-
 }
