@@ -11,7 +11,9 @@ import java.util.Date;
  */
 public class DataConverter implements Converter<String,Date>{
     private String dataPatter;
-
+    public String getDataPatter() {
+        return dataPatter;
+    }
     public void setDataPatter(String dataPatter) {
         this.dataPatter = dataPatter;
     }
@@ -19,7 +21,9 @@ public class DataConverter implements Converter<String,Date>{
     public Date convert(String s) {
         Date data = null;
         try {
-            data = new SimpleDateFormat(dataPatter).parse(s);
+            if (s!=null && s.length()>0){
+                data = new SimpleDateFormat(dataPatter).parse(s);
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }

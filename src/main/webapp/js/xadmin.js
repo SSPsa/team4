@@ -163,6 +163,8 @@ function x_admin_show(title,url,w,h){
 
 /*关闭弹出框口*/
 function x_admin_close(){
+    //alert(window.top.window.document.getElementById("pageIndex").value)
+    //window.top.window.location.href="/PollingMission/showpollingMission?timestamp=" + new Date().getTime();
     var index = parent.layer.getFrameIndex(window.name);
     parent.layer.close(index);
 }

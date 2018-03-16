@@ -23,21 +23,21 @@
     <div class="page-content">
         <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-            <form class="layui-form">
+            <form class="layui-form" action="/PollingMission/addpollingMission" method="post">
                 <div class="layui-form-item">
                     <label class="layui-form-label">
                         任务编码：
                     </label>
                     <div class="layui-input-inline">
                         <input type="text" required=""
-                               autocomplete="off" class="layui-input">
+                           name="pmNumber"    autocomplete="off" class="layui-input">
                     </div>
                     <label class="layui-form-label">
                         任务名称：
                     </label>
                     <div class="layui-input-inline">
                         <input type="text" required=""
-                               autocomplete="off" class="layui-input">
+                           name="pmName"    autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -45,10 +45,7 @@
                         <span class="x-red"></span>巡检路线:
                     </label>
                     <div class="layui-input-inline">
-                        <select lay-filter="test">
-
-                            <option value="0">--请选择--</option>
-                            <option value="1">--请选择--</option>
+                        <select lay-filter="filters2" name="cId">
                           <c:forEach items="${addlistCircuit}" var="listcircuit">
                               <option value="${listcircuit.id}">${listcircuit.cNumber}</option>
                           </c:forEach>
@@ -59,8 +56,14 @@
                         <span class="x-red"></span>巡检员:
                     </label>
                     <div class="layui-input-inline">
-                        <textarea name="" class="layui-input" style="width: 200px;height: 100px"></textarea>
+                        <select lay-filter="filters2" name="pollingUid">
+                            <option value="0">待分配</option>
+                            <c:forEach items="${addlistUser}" var="addlistUser">
+                                <option value="${addlistUser.id}">${addlistUser.uName}</option>
+                            </c:forEach>
+                        </select>
                     </div>
+
                 </div>
 
 
@@ -70,7 +73,7 @@
                     </label>
                     <div class="layui-input-inline">
                         <input type="text" required=""
-                               autocomplete="off" class="layui-input" value="">
+                         id="riseTid"      autocomplete="off" class="layui-input" value="${addlistCircuit.get(0).riseTid}">
                     </div>
 
                     <label class="layui-form-label">
@@ -78,32 +81,16 @@
                     </label>
                     <div class="layui-input-inline">
                         <input type="text" required=""
-                               autocomplete="off" class="layui-input">
+                           id="endTid" value="${addlistCircuit.get(0).endTid}"    autocomplete="off" class="layui-input">
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">
-                        <span class="x-red"></span>下发人:
-                    </label>
-                    <div class="layui-input-inline">
-                        <input type="text" required=""
-                               autocomplete="off" class="layui-input" placeholder="admin">
-                    </div>
 
-                    <label class="layui-form-label">
-                        <span class="x-red"></span>下发日期：
-                    </label>
-                    <div class="layui-input-inline">
-                        <input class="layui-input"  id="LAY_demorange_s">
-                    </div>
-
-                </div>
                 <div class="layui-input-inline">
                     <label class="layui-form-label">
                         <span class="x-red"></span>备注:
                     </label>
                     <div class="layui-input-inline">
-                        <textarea name=""class="layui-input" style="width: 200px;height: 100px"></textarea>
+                        <textarea name="pmRemark" class="layui-input" style="width: 200px;height: 100px"></textarea>
                     </div>
                 </div>
 
@@ -114,7 +101,7 @@
                     <label  class="layui-form-label">
                     </label>
 
-                    <button  class="layui-btn" lay-filter="add" lay-submit="">
+                    <button  class="layui-btn" lay-filter="add" lay-submit="" onclick="x_admin_close()">
                         保存
                     </button>
                     <button  class="layui-btn" lay-filter="add" lay-submit="">
@@ -131,30 +118,35 @@
     <!-- 右侧主体结束 -->
 </div>
 <!-- 中部结束 -->
+
 <script>
-    layui.use('form',function(){});<!--加载form模块-->
-    </script>
-<script>
-    var form = layui.form();
-    form.on('select(test)', function(data){
-        alert("1")
-        console.log(data);
+
+
+
+
+    layui.use('form', function(){
+        var form = layui.form();
+
+        form.on('select(filters2)', function(data){
+            //alert(data.value); //得到被选中的值
+            $.ajax({
+                type:"get",
+                url:"/PollingMission/addShowpollingMissionid?id="+data.value,
+                success:function(data1){
+
+                    if(data1 != null){
+                        $("#riseTid").val(data1.riseTid);
+                        $("#endTid").val(data1.endTid);
+                    }
+                }
+            });
+        });
+
     });
 
-    function addlistCircuits(circuitid){
 
-        var id= circuitid.value;
-        alert(id);
-        $.ajax({
-            type:"get",
-            url:"/PollingMission/addShowpollingMissionid?id="+id,
-            success:function(data){
-                if(data != null){
-                    $("#categoryLevel3").html(options);
-                }
-            }
-        });
-    }
+
+
 
 
 

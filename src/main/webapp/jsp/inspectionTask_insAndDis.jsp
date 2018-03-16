@@ -10,7 +10,7 @@
         巡检任务管理>>巡检任务制定与分配
         <!-- 右侧内容框架，更改从这里开始 -->
         <form class="layui-form xbs" action="/PollingMission/showpollingMission" method="post" >
-            <input type="hidden" name="pageIndex" value="1">
+            <input id="pageIndex" type="hidden" name="pageIndex" value="1">
             <div class="layui-form-pane" style="text-align: center;">
 
                 <div class="layui-form-item" style="display: inline-block;">
@@ -67,7 +67,7 @@
 
         </form>
         <xblock>
-            <a  class="layui-btn"  onclick="member_add('制定巡检任务','/jsp/inspectionTask_add.jsp','700','500')"><i class="layui-icon">&#xe608;</i>制定巡检任务</a><span class="x-right" style="line-height:40px">共有数据：88 条</span>
+            <a  class="layui-btn"  onclick="member_add('制定巡检任务','/PollingMission/addShowpollingMission','700','500')"><i class="layui-icon">&#xe608;</i>制定巡检任务</a><span class="x-right" style="line-height:40px">共有数据：${pollingMissionPager.totalRows} 条</span>
         </xblock>
         <table class="layui-table">
             <thead>
@@ -137,8 +137,9 @@
 
                                 <c:if test="${pollingMissionlist.pmState==1}">
                                     <span class="layui-btn layui-btn-normal layui-btn-mini" style="background: #ec5807">
-                                    待分配</c:if>
+                                    待分配
                                     </span>
+                                </c:if>
                                 <c:if test="${pollingMissionlist.pmState==2}">
                                     <span class="layui-btn layui-btn-normal layui-btn-mini">
                               已分配
@@ -164,20 +165,27 @@
 
 
                 <td class="td-manage">
+
                     <a style="text-decoration:none" onclick="member_password('查看','/jsp/inspectionTask_ins_view.jsp','10001','700','500')" title="查看">
                         <i class="layui-icon">&#xe615;</i>
                     </a>
-                    <a style="text-decoration:none" onclick="member_password('分配任务','/jsp/inspectionTask_assign.jsp','10001','600','500')" title="分配任务">
+                    <c:if test="${pollingMissionlist.pmState==1}">
+                    <a style="text-decoration:none" onclick="member_password('分配任务','/jsp/inspectionTask_assign.jsp','10001','500','200')" title="分配任务">
                         <i class="layui-icon">&#xe631;</i>
                     </a>
+                    </c:if>
+                    <c:if test="${pollingMissionlist.pmState==1||pollingMissionlist.pmState==2}">
                     <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/inspectionTask_modify.jsp','10001','700','500')"
                        style="text-decoration:none">
                         <i class="layui-icon">&#xe642;</i>
                     </a>
+                    </c:if>
+                    <c:if test="${pollingMissionlist.pmState!=4}">
                     <a title="取消" href="javascript:;" onclick=""
                        style="text-decoration:none">
                         <i class="layui-icon">&#x1006;</i>
                     </a>
+                    </c:if>
 
                 </td>
             </tr>

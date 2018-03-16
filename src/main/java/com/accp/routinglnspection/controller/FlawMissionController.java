@@ -188,7 +188,7 @@ public class FlawMissionController {
 
 //    制定与分配的分配消缺员
     @RequestMapping("/flawMission/flawMissionAssign")
-    public String flawMissionAssign(Model m,int fwId){
+    public String flawMissionAssign(Model m，int fwId){
 //        待选消缺员
         List<User> toBeSelectedDefect = userBiz.queryToBeSelectedDefect();
 //        已选消缺员
@@ -238,6 +238,7 @@ public class FlawMissionController {
         }else{
             return null;
         }
+
     }
 
  //消缺任务执行与回执的修改成功
