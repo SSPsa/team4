@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/css/font.css">
     <link rel="stylesheet" href="/css/xadmin.css">
     <link rel="stylesheet" href="/css/swiper.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css"/>
+
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
     <script src="/lib/layui/layui.js" charset="utf-8"></script>

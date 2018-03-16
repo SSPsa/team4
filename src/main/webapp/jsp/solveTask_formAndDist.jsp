@@ -1,6 +1,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%--新增的--%>
+<%--模态框样式--%>
+<style>
+    .modal{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1050;display:none;overflow:hidden;outline:0}
+    .modal.fade .modal-dialog{transition:-webkit-transform .3s ease-out;transition:transform .3s ease-out;transition:transform .3s ease-out,-webkit-transform .3s ease-out;-webkit-transform:translate(0,-25%);transform:translate(0,-25%)}
+    .modal.show .modal-dialog{-webkit-transform:translate(0,0);transform:translate(0,0)}
+    .modal-open .modal{overflow-x:hidden;overflow-y:auto}
+    .modal-dialog{position:relative;width:auto;margin:10px}
+    .modal-content{position:relative;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;background-color: #b4967d;background-clip:padding-box;border:1px solid rgba(0,0,0,.2);border-radius:.3rem;outline:0}
+    .modal-header{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:justify;justify-content:space-between;padding:15px;border-bottom:1px solid #e9ecef}
+    .modal-title{margin-bottom:0;line-height:1.5}
+    .modal-body{position:relative;-ms-flex:1 1 auto;flex:1 1 auto;padding:15px}
+    .modal-footer{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:end;justify-content:flex-end;padding:15px;border-top:1px solid #e9ecef}
+    .modal-footer>:not(:first-child){margin-left:.25rem}
+    .modal-footer>:not(:last-child){margin-right:.25rem}
+    @media (min-width:576px){.modal-dialog{max-width:500px;margin:30px auto}.modal-sm{max-width:300px}}
+</style>
+<%--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">--%>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<%--新增的--%>
 
 <%@include file="/common/top.jsp"%>  <%--头部--%>
 <%@include file="/common/left.jsp"%>  <%--中间-左--%>
@@ -145,7 +167,9 @@
                                 <a class="viewFlawMission" fwId="${flawMissionPager.id}" style="text-decoration:none" title="查看">
                                     <i class="layui-icon">&#xe615;</i>
                                 </a>
-                                <a class="assignFlawMission"  style="text-decoration:none" onclick="member_password('分配任务','/flawMission/flawMissionAssign','10001','600','500')" title="分配任务">
+                                  <%--class="assignFlawMission"--%>
+                                <%--onclick="member_password('分配任务','/flawMission/flawMissionAssign','10001','600','500')" --%>
+                                <a data-toggle="modal" data-target="#myModal" class="assignFlawMission"  fwId="${flawMissionPager.id}"  style="text-decoration:none" title="分配任务">
                                     <i class="layui-icon">&#xe631;</i>
                                 </a>
                                 <a class="modifyFlawMission" fwId="${flawMissionPager.id}" title="修改" href="javascript:;"
@@ -178,8 +202,59 @@
             <c:param name="totalPageCount" value="${flawMissionPager.totalPage}"/>
         </c:import>
         <!-- 右侧内容框架，更改从这里结束 -->
+
+        <div class="modal fade" id="myModal">
+            <form action="/flawMission/flawMissionAssign2?fwId=${fwId}" method="post">
+                <input type="hidden" id="fwId" name="fwId" value="aaaa" >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- 模态框头部 -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">请选择消缺员</h4>
+                            <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
+                        </div>
+
+                        <!-- 模态框主体 -->
+                        <div class="modal-body">
+                            <div class="layui-form-item" style="display: inline-block;">
+                                <label class="layui-form-label xbs768">待选消缺员：</label>
+                                <div class="layui-input-inline">
+                                    <select multiple="multiple" class="layui-input" name="defectUid">
+                                        <c:forEach items="${toBeSelectedDefect}" var="toBeSelectedDefect">
+                                            <option value="${toBeSelectedDefect.id}" selected>${toBeSelectedDefect.uName}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                                <div class="layui-form-item" style="display: inline-block;">
+                                <label class="layui-form-label xbs768">已选消缺员：</label>
+                                <div class="layui-input-inline">
+                                <select multiple="multiple" class="layui-input" name="defectUid">
+                                    <c:forEach items="${selectedDefect}" var="selectedDefect">
+                                        <option value="${selectedDefect.id}" selected>${selectedDefect.uName}</option>
+                                    </c:forEach>
+                                </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- 模态框底部 -->
+                        <div class="modal-footer" >
+                            <button  class="layui-btn" lay-filter="add" lay-submit="">
+                                保存
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">返回</button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
+
 <!-- 右侧主体结束 -->
 </div>
 <script>
@@ -241,6 +316,14 @@
             });
         });
     }
+     $(".assignFlawMission").on("click",function () {
+         var obj=$(this);
+        var fwId=$(this).attr("fwId");
+//            alert(fwId);
+//         var inner = $("#fwId").val;
+//         alert(inner);
+//          document.getElementById('fwId');
+     });
 </script>
 <%@include file="/common/footer.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/solveTask_formAndDis.js"></script>

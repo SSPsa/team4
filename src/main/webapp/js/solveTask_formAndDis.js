@@ -15,8 +15,8 @@ $(function() {
         var obj = $(this);
         window.location.href = "/flawMission/toFlawMissionModify?fwId=" + obj.attr("fwId");
     });
-    $("examinaFlawMission").on("click",function () {
-        var obj=$(this);
-        window.location.href="/flawMission/flawMissionExamina?fwId=" + obj.attr("fwId");
-    })
+    // $(".assignFlawMission").on("click",function () {
+    //     var obj=$(this);
+    //     window.location.href="/flawMission/flawMissionAssign?fwId=" + obj.attr("fwId") ;
+    // })
 })

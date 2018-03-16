@@ -1,165 +1,169 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>后台登录-X-admin1.1</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/css/font.css">
-    <link rel="stylesheet" href="/css/xadmin.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
-    <script src="/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/js/xadmin.js"></script>
-    <style>
-        textarea,select,option{
-            color: #0C0C0C;opacity: 0.5;
-        }
-    </style>
-</head>
-<body>
-<form action="" method="post">
-<!-- 中部开始 -->
-<fieldset class="layui-elem-field layui-field-title site-title">
-    <legend>消缺任务列表</legend>
-</fieldset>
-<table class="layui-table">
+<%@include file="/common/top.jsp"%>  <%--头部--%>
+<%@include file="/common/left.jsp"%>  <%--中间-左--%>
 
-    <tr>
-        <td>任务编码:</td>
-        <td>${flawMission.fmNumber}</td>
-        <td>任务名称:</td>
-        <td>${flawMission.fmName}</td>
-    </tr>
-    <td>任务状态:</td>
-    <td>
-        <c:if test="${flawMission.fmState==3}">执行中</c:if>
-        <c:if test="${flawMission.fmState==4}">已完成</c:if>
-        <c:if test="${flawMission.fmState==5}">驳回</c:if>
-    </td>
-    <td>工作单位:</td>
-    <td>
-        <c:if test="${flawMission.receipts==1}">任务单</c:if>
-        <c:if test="${flawMission.receipts==2}">第一种单据</c:if>
-        <c:if test="${flawMission.receipts==3}">第二种单据</c:if>
-    </td>
+<!-- 右侧主体开始 -->
+<div class="page-content">
+    <div class="content">
+        消缺任务执行与回执>>修改
+        <form class="layui-form" action="/flawMission/flawMissionExecModify2" method="post">
+            <input type="hidden" value="${flawMission.id}" name="fwId" readonly>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    任务编码：
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" required="" name="fmNumber"
+                           autocomplete="off" class="layui-input" value="${flawMission.fmNumber}" readonly>
+                </div>
+                <label class="layui-form-label">
+                    任务名称：
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" required="" name="fmName"
+                           autocomplete="off" class="layui-input" value="${flawMission.fmName}" readonly>
+                </div>
+            </div>
 
-    <tr>
-        <td>任务下发人:</td>
-        <td>线路管理员测试用户01</td>
-        <td>任务下发时间:</td>
-        <td> <fmt:formatDate value="${flawMission.releaseTime}" pattern="yyyy-MM-dd"/></td>
-    </tr>
-    <tr>
-        <td>任务负责人:</td>
-        <td>${flawMission.user.uName}</td>
-        <td>任务描述:</td>
-        <td>${flawMission.describe}</td>
-    </tr>
-    <tr>
-        <td>消缺员:</td>
-        <td>消缺员测试用户01</td>
-        <td>任务完成时间:</td>
-        <td><fmt:formatDate value="${flawMission.accomplishTime}" pattern="yyyy-MM-dd"/></td>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red"></span>任务状态:
+                </label>
+                <div class="layui-input-inline">
+                    <select name="fmState" readonly>
+                        <option value="0">--请选择任务状态--</option>
+                        <option  <c:if test="${flawMission.fmState==3}">selected </c:if>  value="3">执行中</option>
+                        <option <c:if test="${flawMission.fmState==4}"> selected </c:if> value="4">已完成</option>
+                        <option <c:if test="${flawMission.fmState==5}"> selected </c:if> value="53">驳回</option>
+                    </select>
+                </div>
+                <label class="layui-form-label">
+                    工作单据：
+                </label>
+                <div class="layui-input-inline">
+                    <select name="receipts" readonly>
+                        <option value="0">--请选择工作单据类型--</option>
+                        <option  <c:if test="${flawMission.receipts==1}">selected </c:if>  value="1">任务单</option>
+                        <option <c:if test="${flawMission.receipts==2}"> selected </c:if> value="2">第一种单据</option>
+                        <option <c:if test="${flawMission.receipts==3}"> selected </c:if> value="3">第二种单据</option>
+                    </select>
+                </div>
+            </div>
 
-    </tr>
-    <tr style="row-span: 2">
-        <td>负责人审查意见:</td>
-        <td>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red"></span>任务负责人:
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text"
+                           autocomplete="off" class="layui-input" value="${flawMission.user.uName}" readonly>
+                </div>
 
-        </td>
-        <td>完成情况描述:</td>
-        <td>
-            <input type="text" name="describe"
-                   autocomplete="off" class="layui-input" value="${flawMission.fmRemark}" >
-        </td>
-    </tr>
-    <tr style="row-span: 2">
-        <td>下发人审查意见:</td>
-        <td> </td>
-        <td>是否审核通过</td>
-        <td>
-            <select name="isPass">
+                <label class="layui-form-label">
+                    <span class="x-red"></span>任务下发时间:
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" name="releaseTime"
+                           autocomplete="off" class="layui-input" value="<fmt:formatDate value="${flawMission.releaseTime}" pattern="yyyy-MM-dd"/> " readonly>
+                </div>
+            </div>
 
-                <option  <c:if test="${flawMission.isPass==0}">selected </c:if>  value="0">不通过</option>
-                <option <c:if test="${flawMission.isPass==1}"> selected </c:if> value="1">通过</option>
-            </select>
-        </td>
-    </tr>
-</table>
-<%--<fieldset class="layui-elem-field layui-field-title site-title">--%>
-    <%--<legend>缺陷信息列表</legend>--%>
-<%--</fieldset>--%>
-<%--<table class="layui-table">--%>
-    <%--<tr>--%>
-        <%--<td>线路编号</td>--%>
-        <%--<td>杆塔编号</td>--%>
-        <%--<td>缺陷等级</td>--%>
-        <%--<td>缺陷类型</td>--%>
-        <%--<td>缺陷描述</td>--%>
-        <%--<td>发现人</td>--%>
-        <%--<td>发现时间</td>--%>
-    <%--</tr>--%>
-    <%--<tr>--%>
-        <%--<td>XW001</td>--%>
-        <%--<td>XW00002</td>--%>
-        <%--<td>严重</td>--%>
-        <%--<td>拦河线断裂</td>--%>
-        <%--<td>拦截河道7股断2股</td>--%>
-        <%--<td>巡检员测试用户01</td>--%>
-        <%--<td>2013/12/12</td>--%>
-    <%--</tr>--%>
-    <%--<tr>--%>
-        <%--<td>XW001</td>--%>
-        <%--<td>XW00002</td>--%>
-        <%--<td>严重</td>--%>
-        <%--<td>拦河线断裂</td>--%>
-        <%--<td>拦截河道7股断2股</td>--%>
-        <%--<td>巡检员测试用户01</td>--%>
-        <%--<td>2013/12/12</td>--%>
-    <%--</tr>--%>
-    <%--<tr>--%>
-        <%--<td>XW001</td>--%>
-        <%--<td>XW00002</td>--%>
-        <%--<td>严重</td>--%>
-        <%--<td>拦河线断裂</td>--%>
-        <%--<td>拦截河道7股断2股</td>--%>
-        <%--<td>巡检员测试用户01</td>--%>
-        <%--<td>2013/12/12</td>--%>
-    <%--</tr>--%>
-<%--</table>--%>
-<%--<fieldset class="layui-elem-field layui-field-title">--%>
-    <%--<legend>工作间断延期记载</legend>--%>
 
-<%--</fieldset>--%>
-<%--<legend>报告事项：2013-10-28日灾难性暴雨天气，无法进行，申请延期2天巡检截至日期.</legend>--%>
-    <%--<legend>负责人：线路管理员测试用户01</legend>--%>
-    <%--<legend>延期许可时间：截止日期截止由2013-12-20调至2013-12-22</legend>--%>
-<%--<fieldset class="layui-elem-field layui-field-title">--%>
+            <div class="layui-form-item">
 
-    <%--<legend>工作终结报告</legend>--%>
 
-<%--</fieldset>--%>
-<%--<legend>报告方式：文档报告</legend>--%>
-    <%--<legend>接收人：线路管理员测试用户01</legend>--%>
-<%--<legend>证明人：线路管路员测试用户012</legend>--%>
-    <%--<legend>报告时间：2013-12-14</legend>--%>
-    <div class="layui-form-item">
-        <label id="L_repass" class="layui-form-label">
-        </label>
-        <button  class="layui-btn" lay-filter="add" lay-submit="">
-           保存
-        </button>
-        <button  class="layui-btn" lay-filter="add" lay-submit="">
-            返回
-        </button>
+                <label class="layui-form-label">
+                    <span class="x-red"></span>任务描述:
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" name="describe"
+                           autocomplete="off" class="layui-input" value="${flawMission.describe}">
+                </div>
+
+                <label class="layui-form-label">
+                    <span class="x-red"></span>任务完成时间:
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" name="accomplishTime"
+                           autocomplete="off" class="layui-input" value="<fmt:formatDate value="${flawMission.accomplishTime}" pattern="yyyy-MM-dd"/>"  readonly >
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+
+                <label class="layui-form-label">
+                    <span class="x-red"></span>审核是否通过:
+                </label>
+                <div class="layui-input-inline">
+                    <select name="isPass" readonly>
+
+                        <option  <c:if test="${flawMission.isPass==0}">selected </c:if>  value="0">不通过</option>
+                        <option <c:if test="${flawMission.isPass==1}"> selected </c:if> value="1">通过</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                </label>
+                <button  class="layui-btn" lay-filter="add" lay-submit="">
+                    保存
+                </button>
+                <button  class="layui-btn" lay-filter="add" lay-submit="">
+                    返回
+                </button>
+            </div>
+        </form>
 
     </div>
+</div>
+<%--</body>--%>
+<!-- 右侧主体结束 -->
+</div>
+<script>
+    layui.use(['laydate'], function(){
+        laydate = layui.laydate;//日期插件
 
-</form>
-</body>
-</html>
+        //以上模块根据需要引入
+        //
+        var start = {
+//            min: laydate.now()
+            min: '2002-06-16 23:59:59'
+            ,max: '2099-06-16 23:59:59'
+            ,istoday: false
+            ,choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        };
+
+        var end = {
+            min: laydate.now()
+            ,max: '2099-06-16 23:59:59'
+            ,istoday: false
+            ,choose: function(datas){
+                start.max = datas; //结束日选好后，重置开始日的最大日期
+            }
+        };
+
+        document.getElementById('LAY_demorange_s').onclick = function(){
+            start.elem = this;
+            laydate(start);
+        }
+        document.getElementById('LAY_demorange_e').onclick = function(){
+            end.elem = this
+            laydate(end);
+        }
+    });
+
+    $(function () {
+        $(".addFlaw").on("click", function () {
+            //将被绑定的元素（a）转换成jquery对象，可以使用jquery方法
+            var obj = $(this);
+            window.location.href = "/flawMission/flawMissionAddFlaw?fid=" + obj.attr("fid");
+        });
+    });
+</script>
+<%@include file="/common/footer.jsp"%>
