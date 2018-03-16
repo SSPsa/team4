@@ -204,14 +204,15 @@
         <!-- 右侧内容框架，更改从这里结束 -->
 
         <div class="modal fade" id="myModal">
-            <form action="/flawMission/flawMissionAssign2?fwId=${fwId}" method="post">
-                <input type="hidden" id="fwId" name="fwId" value="aaaa" >
+            <form action="/flawMission/flawMissionAssign2" method="post">
+
                 <div class="modal-dialog">
                     <div class="modal-content">
 
                         <!-- 模态框头部 -->
                         <div class="modal-header">
-                            <h4 class="modal-title">请选择消缺员</h4>
+                            <input type="text" id="fwId" style="color: #0C0C0C" name="fwId" value="aaaaa" >
+                            <h4 class="modal-title" >请选择消缺员</h4>
                             <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
                         </div>
 
@@ -319,9 +320,8 @@
      $(".assignFlawMission").on("click",function () {
          var obj=$(this);
         var fwId=$(this).attr("fwId");
-//            alert(fwId);
-//         var inner = $("#fwId").val;
-//         alert(inner);
+         var elementById = document.getElementById("fwId");
+             elementById.value=fwId;
 //          document.getElementById('fwId');
      });
 </script>

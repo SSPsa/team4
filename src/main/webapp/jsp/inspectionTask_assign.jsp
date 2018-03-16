@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -40,16 +41,16 @@
     </script>
 </head>
 <body>
-<form class="layui-form" action="/PollingMission/addpollingMission" method="post">
+<form class="layui-form" action="/PollingMission/updatepollingMissionpmState" method="post">
+    <input name="id" type="hidden" value="${pmid}">
     <div class="layui-form-item">
         <label class="layui-form-label">
             <span class="x-red"></span>巡检员:
         </label>
         <div class="layui-input-inline">
-            <select lay-filter="filters2" name="pollingUid">
-                <option value="0">待分配</option>
-                <c:forEach items="${addlistUser}" var="addlistUser">
-                    <option value="${addlistUser.id}">${addlistUser.uName}</option>
+            <select name="pollingUid">
+                <c:forEach items="${asslistUser}" var="listUser2">
+                    <option value="${listUser2.id}">${listUser2.uName}</option>
                 </c:forEach>
             </select>
         </div>

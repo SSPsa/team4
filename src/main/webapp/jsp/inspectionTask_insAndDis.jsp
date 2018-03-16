@@ -170,7 +170,7 @@
                         <i class="layui-icon">&#xe615;</i>
                     </a>
                     <c:if test="${pollingMissionlist.pmState==1}">
-                    <a style="text-decoration:none" onclick="member_password('分配任务','/jsp/inspectionTask_assign.jsp','10001','500','200')" title="分配任务">
+                    <a style="text-decoration:none" onclick="member_password('分配任务','/PollingMission/assignShowpollingMission?id=${pollingMissionlist.id}','10001','500','200')" title="分配任务">
                         <i class="layui-icon">&#xe631;</i>
                     </a>
                     </c:if>

@@ -27,7 +27,7 @@ public class PollingMissionController {
             pageIndex=1;
         }
         pollingMission.setPageNo(pageIndex);
-        pollingMission.setPageSize(2);
+        pollingMission.setPageSize(3);
         if(null!=pollingMission.getCircuit()&&pollingMission.getCircuit().getcNumber().equals("")){
             pollingMission.setCircuit(null);
         }
@@ -58,12 +58,23 @@ public class PollingMissionController {
     }
 
     @RequestMapping("/assignShowpollingMission")
-    public String assignShowpollingMission(Model model){
+    public String assignShowpollingMission(Model model,int id){
         List<User> listUser=pollingMissionBiz.queryUser();
-        model.addAttribute("assignlistUser",listUser);
+        model.addAttribute("asslistUser",listUser);
+        model.addAttribute("pmid",id);
         return "inspectionTask_assign";
     }
-
+    @RequestMapping("/updatepollingMissionpmState")
+    public String updatepollingMissionpmState(Model model,PollingMission pollingMission){
+        pollingMission.setPmState(2);
+        pollingMission.setState(-1);
+      int num=pollingMissionBiz.updatePollingMission(pollingMission);
+        if(num>0){
+            return showpollingMission(model,new PollingMission(),null);
+        }else{
+            return addShowpollingMission(model);
+        }
+    }
 
     @RequestMapping("/addpollingMission")
     public String addpollingMission(Model model, PollingMission pollingMission, HttpSession session){

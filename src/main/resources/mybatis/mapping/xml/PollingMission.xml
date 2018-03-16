@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.accp.routinglnspection.dao.PollingMissionDao">
     <resultMap id="queryPollingMissionMap" type="PollingMission">
-        <result property="id" column="id"/>
+        <result property="id" column="pid"/>
         <result property="pmName" column="pmName"/>
         <result property="pmNumber" column="pmNumber"/>
         <result property="cId" column="cId"/>
@@ -28,7 +28,7 @@
         </association>
     </resultMap>
     <select id="queryPollingMission" resultMap="queryPollingMissionMap">
-        SELECT c.*,p.*,u.*,u1.`uName` u1name
+        SELECT c.*,p.`id` pid,p.`pmName`,p.`accomplishTime`,p.`cId`,p.`pmNumber`,p.`pmRemark`,p.`pmState`,p.`pollingUid`,p.`releaseTime`,p.`releaseUid`,p.`state`,u.*,u1.`uName` u1nam
         <include refid="sql"/>
         limit #{begin} , #{pageSize}
     </select>
@@ -81,15 +81,15 @@
           <if test="pmName !=null and pmName!=''">pmName=#{pmName},</if>
           <if test="pmNumber !=null and pmNumber!=''"> pmNumber=#{pmNumber},</if>
           <if test="cId>0">cId=#{cId},</if>
-          <if test="releaseUid>0">releaseUid=#{releaseUid},</if>
-          <if test="pollingUid>0">pollingUid=#{pollingUid},</if>
+          <if test="releaseUid>0"> releaseUid=#{releaseUid},</if>
+          <if test="pollingUid>0"> pollingUid=#{pollingUid},</if>
           <if test="pmState>0">pmState=#{pmState},</if>
           <if test="pmRemark !=null and pmRemark!=''">pmRemark=#{pmRemark},</if>
           <if test="releaseTime !=null">releaseTime=#{releaseTime},</if>
           <if test="accomplishTime !=null">accomplishTime=#{accomplishTime},</if>
           <if test="state>-1"> state=#{state},</if>
       </set>
-        where id={id}
+        where id=#{id}
     </update>
 
 
