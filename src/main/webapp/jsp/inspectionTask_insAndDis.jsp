@@ -166,7 +166,7 @@
 
                 <td class="td-manage">
 
-                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/inspectionTask_ins_view.jsp','10001','700','500')" title="查看">
+                    <a style="text-decoration:none" onclick="member_password('查看','/PollingMission/showpollingMissionId?id=${pollingMissionlist.id}','10001','700','500')" title="查看">
                         <i class="layui-icon">&#xe615;</i>
                     </a>
                     <c:if test="${pollingMissionlist.pmState==1}">
@@ -174,14 +174,14 @@
                         <i class="layui-icon">&#xe631;</i>
                     </a>
                     </c:if>
-                    <c:if test="${pollingMissionlist.pmState==1||pollingMissionlist.pmState==2}">
-                    <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/inspectionTask_modify.jsp','10001','700','500')"
+                    <c:if test="${pollingMissionlist.pmState==1}">
+                    <a title="修改" href="javascript:;" onclick="member_password('修改','/PollingMission/shwoModifyPollingMission?id=${pollingMissionlist.id}','10001','700','500')"
                        style="text-decoration:none">
                         <i class="layui-icon">&#xe642;</i>
                     </a>
                     </c:if>
-                    <c:if test="${pollingMissionlist.pmState!=4}">
-                    <a title="取消" href="javascript:;" onclick=""
+                    <c:if test="${pollingMissionlist.pmState==1}">
+                    <a title="取消" href="javascript:;"onclick="deletePollingMission(this,${pollingMissionlist.id})"
                        style="text-decoration:none">
                         <i class="layui-icon">&#x1006;</i>
                     </a>
@@ -204,6 +204,19 @@
 <!-- 右侧主体结束 -->
 </div>
 <script>
+    function deletePollingMission(obj,id){
+        $.ajax({
+            type:"get",
+            url:"/PollingMission/deletePollinMission?id="+id,
+            success:function(data){
+                if(data >0){
+                    $(obj).parents("tr").remove();
+                    layer.msg('已删除!',{icon:1,time:1000});
+                }
+            }
+        });
+    }
+
     layui.use(['laydate'], function(){
         laydate = layui.laydate;//日期插件
 

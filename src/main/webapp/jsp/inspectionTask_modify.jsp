@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -22,21 +23,22 @@
     <div class="page-content">
         <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-            <form class="layui-form">
+            <form class="layui-form" action="/PollingMission/updatepollingMission" method="post">
+                <input type="hidden" name="id" value="${modifyMissionView.id}">
                 <div class="layui-form-item">
                     <label class="layui-form-label">
                         任务编码：
                     </label>
                     <div class="layui-input-inline">
                         <input type="text" required=""
-                               autocomplete="off" class="layui-input" value="RW0242">
+                               name="pmNumber"    autocomplete="off" class="layui-input" value="${modifyMissionView.pmNumber}">
                     </div>
                     <label class="layui-form-label">
                         任务名称：
                     </label>
                     <div class="layui-input-inline">
                         <input type="text" required=""
-                               autocomplete="off" class="layui-input" value="西临1号线巡检">
+                               name="pmName"    autocomplete="off" class="layui-input" value="${modifyMissionView.pmName}">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -44,11 +46,11 @@
                         <span class="x-red"></span>巡检路线:
                     </label>
                     <div class="layui-input-inline">
-                        <select>
-                            <option>--请选择--</option>
-                            <option selected="selected">西渭一线</option>
-                            <option>西渭二线</option>
-                            <option>西渭三线</option>
+
+                        <select lay-filter="filters2" name="cId">
+                            <c:forEach items="${modifyCircuit}" var="modifyCircuit">
+                                <option <c:if test="${modifyMissionView.cId == modifyCircuit.id}">selected="selected"</c:if>  value="${modifyCircuit.id}">${modifyCircuit.cNumber}</option>
+                            </c:forEach>
                         </select>
                     </div>
 
@@ -56,8 +58,14 @@
                         <span class="x-red"></span>巡检员:
                     </label>
                     <div class="layui-input-inline">
-                        <textarea class="layui-input" name="" style="width: 200px;height: 100px;" value="">测试用户01、测试用户02、测试用户03</textarea>
+                        <select lay-filter="filters2" name="pollingUid">
+                            <option value="0">待分配</option>
+                            <c:forEach items="${modifyUser}" var="modifyUser">
+                                <option <c:if test="${modifyMissionView.pollingUid == modifyUser.id}">selected="selected"</c:if>  value="${modifyUser.id}">${modifyUser.uName}</option>
+                            </c:forEach>
+                        </select>
                     </div>
+
                 </div>
 
 
@@ -67,7 +75,7 @@
                     </label>
                     <div class="layui-input-inline">
                         <input type="text" required=""
-                               autocomplete="off" class="layui-input" value="XW001">
+                               id="riseTid"      autocomplete="off" class="layui-input" value="${modifyCircuit.get(0).riseTid}">
                     </div>
 
                     <label class="layui-form-label">
@@ -75,32 +83,15 @@
                     </label>
                     <div class="layui-input-inline">
                         <input type="text" required=""
-                               autocomplete="off" class="layui-input" value="XW00256">
+                               id="endTid" value="${modifyCircuit.get(0).endTid}"    autocomplete="off" class="layui-input">
                     </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">
-                        <span class="x-red"></span>下发人:
-                    </label>
-                    <div class="layui-input-inline">
-                        <input type="text" required=""
-                               autocomplete="off" class="layui-input" value="线路管理员测试用户01">
-                    </div>
-
-                    <label class="layui-form-label">
-                        <span class="x-red"></span>下发日期：
-                    </label>
-                    <div class="layui-input-inline">
-                        <input class="layui-input"  id="LAY_demorange_s" value="2013-12-12">
-                    </div>
-
                 </div>
                 <div class="layui-input-inline">
                     <label class="layui-form-label">
                         <span class="x-red"></span>备注:
                     </label>
                     <div class="layui-input-inline">
-                        <textarea class="layui-input" name="" style="width: 200px;height: 100px;" >无</textarea>
+                        <textarea name="pmRemark" class="layui-input" style="width: 200px;height: 100px">${modifyMissionView.pmRemark}</textarea>
                     </div>
                 </div>
 
@@ -111,7 +102,7 @@
                     <label  class="layui-form-label">
                     </label>
 
-                    <button  class="layui-btn" lay-filter="add" lay-submit="">
+                    <button  class="layui-btn" lay-filter="add" lay-submit="" onclick="x_admin_close()">
                         保存
                     </button>
                     <button  class="layui-btn" lay-filter="add" lay-submit="">
@@ -130,6 +121,28 @@
 <!-- 中部结束 -->
 
 <script>
+
+
+    layui.use('form', function(){
+        var form = layui.form();
+
+        form.on('select(filters2)', function(data){
+            //alert(data.value); //得到被选中的值
+            $.ajax({
+                type:"get",
+                url:"/PollingMission/addShowpollingMissionid?id="+data.value,
+                success:function(data1){
+
+                    if(data1 != null){
+                        $("#riseTid").val(data1.riseTid);
+                        $("#endTid").val(data1.endTid);
+                    }
+                }
+            });
+        });
+
+    });
+
     layui.use(['laydate'], function(){
         laydate = layui.laydate;//日期插件
 

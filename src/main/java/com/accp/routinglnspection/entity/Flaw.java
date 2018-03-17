@@ -11,11 +11,21 @@ public class Flaw {
  private String describe;//'缺陷描述',
  private Integer completeness;//'完成度百分比',
  private Date discoverTime;//'发布时间',
+    private Integer pgid;
+
     private Integer discoverUid;//'发现人外键用户表id',
     private Circuit circuit;
     private Tower tower;
     private FlawType flawType;
     private User user;
+
+    public Integer getPgid() {
+        return pgid;
+    }
+
+    public void setPgid(Integer pgid) {
+        this.pgid = pgid;
+    }
 
     public Circuit getCircuit() {
         return circuit;

@@ -24,7 +24,7 @@
             <result property="uNumber" column="uNumber"/>
         </association>
         <association property="polling" javaType="User">
-            <result property="uName" column="u1name"/>
+            <result property="uName" column="u1nam"/>
         </association>
     </resultMap>
     <select id="queryPollingMission" resultMap="queryPollingMissionMap">
