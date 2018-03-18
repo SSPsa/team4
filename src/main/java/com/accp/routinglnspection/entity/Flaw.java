@@ -15,6 +15,8 @@ public class Flaw {
     private PollingMission pollingMission;//巡检表对象
 
 
+    private Integer pgid;
+
     private Integer discoverUid;//'发现人外键用户表id',
     private Circuit circuit;
     private Tower tower;
@@ -35,6 +37,14 @@ public class Flaw {
 
     public void setPmid(Integer pmid) {
         this.pmid = pmid;
+    }
+
+    public Integer getPgid() {
+        return pgid;
+    }
+
+    public void setPgid(Integer pgid) {
+        this.pgid = pgid;
     }
 
     public Circuit getCircuit() {

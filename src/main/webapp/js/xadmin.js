@@ -167,4 +167,8 @@ function x_admin_close(){
     window.close();
     // var index = parent.layer.getFrameIndex(window.name);
     // parent.layer.close(index);
+    //alert(window.top.window.document.getElementById("pageIndex").value)
+    //window.top.window.location.href="/PollingMission/showpollingMission?timestamp=" + new Date().getTime();
+    var index = parent.layer.getFrameIndex(window.name);
+    parent.layer.close(index);
 }

@@ -269,6 +269,15 @@ public class FlawMissionController {
         flawMissionBiz.updateFlawMission(flawMission);
         return flawMissionExcePager(m,null, null,null,null,null,null);
     }
+
+
+    //消缺任务执行与回执录入成功
+    @RequestMapping("/flawMission/flawMissionExecModify2")
+    public String flawMissionExecModify2(Model m,FlawMission flawMission,int fwId){
+        flawMission.setId(fwId);
+        flawMissionBiz.updateFlawMission(flawMission);
+        return flawMissionExcePager(m,null, null,null,null,null,null);
+    }
 //    增加缺陷
     @RequestMapping("/flawMission/flawMissionAddFlaw")
     public String flawMissionAddFlaw(Model m,String fid){

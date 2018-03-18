@@ -10,6 +10,8 @@
         <!-- 右侧内容框架，更改从这里开始 -->
         <form class="layui-form xbs" action="/PollingMission/showpollingMissionReceipt" method="post" >
             <input id="pageIndex" type="hidden" name="pageIndex" value="1">
+        <form class="layui-form xbs" action="/PollingMission/showpollingMission" method="post" >
+            <input id="pageIndex" type="hidden" name="pageIndex" value="1">
             <div class="layui-form-pane" style="text-align: center;">
 
                 <div class="layui-form-item" style="display: inline-block;">
@@ -165,13 +167,25 @@
                  </a>
                     <c:if test="${pollingMissionlist.pmState==3}">
                     <a style="text-decoration:none" onclick="member_password('回执录入','/PollingMission/flawShow?id=${pollingMissionlist.id}','10001','700','500')" title="回执录入">
+    <td class="td-manage">
+                    <a style="text-decoration:none" onclick="member_password('查看','/jsp/inspectionTask_execut_view.jsp','10001','700','500')" title="查看">
+                        <i class="layui-icon">&#xe615;</i>
+                    </a>
+                    <a style="text-decoration:none" onclick="member_password('回执录入','','10001','700','500')" title="回执录入">
                         <i class="layui-icon">&#xe631;</i>
                     </a>
+                    <c:if test="${pollingMissionlist.pmState==2}">
+                    <a title="执行" href="javascript:;" onclick="member_password('执行','','10001','700','500')"
                     </c:if>
                     <c:if test="${pollingMissionlist.pmState==2}">
                     <a title="执行" href="javascript:;" onclick="member_password2(${pollingMissionlist.id})"
                        style="text-decoration:none">
                         <i class="layui-icon">&#xe642;</i>
+                    </a>
+                    </c:if>
+                    <a title="修改" href="javascript:;" onclick="member_password('修改','/jsp/inspectionTask_modify.jsp','10001','700','500')"
+                       style="text-decoration:none">
+                        <i class="layui-icon">&#x1006;</i>
                     </a>
                     </c:if>
         <c:if test="${pollingMissionlist.pmState==2}">

@@ -254,6 +254,60 @@
 </div>
 
 
+
+        <div class="modal fade" id="myModal">
+            <form action="/flawMission/flawMissionAssign2" method="post">
+
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- 模态框头部 -->
+                        <div class="modal-header">
+                            <input type="text" id="fwId" style="color: #0C0C0C" name="fwId" value="aaaaa" >
+                            <h4 class="modal-title" >请选择消缺员</h4>
+                            <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
+                        </div>
+
+                        <!-- 模态框主体 -->
+                        <div class="modal-body">
+                            <div class="layui-form-item" style="display: inline-block;">
+                                <label class="layui-form-label xbs768">待选消缺员：</label>
+                                <div class="layui-input-inline">
+                                    <select multiple="multiple" class="layui-input" name="defectUid">
+                                        <c:forEach items="${toBeSelectedDefect}" var="toBeSelectedDefect">
+                                            <option value="${toBeSelectedDefect.id}" selected>${toBeSelectedDefect.uName}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                                <div class="layui-form-item" style="display: inline-block;">
+                                <label class="layui-form-label xbs768">已选消缺员：</label>
+                                <div class="layui-input-inline">
+                                <select multiple="multiple" class="layui-input" name="defectUid">
+                                    <c:forEach items="${selectedDefect}" var="selectedDefect">
+                                        <option value="${selectedDefect.id}" selected>${selectedDefect.uName}</option>
+                                    </c:forEach>
+                                </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- 模态框底部 -->
+                        <div class="modal-footer" >
+                            <button  class="layui-btn" lay-filter="add" lay-submit="">
+                                保存
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">返回</button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <!-- 右侧主体结束 -->
 </div>
 <script>
@@ -318,6 +372,13 @@
 
 
     $(".assignFlawMission").on("click",function () {
+         var obj=$(this);
+        var fwId=$(this).attr("fwId");
+         var elementById = document.getElementById("fwId");
+             elementById.value=fwId;
+//          document.getElementById('fwId');
+     });
+     $(".assignFlawMission").on("click",function () {
          var obj=$(this);
         var fwId=$(this).attr("fwId");
          var elementById = document.getElementById("fwId");

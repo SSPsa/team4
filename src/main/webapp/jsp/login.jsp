@@ -15,11 +15,11 @@
 
 <div class="videozz"></div>
 <c:if test="${not empty error}">
-<div id="error" style="position: absolute;top: 50%;left: 35%;z-index:1;height: 200px;width: 300px;line-height: 50px;background: url('../images/rorre.PNG');border: 1px #89c8ff solid;">
-&nbsp;&nbsp;&nbsp;提示<a onclick="error()" style="position: absolute;right: 1%;top:-5%;cursor:pointer;">X</a>
-    <p style="position: absolute;top: 20%;left: 20%">${error}</p>
-    <button  onclick="error()" style="width: 100px;height: 30px; border-radius:60px;background-color: #0caff4;border: 0px;position: absolute;bottom: 10%;left: 30%;cursor:pointer;" > 确定</button>
-</div>
+    <div id="error" style="position: absolute;top: 50%;left: 35%;z-index:1;height: 200px;width: 300px;line-height: 50px;background: url('../images/rorre.PNG');border: 1px #89c8ff solid;">
+        &nbsp;&nbsp;&nbsp;提示<a onclick="error()" style="position: absolute;right: 1%;top:-5%;cursor:pointer;">X</a>
+        <p style="position: absolute;top: 20%;left: 20%">${error}</p>
+        <button  onclick="error()" style="width: 100px;height: 30px; border-radius:60px;background-color: #0caff4;border: 0px;position: absolute;bottom: 10%;left: 30%;cursor:pointer;" > 确定</button>
+    </div>
     <c:set var="error" value=""/>
 </c:if>
 <script>

@@ -1,8 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
 <%@include file="/common/top.jsp"%>  <%--头部--%>
 <%@include file="/common/left.jsp"%>  <%--中间-左--%>
 <!-- 右侧主体开始 -->
@@ -13,7 +11,6 @@
             <legend>消缺任务列表</legend>
         </fieldset>
         <table class="layui-table">
-
             <tr>
                 <td>任务编码:</td>
                 <td>${flawMission.fmNumber}</td>
