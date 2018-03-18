@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -7,11 +8,11 @@
     <%--<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />--%>
     <link rel="stylesheet" href="/css/font.css">
     <link rel="stylesheet" href="/css/xadmin.css">
-    <%--<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">--%>
-    <%--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>--%>
-    <%--<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>--%>
-    <%--<script src="/lib/layui/layui.js" charset="utf-8"></script>--%>
-    <%--<script type="text/javascript" src="/js/xadmin.js"></script>--%>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+    <script src="/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/xadmin.js"></script>
     <script type="text/javascript" src="/js/jquery-1.8.3.js"></script>
     <style>
         * { margin:0; padding:0; }
@@ -40,55 +41,41 @@
     </script>
 </head>
 <body>
-<div class="layui-input-inline" style="margin-left:100px;">
-    <span style="margin: 10px">已选巡检员</span>
-    <select multiple="multiple"
-            id="select1" style="width:150px;height:160px;" class="layui-input" >
-        <option value="1">选项1</option>
-        <option value="2">选项2</option>
-        <option value="3">选项3</option>
-        <option value="4">选项4</option>
-        <option value="5">选项5</option>
-        <option value="6">选项6</option>
-        <option value="7">选项7</option>
-        <option value="9">选项9</option>
-        <option value="10">选项10</option>
-        <option value="11">选项11</option>
-        <option value="12">选项12</option>
-        <option value="13">选项13</option>
-        <option value="14">选项14</option>
-    </select>
-
-    <div class="centent">
-
-        <span id="add" >添加到已选巡检员&gt;&gt;</span>
+<form class="layui-form" action="/PollingMission/updatepollingMissionpmState" method="post">
+    <input name="id" type="hidden" value="${pmid}">
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            <span class="x-red"></span>巡检员:
+        </label>
+        <div class="layui-input-inline">
+            <select name="pollingUid">
+                <c:forEach items="${asslistUser}" var="listUser2">
+                    <option value="${listUser2.id}">${listUser2.uName}</option>
+                </c:forEach>
+            </select>
+        </div>
 
     </div>
-</div>
-<div class="layui-input-inline" style="margin-left:100px;">
 
-    <span style="margin: 10px">待选巡检员</span>
-    <select multiple="multiple" id="select2" style="width: 150px;height:160px;" class="layui-input">
-        <option value="8">选项8</option>
-    </select>
 
-    <div class="centent">
-        <span id="remove">&lt;&lt;添加到待选巡检员</span>
-    </div>
-</div>
-<div class="layui-form-item">
 
-    <%--占位符--%>
-    <label  class="layui-form-label">
-    </label>
-    <label  class="layui-form-label">
-    </label>
-    <button  class="layui-btn" lay-filter="add" lay-submit="">
-        保存
-    </button>
-    <button  class="layui-btn" lay-filter="add" lay-submit="">
-        返回
-    </button>
-</div>
+
+    <div class="layui-form-item">
+        <%--占位--%>
+        <label  class="layui-form-label">
+        </label>
+        <label  class="layui-form-label">
+        </label>
+
+        <button  class="layui-btn" lay-filter="add" lay-submit="" onclick="x_admin_close()">
+            保存
+        </button>
+        <button  class="layui-btn" lay-filter="add" lay-submit="">
+            返回
+        </button>
+
+
+</form>
+
 </body>
 </html>

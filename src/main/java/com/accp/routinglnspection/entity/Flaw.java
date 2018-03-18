@@ -11,11 +11,31 @@ public class Flaw {
  private String describe;//'缺陷描述',
  private Integer completeness;//'完成度百分比',
  private Date discoverTime;//'发布时间',
+    private Integer pmid;//巡检表外键
+    private PollingMission pollingMission;//巡检表对象
+
+
     private Integer discoverUid;//'发现人外键用户表id',
     private Circuit circuit;
     private Tower tower;
     private FlawType flawType;
     private User user;
+
+    public PollingMission getPollingMission() {
+        return pollingMission;
+    }
+
+    public void setPollingMission(PollingMission pollingMission) {
+        this.pollingMission = pollingMission;
+    }
+
+    public Integer getPmid() {
+        return pmid;
+    }
+
+    public void setPmid(Integer pmid) {
+        this.pmid = pmid;
+    }
 
     public Circuit getCircuit() {
         return circuit;

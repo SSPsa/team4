@@ -125,7 +125,7 @@
 
 
     layui.use('form', function(){
-        var form = layui.form();
+            var form = layui.form();
 
         form.on('select(filters2)', function(data){
             //alert(data.value); //得到被选中的值

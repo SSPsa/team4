@@ -112,7 +112,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/jsp/inspectionTask_executAndReceipt.jsp">
+                            <a href="/PollingMission/showpollingMissionReceipt">
                                 <i class="iconfont">&#xe6a7;</i>
                                 巡检任务执行与回执
                             </a>

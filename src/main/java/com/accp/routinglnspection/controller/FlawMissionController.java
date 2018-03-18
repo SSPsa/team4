@@ -30,11 +30,11 @@ public class FlawMissionController {
     //缺陷任务制定与分配的分页包括按条件筛选
     @RequestMapping("/flawMission/flawMissionForPager")
     public String flawMissionForPager(Model m,String pageIndex, String fmNumber, String fmName, String fmState, String principalUid, Date startTime, Date endTime) {
-    //初始化首页
+//初始化首页
         if (pageIndex == null || pageIndex.equals("")) {
             pageIndex = "1";
         }
-    //初始化任务状态
+//    初始化任务状态
         if (fmState == null || fmState.equals("")) {
             fmState = "0";
         }
@@ -44,7 +44,10 @@ public class FlawMissionController {
         }
 
         Pager<FlawMission> flawMissionPager = flawMissionBiz.queryFlawMisPager(Integer.parseInt(pageIndex), 2, fmNumber, fmName, Integer.parseInt(fmState), 0, Integer.parseInt(principalUid), startTime, endTime,1,2);
-
+//        待选消缺员
+        List<User> toBeSelectedDefect = userBiz.queryToBeSelectedDefect();
+//        已选消缺员
+        List<User> selectedDefect = userBiz.querySelectedDefect();
         //       对分页的集合进行判断
     if(flawMissionPager!=null){
                m.addAttribute("flawMissionPager",flawMissionPager);
@@ -53,6 +56,8 @@ public class FlawMissionController {
                m.addAttribute("fmState",fmState);
                m.addAttribute("startTime",startTime);
                m.addAttribute("endTime",endTime);
+        m.addAttribute("toBeSelectedDefect",toBeSelectedDefect);
+        m.addAttribute("selectedDefect",selectedDefect);
                return "solveTask_formAndDist";
        }else{
            return null;
@@ -183,7 +188,7 @@ public class FlawMissionController {
 
 //    制定与分配的分配消缺员
     @RequestMapping("/flawMission/flawMissionAssign")
-    public String flawMissionAssign(Model m){
+    public String flawMissionAssign(Model m,int fwId){
 //        待选消缺员
         List<User> toBeSelectedDefect = userBiz.queryToBeSelectedDefect();
 //        已选消缺员
@@ -192,16 +197,28 @@ public class FlawMissionController {
         if(toBeSelectedDefect!=null && selectedDefect!=null){
             m.addAttribute("toBeSelectedDefect",toBeSelectedDefect);
             m.addAttribute("selectedDefect",selectedDefect);
-            return "solveTask_assign";
+            m.addAttribute("fwId",fwId);
+            return "solveTask_formAndDist";
         }else{
             return null;
         }
     }
 
+    //    制定与分配的分配消缺员成功
+    @RequestMapping("/flawMission/flawMissionAssign2")
+    public String flawMissionAssign2(Model m,int fwId,FlawMission flawMission){
+        flawMission.setId(fwId);
+        flawMission.setFmState(2);
+        flawMissionBiz.updateFlawMission(flawMission);
+        return flawMissionForPager(m,null,null,null,null,null,null,null);
+
+    }
+
+
     //执行与回执的查看
     @RequestMapping("/flawMission/flawMissionExecView")
-    public String flawMissionExecView(Model m,String fwId){
-        FlawMission flawMission = flawMissionBiz.queryFlawMissionOne(Integer.parseInt(fwId));
+    public String flawMissionExecView(Model m,int fwId){
+        FlawMission flawMission = flawMissionBiz.queryFlawMissionOne(fwId);
         if(flawMission!=null){
             m.addAttribute("flawMission",flawMission);
             return "solveTask_execute_view";
@@ -226,7 +243,7 @@ public class FlawMissionController {
 
  //消缺任务执行与回执的修改成功
     @RequestMapping("/flawMission/flawMissionExecModify")
-    public String flawMissionExecModify(Model m,FlawMission flawMission,String fwId){
+    public String flawMissionExecModify(Model m, FlawMission flawMission, String fwId){
         flawMission.setId(Integer.parseInt(fwId));
         flawMissionBiz.updateFlawMission(flawMission);
         return flawMissionExcePager(m,null, null,null,null,null,null);
@@ -234,14 +251,23 @@ public class FlawMissionController {
 
 //消缺任务执行与回执的回执录入
     @RequestMapping("/flawMission/flawMissionExecEntry")
-    public String flawMissionExecEntry(Model m,String fwId){
-        FlawMission flawMission = flawMissionBiz.queryFlawMissionOne(Integer.parseInt(fwId));
+    public String flawMissionExecEntry(Model m,int fwId){
+        FlawMission flawMission = flawMissionBiz.queryFlawMissionOne(fwId);
         if(flawMission!=null){
             m.addAttribute("flawMission",flawMission);
             return "solveTask_examina";
         }else{
             return null;
         }
+    }
+
+
+    //消缺任务执行与回执录入成功
+    @RequestMapping("/flawMission/flawMissionExecModify2")
+    public String flawMissionExecModify2(Model m, FlawMission flawMission, int fwId){
+        flawMission.setId(fwId);
+        flawMissionBiz.updateFlawMission(flawMission);
+        return flawMissionExcePager(m,null, null,null,null,null,null);
     }
 //    增加缺陷
     @RequestMapping("/flawMission/flawMissionAddFlaw")
@@ -254,4 +280,6 @@ public class FlawMissionController {
         }
         return null;
     }
+
+
 }

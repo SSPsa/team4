@@ -2,15 +2,13 @@ package com.accp.routinglnspection.biz.impl;
 
 import com.accp.routinglnspection.biz.PollingMissionBiz;
 import com.accp.routinglnspection.dao.PollingMissionDao;
-import com.accp.routinglnspection.entity.Circuit;
-import com.accp.routinglnspection.entity.Pager;
-import com.accp.routinglnspection.entity.PollingMission;
-import com.accp.routinglnspection.entity.User;
-import org.springframework.stereotype.Repository;
+import com.accp.routinglnspection.entity.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
+
 @Service
 public class PollingMissionBizimpl implements PollingMissionBiz {
     @Resource
@@ -43,5 +41,24 @@ public class PollingMissionBizimpl implements PollingMissionBiz {
 
     public List<User> queryUser() {
         return pollingMissionDao.queryUser();
+    }
+
+    public List<FlawType> queryFlawType() {
+        return pollingMissionDao.queryFlawType();
+    }
+
+    public int addFlaw(Flaw flaw) {
+        return pollingMissionDao.addFlaw(flaw);
+    }
+
+    public Pager<Flaw> queryFlaw(String pmNumber, String cNumber, Date beginDate, Date finishDate, int pageNo, int pageSize, int typeid, int grade) {
+        Pager<Flaw> pager=new Pager<Flaw>();
+        pager.setPageNo(pageNo);
+        pager.setPageSize(pageSize);
+        pager.setTotalRows(pollingMissionDao.queryFlawInt(pmNumber,cNumber,beginDate,finishDate,typeid,grade));
+        pager.setTotalPage( (pager.getTotalRows() + pageSize-1)/ pageSize);
+        int begin = (pageNo-1)*pageSize;
+        pager.setDatas(pollingMissionDao.queryFlaw(pmNumber,cNumber,beginDate,finishDate,pageNo,pageSize,typeid,grade));
+        return pager;
     }
 }

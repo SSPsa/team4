@@ -90,11 +90,11 @@
                 </div>
             </div>
 
-            <xblock>
-                <a href="#"  class="addFlaw" fid="${flawMission.fId}" style="text-decoration:none" >
-                    请选择新增的缺陷
-                </a>
-            </xblock>
+            <%--<xblock>--%>
+                <%--<a href="#"  class="addFlaw" fid="${flawMission.fId}" style="text-decoration:none" >--%>
+                    <%--请选择新增的缺陷--%>
+                <%--</a>--%>
+            <%--</xblock>--%>
 
             <div class="layui-form-item">
                 <label  class="layui-form-label">
@@ -149,12 +149,12 @@
         }
     });
 
-    $(function () {
-        $(".addFlaw").on("click", function () {
-            //将被绑定的元素（a）转换成jquery对象，可以使用jquery方法
-            var obj = $(this);
-            window.location.href = "/flawMission/flawMissionAddFlaw?fid=" + obj.attr("fid");
-        });
-    });
+//    $(function () {
+//        $(".addFlaw").on("click", function () {
+//            //将被绑定的元素（a）转换成jquery对象，可以使用jquery方法
+//            var obj = $(this);
+//            window.location.href = "/flawMission/flawMissionAddFlaw?fid=" + obj.attr("fid");
+//        });
+//    });
 </script>
 <%@include file="/common/footer.jsp"%>

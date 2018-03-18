@@ -1,23 +1,12 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>后台登录-X-admin1.1</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/css/font.css">
-    <link rel="stylesheet" href="/css/xadmin.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
-    <script src="/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/js/xadmin.js"></script>
 
-</head>
+<%@include file="/common/top.jsp"%>  <%--头部--%>
+<%@include file="/common/left.jsp"%>  <%--中间-左--%>
 
-<body>
-<!-- 中部开始 -->
+<!-- 右侧主体开始 -->
 <div class="wrapper">
     <!-- 右侧主体开始 -->
     <div class="page-content">
@@ -102,30 +91,30 @@
                     </div>
                 </div>
 
-                <div class="layui-form-item">
+                <%--<div class="layui-form-item">--%>
 
-                    <xblock>
-                        <label class="layui-form-label">
-                            缺陷列表
-                        </label>
-                        <a  class="layui-btn"  href="defects_add.jsp"><i class="layui-icon">&#xe608;</i>添加缺陷</a>
+                <%--<xblock>--%>
+                <%--<label class="layui-form-label">--%>
+                <%--缺陷列表--%>
+                <%--</label>--%>
+                <%--<a  class="layui-btn"  href="defects_add.jsp"><i class="layui-icon">&#xe608;</i>添加缺陷</a>--%>
 
-                        <%--<a  class="layui-btn"  onclick="member_add('添加缺陷','/jsp/defects.jsp','600','500')"><i class="layui-icon">&#xe608;</i>添加缺陷</a>--%>
-                    </xblock>
-                </div>
-                <table class="layui-table">
-                    <tr>
-                        <td>线路编号</td>
-                        <td>杆塔编号</td>
-                        <td>缺陷等级</td>
-                        <td>缺陷类型</td>
-                        <td>缺陷描述</td>
-                        <td>发现人</td>
-                        <td>发现时间</td>
-                        <td>操作</td>
-                    </tr>
+                <%--&lt;%&ndash;<a  class="layui-btn"  onclick="member_add('添加缺陷','/jsp/defects.jsp','600','500')"><i class="layui-icon">&#xe608;</i>添加缺陷</a>&ndash;%&gt;--%>
+                <%--</xblock>--%>
+                <%--</div>--%>
+                <%--<table class="layui-table">--%>
+                <%--<tr>--%>
+                <%--<td>线路编号</td>--%>
+                <%--<td>杆塔编号</td>--%>
+                <%--<td>缺陷等级</td>--%>
+                <%--<td>缺陷类型</td>--%>
+                <%--<td>缺陷描述</td>--%>
+                <%--<td>发现人</td>--%>
+                <%--<td>发现时间</td>--%>
+                <%--<td>操作</td>--%>
+                <%--</tr>--%>
 
-                </table>
+                <%--</table>--%>
 
 
                 <div class="layui-form-item">
@@ -144,9 +133,9 @@
     </div>
     <!-- 右侧主体结束 -->
 </div>
-<!-- 中部结束 -->
-</body>
-</html>
+<%--</body>--%>
+<!-- 右侧主体结束 -->
+</div>
 <script>
     layui.use(['laydate'], function(){
         laydate = layui.laydate;//日期插件
@@ -182,4 +171,14 @@
             laydate(end);
         }
     });
+
+    $(function () {
+        $(".addFlaw").on("click", function () {
+            //将被绑定的元素（a）转换成jquery对象，可以使用jquery方法
+            var obj = $(this);
+            window.location.href = "/flawMission/flawMissionAddFlaw?fid=" + obj.attr("fid");
+        });
+    });
 </script>
+<%@include file="/common/footer.jsp"%>
+
